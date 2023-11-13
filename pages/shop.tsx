@@ -23,10 +23,10 @@ export default function Shop() {
     return (
         <div className="py-2 mt-12">
             <h1>Shop Packs</h1>
-            <div className="">
+            <div className="sm:flex block sm:justify-start justify-center">
                 {!loadingDirectListings ? (
                     directListings?.map((listing, index) => (
-                        <div className="justify-start flex-wrap w-full mx-auto md:flex-col sm:flex-col" key={index}>
+                        <div className="justify-start flex-wrap md:flex-col sm:flex-col" key={index}>
                             <div>
                                 <PackNFTCard
                                     contractAddress={listing.assetContractAddress}

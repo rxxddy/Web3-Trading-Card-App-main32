@@ -40,37 +40,69 @@ export const PackNFTCard = ({ contractAddress, tokenId }: Props) => {
     };
 
     return (
-        <div className="p-6">
+        <div className="p-6 flex justify-center sm:block">
             {!loadingNFT && !loadingPackListings ? (
-                <div className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525]">
-                    <div className="relative h-80 p-2 bg-black">
-                        <MediaRenderer
-                            src={packNFT?.metadata.image}
-                            className="object-cover w-full h-full rounded-t-md py-6"
-                        />
-                    </div>
-                    <div className="p-4 bg-[#252525] rounded-b-md">
-                        <h3 className="text-white text-xl font-semibold mb-2">{packNFT?.metadata.name}</h3>
-                        
-                        <p className="text-white mb-2">Cost: {packListings![tokenId].currencyValuePerToken.displayValue} {` ` + packListings![tokenId].currencyValuePerToken.symbol}</p>
-                        <p className="text-white mb-2">Supply: {packListings![tokenId].quantity}</p>
-                        {!address ? (
-                            <p className="text-white mb-2">Login to buy</p>
-                        ) : (
+                <div className="flex">
+                    <div className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] ">
+                        <div className="relative h-80 p-2 bg-black">
+                            <MediaRenderer
+                                src={packNFT?.metadata.image}
+                                className="object-cover w-full h-full rounded-t-md py-6"
+                            />
+                        </div>
+                        <div className="p-4 bg-[#252525] rounded-b-md">
+                            <h3 className="text-white text-xl font-semibold mb-2">{packNFT?.metadata.name}</h3>
                             
-                            <div className="w-full mt-10">
-                                    <Web3Button
-                                    style={{width: "100%"}}
-                                    contractAddress={MARKETPLACE_ADDRESS}
-                                    action={() => buyPack()}
-                                    className="bg-yellow-300 text-white px-4 py-2 rounded-md hover:bg-yellow-500 focus:outline-none focus:shadow-outline-blue active:bg-yellow-500 ">
-                                        Buy Pack
-                                    </Web3Button>
-                            </div>
+                            <p className="text-white mb-2">Cost: {packListings![tokenId].currencyValuePerToken.displayValue} {` ` + packListings![tokenId].currencyValuePerToken.symbol}</p>
+                            <p className="text-white mb-2">Supply: {packListings![tokenId].quantity}</p>
+                            {!address ? (
+                                <p className="text-white mb-2">Login to buy</p>
+                            ) : (
+                                
+                                <div className="w-full mt-10">
+                                        <Web3Button
+                                        style={{width: "100%"}}
+                                        contractAddress={MARKETPLACE_ADDRESS}
+                                        action={() => buyPack()}
+                                        className="bg-yellow-300 text-white px-4 py-2 rounded-md hover:bg-yellow-500 focus:outline-none focus:shadow-outline-blue active:bg-yellow-500 ">
+                                            Buy Pack
+                                        </Web3Button>
+                                </div>
 
-                            
-                        )}
+                                
+                            )}
+                        </div>
                     </div>
+                    {/* <div className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] ">
+                        <div className="relative h-80 p-2 bg-black">
+                            <MediaRenderer
+                                src={packNFT?.metadata.image}
+                                className="object-cover w-full h-full rounded-t-md py-6"
+                            />
+                        </div>
+                        <div className="p-4 bg-[#252525] rounded-b-md">
+                            <h3 className="text-white text-xl font-semibold mb-2">{packNFT?.metadata.name}</h3>
+                            
+                            <p className="text-white mb-2">Cost: {packListings![tokenId].currencyValuePerToken.displayValue} {` ` + packListings![tokenId].currencyValuePerToken.symbol}</p>
+                            <p className="text-white mb-2">Supply: {packListings![tokenId].quantity}</p>
+                            {!address ? (
+                                <p className="text-white mb-2">Login to buy</p>
+                            ) : (
+                                
+                                <div className="w-full mt-10">
+                                        <Web3Button
+                                        style={{width: "100%"}}
+                                        contractAddress={MARKETPLACE_ADDRESS}
+                                        action={() => buyPack()}
+                                        className="bg-yellow-300 text-white px-4 py-2 rounded-md hover:bg-yellow-500 focus:outline-none focus:shadow-outline-blue active:bg-yellow-500 ">
+                                            Buy Pack
+                                        </Web3Button>
+                                </div>
+
+                                
+                            )}
+                        </div>
+                    </div> */}
                 </div>
             ) : (
                 <p>.</p>
