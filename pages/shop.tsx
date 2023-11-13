@@ -23,7 +23,7 @@ export default function Shop() {
     return (
         <div className="py-2 mt-12">
             <h1>Shop Packs</h1>
-            <div className="sm:flex block sm:justify-start justify-center">
+            <div className="sm:flex block justify-center">
                 {!loadingDirectListings ? (
                     directListings?.map((listing, index) => (
                         <div className="justify-start flex-wrap md:flex-col sm:flex-col" key={index}>
