@@ -23,44 +23,15 @@ export default function Shop() {
     const shopItems = [
         {
           tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaAI5549Udtz22w9wwR9NMcVW579_ES222X-U4jHJD9NMuNTQJKlfEprSPTxyfpuwrsZXvppBj8HkylCX9vcGIYg2r6IgQ=w2560-h1244',
+          imageUrl: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/31.png',
           name: 'NFT T-Shirt 1',
         },
         {
           tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaBDT_oFqEMF7bEPIvjld-d-lrx3plmTfjdIDSJRgI8CDCEPiCrCz_XEAP50HaNKXAXw81FxQ_Tt8sNhFNtlMjDfgBe7-Q=w1831-h1244',
+          imageUrl: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png',
           name: 'NFT T-Shirt 2',
         },
-        {
-          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaAI5549Udtz22w9wwR9NMcVW579_ES222X-U4jHJD9NMuNTQJKlfEprSPTxyfpuwrsZXvppBj8HkylCX9vcGIYg2r6IgQ=w2560-h1244',
-          name: 'NFT T-Shirt 1',
-        },
-        {
-          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaBDT_oFqEMF7bEPIvjld-d-lrx3plmTfjdIDSJRgI8CDCEPiCrCz_XEAP50HaNKXAXw81FxQ_Tt8sNhFNtlMjDfgBe7-Q=w1831-h1244',
-          name: 'NFT T-Shirt 2',
-        },
-        {
-          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaAI5549Udtz22w9wwR9NMcVW579_ES222X-U4jHJD9NMuNTQJKlfEprSPTxyfpuwrsZXvppBj8HkylCX9vcGIYg2r6IgQ=w2560-h1244',
-          name: 'NFT T-Shirt 1',
-        },
-        {
-          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaBDT_oFqEMF7bEPIvjld-d-lrx3plmTfjdIDSJRgI8CDCEPiCrCz_XEAP50HaNKXAXw81FxQ_Tt8sNhFNtlMjDfgBe7-Q=w1831-h1244',
-          name: 'NFT T-Shirt 2',
-        },
-        {
-          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaAI5549Udtz22w9wwR9NMcVW579_ES222X-U4jHJD9NMuNTQJKlfEprSPTxyfpuwrsZXvppBj8HkylCX9vcGIYg2r6IgQ=w2560-h1244',
-          name: 'NFT T-Shirt 1',
-        },
-        {
-          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaBDT_oFqEMF7bEPIvjld-d-lrx3plmTfjdIDSJRgI8CDCEPiCrCz_XEAP50HaNKXAXw81FxQ_Tt8sNhFNtlMjDfgBe7-Q=w1831-h1244',
-          name: 'NFT T-Shirt 2',
-        },
+        
         // Add more items as needed
       ];
 
