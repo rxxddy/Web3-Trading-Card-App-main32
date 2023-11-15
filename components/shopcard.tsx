@@ -214,8 +214,8 @@ export default function ShopCard( { tokenAddress, nftimage, name }: ShopCardProp
 
     return (
 
-        <div className="mx-8">
-            <div className="sm:flex block justify-center">
+        <div className="mx-8 my-10">
+            <div className="flex justify-center">
                     <div className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] ">
                         <div className="relative w-full bg-black">
                             <MediaRenderer

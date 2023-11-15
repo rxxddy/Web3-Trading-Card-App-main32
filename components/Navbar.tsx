@@ -76,7 +76,7 @@ export default function Navbar() {
                     </div>
           
                     {isProfileDropdownOpen && (
-                        <div className="transform translate-y-10 -translate-x-10 z-50 fixed my-4 text-base list-none bg-[#282828] divide-y divide-gray-100 rounded-lg shadow  dark:divide-gray-600" id="user-dropdown">
+                        <div className="transform translate-y-10 md:-translate-x-20 md:-translate-x-2 -translate-x-12  z-50 fixed my-4 text-base list-none bg-[#282828] divide-y divide-gray-100 rounded-lg shadow  dark:divide-gray-600" id="user-dropdown">
                             
                             <div className="px-4 py-3 w-[10em] flex justify-center">
                                 <span className="block text-sm text-gray-900 dark:text-white">{formattedAddress}</span>

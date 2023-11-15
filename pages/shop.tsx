@@ -31,13 +31,43 @@ export default function Shop() {
           imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaBDT_oFqEMF7bEPIvjld-d-lrx3plmTfjdIDSJRgI8CDCEPiCrCz_XEAP50HaNKXAXw81FxQ_Tt8sNhFNtlMjDfgBe7-Q=w1831-h1244',
           name: 'NFT T-Shirt 2',
         },
+        {
+          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
+          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaAI5549Udtz22w9wwR9NMcVW579_ES222X-U4jHJD9NMuNTQJKlfEprSPTxyfpuwrsZXvppBj8HkylCX9vcGIYg2r6IgQ=w2560-h1244',
+          name: 'NFT T-Shirt 1',
+        },
+        {
+          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
+          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaBDT_oFqEMF7bEPIvjld-d-lrx3plmTfjdIDSJRgI8CDCEPiCrCz_XEAP50HaNKXAXw81FxQ_Tt8sNhFNtlMjDfgBe7-Q=w1831-h1244',
+          name: 'NFT T-Shirt 2',
+        },
+        {
+          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
+          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaAI5549Udtz22w9wwR9NMcVW579_ES222X-U4jHJD9NMuNTQJKlfEprSPTxyfpuwrsZXvppBj8HkylCX9vcGIYg2r6IgQ=w2560-h1244',
+          name: 'NFT T-Shirt 1',
+        },
+        {
+          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
+          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaBDT_oFqEMF7bEPIvjld-d-lrx3plmTfjdIDSJRgI8CDCEPiCrCz_XEAP50HaNKXAXw81FxQ_Tt8sNhFNtlMjDfgBe7-Q=w1831-h1244',
+          name: 'NFT T-Shirt 2',
+        },
+        {
+          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
+          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaAI5549Udtz22w9wwR9NMcVW579_ES222X-U4jHJD9NMuNTQJKlfEprSPTxyfpuwrsZXvppBj8HkylCX9vcGIYg2r6IgQ=w2560-h1244',
+          name: 'NFT T-Shirt 1',
+        },
+        {
+          tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
+          imageUrl: 'https://lh3.googleusercontent.com/u/5/drive-viewer/AK7aPaBDT_oFqEMF7bEPIvjld-d-lrx3plmTfjdIDSJRgI8CDCEPiCrCz_XEAP50HaNKXAXw81FxQ_Tt8sNhFNtlMjDfgBe7-Q=w1831-h1244',
+          name: 'NFT T-Shirt 2',
+        },
         // Add more items as needed
       ];
 
     return (
-        <div className="py-2 mt-12">
+        <div className="py-2 mt-12 flex justify-center">
             <h1>Shop</h1>
-            <div className="sm:flex block justify-center">
+            <div className=" justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-10 gap-4">
             {shopItems.map((item, index) => (
                 <ShopCard
                 key={index}
