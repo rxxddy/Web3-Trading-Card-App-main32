@@ -10,7 +10,7 @@ const Home: NextPage = () => {
             <p>Buy and open packs to collect creatures. Collect common, rare, and ultra rare cards.</p>
             <button 
               className={styles.heroButton}
-              onClick={() => window.location.href = "/shop"}
+              onClick={() => window.location.href = "/packsshop"}
             >Shop Packs</button>
           </div>
           <div>

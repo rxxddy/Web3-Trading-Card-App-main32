@@ -18,10 +18,15 @@ export default function Marketplace() {
     )
 
     return (
-        <div className={styles.container}>
+        <div className="py-2 mt-12">
             <h1>Marketplace</h1>
-            <div className={styles.grid}>
-                {!loadingDirectListings ? (
+            <div className="sm:flex block justify-center">
+
+                <div className="flex justify-center items-center h-[80vh]" role="status">
+                    <div className="text-white font-mono text-xl tracking-widest">Coming Very Soon...</div>
+                </div>
+                
+                {/* {!loadingDirectListings ? (
                     directListings?.map((listing, index) => (
                         <div key={index}>
                             <NFTCard
@@ -32,7 +37,9 @@ export default function Marketplace() {
                     ))
                 ) : (
                     <p>Loading...</p>
-                )}
+                )} */}
+
+
             </div>
         </div>
     )
