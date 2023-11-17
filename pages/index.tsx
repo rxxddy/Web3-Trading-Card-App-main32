@@ -16,6 +16,8 @@ const Home: NextPage = () => {
     { Bigtext: 'Collection 1', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/4.png' },
     { Bigtext: 'Collection 2', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/5.png' },
     { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/6.png' },
+    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/41.png' },
+    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/2.png' },
     // Add more data as needed
   ];
   const data1 = [
