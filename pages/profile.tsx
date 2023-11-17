@@ -34,6 +34,7 @@ export default function Profile() {
 
     const [openPackRewards, setOpenPackRewards] = useState<PackRewards>();
 
+
     async function openPack(packId: string) {
         const cardRewards = await contract?.open(parseInt(packId), 1);
         console.log(cardRewards);
@@ -57,13 +58,19 @@ export default function Profile() {
                                 <div className="p-4 bg-[#252525] rounded-b-md">
                                     <h3 className="text-white text-xl font-semibold">{nft.metadata.name}</h3>
                                     <p className="text-white mb-2">Qty: {nft.quantityOwned}</p>
-                                    <div
-                                        className="p-4 flex justify-center font-mono bg-amber-300 mt-10"
-                                    >
-                                        <p>Sell</p>
+                                    <div className="w-[7em] transform translate-x-[69px] translate-y-[54px] bg-red-900 rounded-md p-1 font-mono text-xs text-white/90">Coming Soon</div>
+                                    <div className="flex justify-between">
+
+                                        <div className="p-4 flex justify-center w-3/6 mr-1 font-mono bg-black text-white mt-10 cursor-not-allowed rounded-sm">
+                                            <p>Sell</p>
+                                        </div>
+
+                                        <button className="p-4 flex justify-center w-3/6 ml-1 font-mono bg-white mt-10 rounded-sm">
+                                            Order
+                                        </button>
+
                                     </div>
 
-                                    <div className="w-[7em] transform translate-x-[196px] -translate-y-[70px] bg-red-900 rounded-md p-1 font-mono sm:text-md text-sm text-white/90">Coming Soon</div>
                                     
                                 </div>
                             </div>
@@ -94,7 +101,7 @@ export default function Profile() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:p-10 gap-4 justify-items-center">
                 {!isLoading ? (
                     data?.map((pack, index) => (
-                        <div key={index} className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] pb-3">
+                        <div key={index} className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] pb-7 p-4">
                             <ThirdwebNftMedia
                             metadata={pack.metadata}
                             />
@@ -105,8 +112,8 @@ export default function Profile() {
                             <Web3Button
                                 contractAddress={PACK_ADDRESS}
                                 action={() => openPack(pack.metadata.id)}
-                                className="p-4 flex justify-center font-mono bg-amber-300 mt-10"
-                                style={{width: "100%", backgroundColor: "rgb(252 211 77 / var(--tw-bg-opacity))"}}
+                                className="p-4 flex justify-center font-mono bg-white mt-10"
+                                style={{width: "100%", backgroundColor: "white", borderRadius: "2px"}}
                             >Open Pack</Web3Button>
                         </div>
                     ))
@@ -115,18 +122,24 @@ export default function Profile() {
                 )}
             </div>
             {openPackRewards && openPackRewards.erc1155Rewards?.length && (
-                <div className={styles.container}>
-                    <h3>Pack Rewards:</h3>
-                    <div className={styles.grid}>
-                        {openPackRewards.erc1155Rewards.map((card, index) => (
-                        <PackRewardCard
-                            reward={card}
-                            key={index}
-                        />
-                        ))}
+
+                
+                <div className="fixed inset-0 flex items-center justify-center">
+                <div
+                    className="fixed inset-0 bg-black opacity-50"
+                    onClick={() => setOpenPackRewards(undefined)}
+                ></div>
+                <div className="relative z-50">
+                    <div className="flex justify-items-center">
+                    {openPackRewards.erc1155Rewards.map((card, index) => (
+                        <PackRewardCard reward={card} key={index} />
+                    ))}
                     </div>
                 </div>
+                </div>
             )}
+
+
         </div>
     )
 };

@@ -162,7 +162,7 @@ const Home: NextPage = () => {
                         ))}
                       </tbody>
                     </table>
-                    <table className="sm:block hidden w-full text-white ml-6" cellSpacing="0">
+                    <table className="sm:inline-table hidden w-full text-white ml-6" cellSpacing="0">
                       <thead className="border-b-2 border-white/30 font-light">
                         <tr>
                           <th className="p-3 text-left">Rank</th>

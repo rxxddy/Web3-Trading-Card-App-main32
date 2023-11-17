@@ -34,6 +34,14 @@ export default function Navbar() {
         setIsProfileDropdownOpen(false);
     }
 
+    const handleLogout = () => {
+        // Perform the disconnectWallet action here
+        disconnectWallet();
+      
+        // After disconnecting, toggle the profile dropdown
+        setIsProfileDropdownOpen(!isProfileDropdownOpen);
+      };
+
     return (
 
         <nav className="bg-[#202020] fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -45,13 +53,15 @@ export default function Navbar() {
                 </Link>
                 <div className="flex md:order-2">
                     {/* <button type="button" className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Get started</button> */}
-                    <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <button data-collapse-toggle="navbar-sticky" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
                         <span className="sr-only">Open main menu</span>
                         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
                         </svg>
                     </button>
-                    <div>
+
+
+                    <div className="md:block hidden">
                         {!address ? (
                             <ConnectWallet 
                                 btnTitle="Connect Wallet"
@@ -77,23 +87,36 @@ export default function Navbar() {
                     </div>
           
                     {isProfileDropdownOpen && (
-                        <div className="transform translate-y-10 md:-translate-x-20 md:-translate-x-2 -translate-x-12  z-50 fixed my-4 text-base list-none bg-[#282828] divide-y divide-gray-100 rounded-lg shadow  dark:divide-gray-600" id="user-dropdown">
+                        <div>
+                            <div className="transform translate-x-[-10em] translate-y-[10em] z-50 fixed my-4 text-base list-none bg-[#282828] divide-y divide-gray-100 rounded-lg shadow  dark:divide-gray-600" id="user-dropdown">
+                                
+                                <div className="px-4 py-3 w-[10em] flex justify-center z-50">
+                                    <span className="block text-sm text-gray-900 dark:text-white">{formattedAddress}</span>
+                                    {/* <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span> */}
+                                </div>
+                                <ul className="py-2 z-50"  aria-labelledby="user-menu-button">
+                                    <Link href="/profile" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-center">
+                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</p>
+                                    </Link>
+                                    <Link href="/shop" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-center">
+                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Shop</p>
+                                    </Link>
+                                    <Link href="/pacsshow" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-center">
+                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Packs</p>
+                                    </Link>
+                                    <Link href="/marketplace" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-center">
+                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Marketplace</p>
+                                    </Link>
+                                    <button onClick={handleLogout} className="flex justify-center w-full">
+                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</p>
+                                    </button>
+                                </ul>
                             
-                            <div className="px-4 py-3 w-[10em] flex justify-center">
-                                <span className="block text-sm text-gray-900 dark:text-white">{formattedAddress}</span>
-                                {/* <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span> */}
                             </div>
-                            <ul className="py-2 "  aria-labelledby="user-menu-button">
-                                <Link href="/myPacks" className="flex justify-center">
-                                    <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">My Packs</p>
-                                </Link>
-                                <Link href="/myCards" className="flex justify-center">
-                                    <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">My Cards</p>
-                                </Link>
-                                <button onClick={disconnectWallet} className="flex justify-center w-full">
-                                    <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</p>
-                                </button>
-                            </ul>
+                            <div
+                                className="fixed inset-0 bg-black opacity-50"
+                                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                            ></div>
                         </div>
                     )}
                 </div>

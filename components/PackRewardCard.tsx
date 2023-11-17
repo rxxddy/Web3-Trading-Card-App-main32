@@ -16,15 +16,16 @@ export const PackRewardCard = ({ reward }: Props) => {
     const { data } = useNFT(contract, reward.tokenId);
     
     return (
-        <div className={styles.nftCard}>
+        <div className="sm:w-[20em] w-[15em] sm:h-[23em] h-[18em] bg-white rounded-xl p-5 m-3 border-white/90 border-2">
             {data && (
                 <>
+                    <h2>Pack Reward:</h2>
                     <ThirdwebNftMedia
                         metadata={data.metadata}
-                        height="200px"
-                        width="200px"
+                        height="100%"
+                        width="100%"
                     />
-                    <h3>{data.metadata.name}</h3>
+                    {/* <h3>{data.metadata.name}</h3> */}
                 </>
             )}
         </div>
