@@ -304,7 +304,7 @@ const Home: NextPage = () => {
                         <div className="md:flex md:justify-between">
                           <div className="mb-6 md:mb-0">
                               <Link href="/" className="flex items-center">
-                                  <img src="https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeiauj2lqlo7bn6h2ghfnvo7kssdotewt7apib5vex74k7zvhtmd664/logo02.png" className="h-8 me-3" alt="FlowBite Logo" />
+                                  <img src="https://thesybilmarket.vercel.app/logo02.png" className="h-8 me-3" alt="FlowBite Logo" />
                                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">The Sybil Market</span>
                               </Link>
                           </div>
