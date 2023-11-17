@@ -2,6 +2,7 @@ import { useContract, useDirectListings } from "@thirdweb-dev/react";
 import { MARKETPLACE_ADDRESS, PACK_ADDRESS } from "../const/addresses";
 import styles from "../styles/Home.module.css";
 import { PackNFTCard } from "../components/PackNFT";
+import Link from "next/link";
 
 import {
     useActiveClaimConditionForWallet,
@@ -36,19 +37,22 @@ export default function Shop() {
       ];
 
     return (
-        <div className="py-2 mt-12 flex justify-center">
-            <h1>Shop</h1>
-            <div className=" justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-10 gap-4">
-            {shopItems.map((item, index) => (
-                <ShopCard
-                key={index}
+      <div className="py-2 mt-12 flex justify-center">
+      <h1>Shop</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:p-10 gap-4">
+        {shopItems.map((item, index) => (
+          <Link key={index} href={`/${encodeURIComponent(item.name.replace(/\s+/g, '-'))}`}>
+            
+              <ShopCard
                 tokenAddress={item.tokenAddress}
                 nftimage={item.imageUrl}
                 name={item.name}
-                />
-            ))}
-            </div>
-        </div>
+              />
+            
+          </Link>
+        ))}
+      </div>
+    </div>
     )
 };
 

@@ -68,11 +68,11 @@ export default function Navbar() {
                                 className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
                             />
                         ) : (
-                            <div
-                                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                            <Link href="/profile"
+                                
                             >
                                 <img src={`https://avatars.dicebear.com/api/avataaars/1.svg`} alt="avatar" className={styles.avatar}/>
-                            </div>
+                            </Link>
                         )}
                     </div>
           
