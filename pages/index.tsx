@@ -3,64 +3,53 @@ import styles from "../styles/Home.module.css";
 import { useState, useEffect } from 'react';
 import { MediaRenderer } from "@thirdweb-dev/react";
 import Link from "next/link";
-import { ThirdwebProvider } from "@thirdweb-dev/react";
-
-import {
-
-  ConnectWallet,
-  metamaskWallet,
-  coinbaseWallet,
-  walletConnect,
-  trustWallet,
-  darkTheme,
-} from "@thirdweb-dev/react";
 
 const Home: NextPage = () => {
-  const activeChain = "mumbai";
+
   const images = [
-    'https://image.mux.com/nzHlNbduVGyvrKDcVrTQEwZq00YWaKjrb8TEOzdRV6WY/thumbnail.jpg?auto=format&dpr=1&w=2560',
-    'https://i.seadn.io/gcs/files/19f600d97f39e252900576e8937bb56c.png?auto=format&dpr=1&w=1920',
-    'https://i.seadn.io/gcs/files/3cc47ef545e3ee3f33a476bf19a9f08a.gif?auto=format&dpr=1&w=2048',
+    'https://thesybilmarket.vercel.app/1.png',
+    'https://thesybilmarket.vercel.app/2.png',
+    'https://thesybilmarket.vercel.app/3.png',
   ];
 
   const data0 = [
-    { Bigtext: 'Collection 1', desc: 'Description Description', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeianqmnpe7jc7os4vv55umsqpihqrqcdej6l7bspk3bhvhfvibgs54/7.png' },
-    { Bigtext: 'Collection 2', desc: 'Description Description', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeieyizmyugyfqo4263xrucrpivdsfu3zvzmbs7ymo3kgvn5u2xgynu/21.png' },
-    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png' },
+    { Bigtext: 'Collection 1', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/4.png' },
+    { Bigtext: 'Collection 2', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/5.png' },
+    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/6.png' },
     // Add more data as needed
   ];
   const data1 = [
-    { rank: 1, collection: 'Collection A', floorPrice: '$100', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeifc4h6ergaxpklstdbchvsyllnxizeqmpd6enk2riucai2ysj7ole/3.png' },
-    { rank: 2, collection: 'Collection B', floorPrice: '$150', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeianqmnpe7jc7os4vv55umsqpihqrqcdej6l7bspk3bhvhfvibgs54/7.png' },
-    { rank: 3, collection: 'Collection C', floorPrice: '$120', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeiggm45o5ue3324xeoq74uoh2mcafji5epndtyqt4rk32cydgekhdm/61.png' },
+    { rank: 1, collection: 'Collection A', floorPrice: '$100', image: 'https://thesybilmarket.vercel.app/7.png' },
+    { rank: 2, collection: 'Collection B', floorPrice: '$150', image: 'https://thesybilmarket.vercel.app/31.png' },
+    { rank: 3, collection: 'Collection C', floorPrice: '$120', image: 'https://thesybilmarket.vercel.app/41.png' },
     // Add more data as needed
   ];
   const data2 = [
-    { rank: 4, collection: 'Collection A', floorPrice: '$100', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeieyizmyugyfqo4263xrucrpivdsfu3zvzmbs7ymo3kgvn5u2xgynu/21.png' },
-    { rank: 5, collection: 'Collection B', floorPrice: '$150', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/31.png' },
-    { rank: 6, collection: 'Collection C', floorPrice: '$120', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeifc4h6ergaxpklstdbchvsyllnxizeqmpd6enk2riucai2ysj7ole/3.png' },
+    { rank: 4, collection: 'Collection A', floorPrice: '$100', image: 'https://thesybilmarket.vercel.app/1.png' },
+    { rank: 5, collection: 'Collection B', floorPrice: '$150', image: 'https://thesybilmarket.vercel.app/2.png' },
+    { rank: 6, collection: 'Collection C', floorPrice: '$120', image: 'https://thesybilmarket.vercel.app/3.png' },
     // Add more data as needed
   ];
 
   const items = [
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-      imageUrl: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeianqmnpe7jc7os4vv55umsqpihqrqcdej6l7bspk3bhvhfvibgs54/7.png',
+      imageUrl: 'https://thesybilmarket.vercel.app/4.png',
       name: 'NFT T-Shirt 1',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-      imageUrl: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png',
+      imageUrl: 'https://thesybilmarket.vercel.app/5.png',
       name: 'NFT T-Shirt 2',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-      imageUrl: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeieyizmyugyfqo4263xrucrpivdsfu3zvzmbs7ymo3kgvn5u2xgynu/21.png',
+      imageUrl: 'https://thesybilmarket.vercel.app/6.png',
       name: 'NFT T-Shirt 3',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-      imageUrl: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeifc4h6ergaxpklstdbchvsyllnxizeqmpd6enk2riucai2ysj7ole/3.png',
+      imageUrl: 'https://thesybilmarket.vercel.app/7.png',
       name: 'NFT T-Shirt 4',
     },
     
@@ -88,18 +77,6 @@ const Home: NextPage = () => {
   }, []);
   
   return (
-    <ThirdwebProvider 
-      activeChain={activeChain}
-      // clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
-      clientId="9e4314f9cb80713a98f3221cfb883eaf"
-      
-      supportedWallets={[
-        metamaskWallet({ recommended: true }),
-        coinbaseWallet(),
-        walletConnect(),
-        trustWallet(),
-      ]}
-    >
       <div className="sm:p-10 p-0 mt-16 block justify-center">
             
             <div id="default-carousel" className="relative w-full " data-carousel="slide">
@@ -365,7 +342,6 @@ const Home: NextPage = () => {
                 
 
       </div>
-      </ThirdwebProvider>
   );
 };
 

@@ -24,12 +24,12 @@ export default function Shop() {
     const shopItems = [
         {
           tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/31.png',
+          imageUrl: 'https://thesybilmarket.vercel.app/31.png',
           name: 'NFT T-Shirt 1',
         },
         {
           tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
-          imageUrl: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png',
+          imageUrl: 'https://thesybilmarket.vercel.app/41.png',
           name: 'NFT T-Shirt 2',
         },
         
