@@ -319,6 +319,9 @@ const Home: NextPage = () => {
                                       <li>
                                           <a href="https://discord.gg/WRtthbQR" className="hover:underline">Discord</a>
                                       </li>
+                                      <li>
+                                          <a href="https://t.me/thesybilmarketR" className="hover:underline">Telegram</a>
+                                      </li>
                                   </ul>
                               </div>
                               <div>
