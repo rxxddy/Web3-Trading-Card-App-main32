@@ -316,10 +316,10 @@ const Home: NextPage = () => {
                                       <li className="mb-4">
                                           <a href="https://instagram.com/thesybilmarketplace" className="hover:underline ">Instagram</a>
                                       </li>
-                                      <li>
+                                      <li className="mb-4">
                                           <a href="https://discord.gg/WRtthbQR" className="hover:underline">Discord</a>
                                       </li>
-                                      <li>
+                                      <li className="mb-4">
                                           <a href="https://t.me/thesybilmarketR" className="hover:underline">Telegram</a>
                                       </li>
                                   </ul>
