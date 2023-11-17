@@ -44,7 +44,7 @@ export default function Navbar() {
 
     return (
 
-        <nav className="bg-[#202020] fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+        <nav className="bg-[#202020] fixed w-full z-40 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
             <div className="flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link href="/" className="flex items-center md:hidden ">
                     <img src="https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeiauj2lqlo7bn6h2ghfnvo7kssdotewt7apib5vex74k7zvhtmd664/logo02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
@@ -88,26 +88,26 @@ export default function Navbar() {
           
                     {isProfileDropdownOpen && (
                         <div>
-                            <div className="transform translate-x-[-10em] translate-y-[10em] z-50 fixed my-4 text-base list-none bg-[#282828] divide-y divide-gray-100 rounded-lg shadow  dark:divide-gray-600" id="user-dropdown">
+                            <div className="transform translate-x-[-24.5em] translate-y-[2.3em] z-50 fixed my-4 text-base list-none bg-[#282828] divide-y divide-gray-100 rounded-lg shadow  dark:divide-gray-600" id="user-dropdown">
                                 
-                                <div className="px-4 py-3 w-[10em] flex justify-center z-50">
+                                <div className="px-4 py-3 w-[15em] flex justify-end z-50">
                                     <span className="block text-sm text-gray-900 dark:text-white">{formattedAddress}</span>
                                     {/* <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span> */}
                                 </div>
-                                <ul className="py-2 z-50"  aria-labelledby="user-menu-button">
-                                    <Link href="/profile" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-center">
+                                <ul className="py-2 z-50 flex"  aria-labelledby="user-menu-button">
+                                    <Link href="/profile" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
                                         <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</p>
                                     </Link>
-                                    <Link href="/shop" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-center">
+                                    <Link href="/shop" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
                                         <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Shop</p>
                                     </Link>
-                                    <Link href="/pacsshow" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-center">
+                                    <Link href="/packsshop" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
                                         <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Packs</p>
                                     </Link>
-                                    <Link href="/marketplace" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-center">
+                                    <Link href="/marketplace" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
                                         <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Marketplace</p>
                                     </Link>
-                                    <button onClick={handleLogout} className="flex justify-center w-full">
+                                    <button onClick={handleLogout} className="flex justify-startstart w-full">
                                         <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</p>
                                     </button>
                                 </ul>

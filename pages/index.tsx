@@ -13,9 +13,9 @@ const Home: NextPage = () => {
   ];
 
   const data0 = [
-    { Bigtext: 'Collection 1', desc: 'Description Description', image: 'https://image.mux.com/nzHlNbduVGyvrKDcVrTQEwZq00YWaKjrb8TEOzdRV6WY/thumbnail.jpg?auto=format&dpr=1&w=2560' },
+    { Bigtext: 'Collection 1', desc: 'Description Description', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeianqmnpe7jc7os4vv55umsqpihqrqcdej6l7bspk3bhvhfvibgs54/7.png' },
     { Bigtext: 'Collection 2', desc: 'Description Description', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeieyizmyugyfqo4263xrucrpivdsfu3zvzmbs7ymo3kgvn5u2xgynu/21.png' },
-    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://i.seadn.io/gcs/files/3cc47ef545e3ee3f33a476bf19a9f08a.gif?auto=format&dpr=1&w=2048' },
+    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png' },
     // Add more data as needed
   ];
   const data1 = [
@@ -310,7 +310,7 @@ const Home: NextPage = () => {
                                   <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                       <li className="mb-4">
-                                          <a href="https://instagram.com" className="hover:underline ">Instagram</a>
+                                          <a href="https://instagram.com/thesybilmarketplace" className="hover:underline ">Instagram</a>
                                       </li>
                                       <li>
                                           <a href="https://discord.gg/WRtthbQR" className="hover:underline">Discord</a>
