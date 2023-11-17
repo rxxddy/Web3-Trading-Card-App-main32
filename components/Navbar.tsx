@@ -47,8 +47,8 @@ export default function Navbar() {
         <nav className="bg-[#202020] fixed w-full z-40 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
             <div className="flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link href="/" className="flex items-center md:hidden ">
-                    <img src="https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeiauj2lqlo7bn6h2ghfnvo7kssdotewt7apib5vex74k7zvhtmd664/logo02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
-                    <img src="https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeiewe46m2vbr6swnjvek4qw7d3k3kb6lyf6vf3f3rolheijwanfkn4/TSM02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
+                    <img src="https://thesybilmarket.vercel.app/logo02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
+                    <img src="https://thesybilmarket.vercel.app/TSM02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
                     {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">The Sybil Market</span> */}
                 </Link>
                 <div className="flex md:order-2">
