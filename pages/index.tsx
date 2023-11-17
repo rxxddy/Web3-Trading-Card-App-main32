@@ -3,9 +3,20 @@ import styles from "../styles/Home.module.css";
 import { useState, useEffect } from 'react';
 import { MediaRenderer } from "@thirdweb-dev/react";
 import Link from "next/link";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+
+import {
+
+  ConnectWallet,
+  metamaskWallet,
+  coinbaseWallet,
+  walletConnect,
+  trustWallet,
+  darkTheme,
+} from "@thirdweb-dev/react";
 
 const Home: NextPage = () => {
-
+  const activeChain = "mumbai";
   const images = [
     'https://image.mux.com/nzHlNbduVGyvrKDcVrTQEwZq00YWaKjrb8TEOzdRV6WY/thumbnail.jpg?auto=format&dpr=1&w=2560',
     'https://i.seadn.io/gcs/files/19f600d97f39e252900576e8937bb56c.png?auto=format&dpr=1&w=1920',
@@ -77,6 +88,18 @@ const Home: NextPage = () => {
   }, []);
   
   return (
+    <ThirdwebProvider 
+      activeChain={activeChain}
+      // clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
+      clientId="9e4314f9cb80713a98f3221cfb883eaf"
+      
+      supportedWallets={[
+        metamaskWallet({ recommended: true }),
+        coinbaseWallet(),
+        walletConnect(),
+        trustWallet(),
+      ]}
+    >
       <div className="sm:p-10 p-0 mt-16 block justify-center">
             
             <div id="default-carousel" className="relative w-full " data-carousel="slide">
@@ -342,6 +365,7 @@ const Home: NextPage = () => {
                 
 
       </div>
+      </ThirdwebProvider>
   );
 };
 
