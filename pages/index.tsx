@@ -7,9 +7,11 @@ import Link from "next/link";
 const Home: NextPage = () => {
 
   const images = [
-    'https://thesybilmarket.vercel.app/1.png',
+    'https://thesybilmarket.vercel.app/4.png',
+    'https://thesybilmarket.vercel.app/5.png',
+    'https://thesybilmarket.vercel.app/6.png',
+    'https://thesybilmarket.vercel.app/41.png',
     'https://thesybilmarket.vercel.app/2.png',
-    'https://thesybilmarket.vercel.app/3.png',
   ];
 
   const data0 = [
