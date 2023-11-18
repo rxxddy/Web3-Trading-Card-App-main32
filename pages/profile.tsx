@@ -1,7 +1,6 @@
 import { ThirdwebNftMedia, useAddress, useContract, useOwnedNFTs, Web3Button } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import { CARD_ADDRESS, SINGLE_DROP_ADDRESS } from "../const/addresses";
-import { useState } from "react";
 import type { NFT as NFTType } from "@thirdweb-dev/sdk";
 import { ListingInfo } from "../components/ListingInfo";
 
@@ -9,8 +8,31 @@ import { PACK_ADDRESS } from '../const/addresses';
 import { PackRewards } from '@thirdweb-dev/sdk';
 import { PackRewardCard } from '../components/PackRewardCard';
 
+
+  import { BigNumber, utils } from "ethers";
+  import Image from "next/image";
+  import { useMemo, useState, useEffect } from "react";
+  import { parseIneligibility } from "../utils/parseIneligibility";
+  import creds from './cred/credentials.json';
+  import { GoogleSpreadsheet } from 'google-spreadsheet';
+  import { JWT } from 'google-auth-library';
+  
+  import React from 'react';
+
+
 export default function Profile() {
+    const tokenAddress = "0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869";
+
+    // console.log('FIRST COLSOLE LOG', address)
+    const [quantity, setQuantity] = useState(1);
+    // const { data: contractMetadata } = useContractMetadata(contract);
+    const [referralAddress, setReferralAddress] = useState('');
+    const successText = 'text logs only after success';
+    const [reffs, setReffs] = useState<number>(0);
+    const [referralError, setReferralError] = useState("");
+    
     const address = useAddress();
+    const currentAddress = address;
 
     // cards
     const {
@@ -62,6 +84,146 @@ export default function Profile() {
       setModalOpen(false);
     };
 
+    const writeToGoogleSheets = async (referralAddress: string) => {
+        // Check if referralAddress is empty/
+        if (referralAddress.trim() === '') {
+          // Do nothing if referralAddress is empty
+          return;
+        }
+      
+        const serviceAccountAuth = new JWT({
+          email: `first-120@thesybilmarket.iam.gserviceaccount.com`,
+          key: `-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDP71wGK50bcveA\nuIAU1yfCnfFbQuO6LGUKkUjcJdC2uHrrSOihDBuVaMoOx+EurvrVZJpwC2IozSME\nEwJyMFmUM7QIViaqPn1Ec8aGXOr+rb2GH6aikLO9C/IMh8HgOBJjemhXd2C0g+sa\n6KrXkH7qmabjmLptXLWPAqX7nfYSozCNd35EE1EtfrM91Q7aQVaQL+SjGkOXVH4p\nNOtvFXSWhFbv48ZOIeSisUR2mCaxQZlGFTMDN5hsl1Ga3sD7pWNIvf2MiFt+HWDI\ndFTSgUmlr7WnP3514pv2evug7yDpWtm6YnSfeh6mW2Xrh09OSQf99qz4eM3whnP8\nsDegMfexAgMBAAECggEADPIWZ0Q6SrqO3YLM1OPm5irB5JBNnbgJJPc2fI27BC0/\nIU7GhYRN9edyeij2BG2u4y/QMM8u6NBlS+n/WjPp/GV2z3Shpg2dx6bgwn4MUoWL\n5V0rPe40zxjsXZPGdFrd6ICbr2yrC0s2aJ1nAGSYIRlvtrY54R0HTZJCI6lKDKFR\nIPOxsYzoT2JQZU3oD4cl+ykKMkKZYi70GXFN2KsODidu42Kmr6VMPRY3bCXGsb/A\nq13KC1Y1r2LaYJ98AZmXMek5s6COIPU0cVvN5kV+81TD3910x7GVVacKkP4Zt0HG\nshNUYm4wygolxI91r3fHk/ctnLwK0due908JcOiv2wKBgQD1hp76+2w9kwUVBPFU\n0wXutGcPwKgNHZ0MBXScNhwVOCPBNbRolj3UIcZIDVrBBZlRG0Sc/3hCvpA1zJhb\nnJzP95YyuRO5xZlDlyGkNB5wCy687mQAfk+fZLXgrGXi+Xv8TdRnY700n5nMWVoP\ns+QkRBjWvXgiNxKhIensehMkZwKBgQDYzjXBhZK1Ku0BTVHnv6zkQG4Uf9Z7rOWw\n9IfWT9c6GtdH3yIMAWFmAo3j178/KvtSQbj94VlVRBX5r0e9xguDyKlB5ZOK+wPQ\nMzQFFjmdXmo8t5KmECoBHMOnKcDKjOHm5NfA36spkcPCNc1T5CPsCZKprQNA1QSK\nKeVzm3m0JwKBgQDJh0s9FVweGmwEeb8g8ekfqqIhkvAde94pPN0fT2azoBXxBATm\nB9QOJ/7Zq2R/pPnYUfp6p1Lt7f7uudWg9KbeKQn27mUbie6oRQfPARyuuO8PEtmw\ncf0nBwImvTsQF9nGGZgrmPl3lT0nN3wuAWlUvzRoJrLR2sSG0BBzEyxdJwKBgFtv\n3MwZgZ5W1E5QRdLvzAMYCVUr9VGDwfu3pfKFCci/uTvep4VYr7NOMHl/bHE/t28h\nuNuaRwrnBD2h5yfqdsDFyFy6bleXNiyA69eZYAM25qdk5LyU5KJDd2DxAxZqBHxU\n14nIy29kwqMN/eL7vQq3nttg1JZrQNbkhJkVYWbRAoGBAJTOKHDpaxBuzQoqkzes\nxMdoEMdw/f7p2Kn01TY0nqarHDOfviHVILPCaw9aGCxa3XnhQROLj8xnzE2ULGCb\nLW6vjegOb97LqhOqYdVGsVvs1KV9fcEK9eyYI9oWQERBIXe9UswMWeR8Tju7HRFv\nCMDDdXKrwMyatONY56T+v2ar\n-----END PRIVATE KEY-----\n`,
+          scopes: [
+            'https://www.googleapis.com/auth/spreadsheets',
+          ],
+        });
+      
+        const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
+      
+        try {
+          console.log('Attempting to authorize...');
+          await serviceAccountAuth.authorize();
+          console.log('Authorization successful.');
+      
+          console.log('Loading document info...');
+          await doc.loadInfo();
+          console.log('Document info loaded.');
+      
+          const sheet = doc.sheetsByIndex[2];
+          console.log('Sheet loaded.');
+      
+          const dataToWrite = {
+            address: referralAddress,
+            maxClaimable: 1,
+          };
+      
+          const rows = await sheet.getRows();
+      
+          const existingRow = rows.find((row) => row.get('address') === referralAddress);
+          console.log('existingRow', existingRow);
+      
+          if (existingRow) {
+            const currentAmount = Number(existingRow.get('maxClaimable'));
+            existingRow.set('maxClaimable', currentAmount + 1);
+            await existingRow.save();
+          } else {
+            await sheet.addRow(dataToWrite);
+          }
+      
+          console.log('Data written to Google Sheets.');
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+    
+      const readFromGoogleSheets = async (currentAddress: string) => {
+        const serviceAccountAuth = new JWT({
+          email: `first-120@thesybilmarket.iam.gserviceaccount.com`,
+          key: `-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDP71wGK50bcveA\nuIAU1yfCnfFbQuO6LGUKkUjcJdC2uHrrSOihDBuVaMoOx+EurvrVZJpwC2IozSME\nEwJyMFmUM7QIViaqPn1Ec8aGXOr+rb2GH6aikLO9C/IMh8HgOBJjemhXd2C0g+sa\n6KrXkH7qmabjmLptXLWPAqX7nfYSozCNd35EE1EtfrM91Q7aQVaQL+SjGkOXVH4p\nNOtvFXSWhFbv48ZOIeSisUR2mCaxQZlGFTMDN5hsl1Ga3sD7pWNIvf2MiFt+HWDI\ndFTSgUmlr7WnP3514pv2evug7yDpWtm6YnSfeh6mW2Xrh09OSQf99qz4eM3whnP8\nsDegMfexAgMBAAECggEADPIWZ0Q6SrqO3YLM1OPm5irB5JBNnbgJJPc2fI27BC0/\nIU7GhYRN9edyeij2BG2u4y/QMM8u6NBlS+n/WjPp/GV2z3Shpg2dx6bgwn4MUoWL\n5V0rPe40zxjsXZPGdFrd6ICbr2yrC0s2aJ1nAGSYIRlvtrY54R0HTZJCI6lKDKFR\nIPOxsYzoT2JQZU3oD4cl+ykKMkKZYi70GXFN2KsODidu42Kmr6VMPRY3bCXGsb/A\nq13KC1Y1r2LaYJ98AZmXMek5s6COIPU0cVvN5kV+81TD3910x7GVVacKkP4Zt0HG\nshNUYm4wygolxI91r3fHk/ctnLwK0due908JcOiv2wKBgQD1hp76+2w9kwUVBPFU\n0wXutGcPwKgNHZ0MBXScNhwVOCPBNbRolj3UIcZIDVrBBZlRG0Sc/3hCvpA1zJhb\nnJzP95YyuRO5xZlDlyGkNB5wCy687mQAfk+fZLXgrGXi+Xv8TdRnY700n5nMWVoP\ns+QkRBjWvXgiNxKhIensehMkZwKBgQDYzjXBhZK1Ku0BTVHnv6zkQG4Uf9Z7rOWw\n9IfWT9c6GtdH3yIMAWFmAo3j178/KvtSQbj94VlVRBX5r0e9xguDyKlB5ZOK+wPQ\nMzQFFjmdXmo8t5KmECoBHMOnKcDKjOHm5NfA36spkcPCNc1T5CPsCZKprQNA1QSK\nKeVzm3m0JwKBgQDJh0s9FVweGmwEeb8g8ekfqqIhkvAde94pPN0fT2azoBXxBATm\nB9QOJ/7Zq2R/pPnYUfp6p1Lt7f7uudWg9KbeKQn27mUbie6oRQfPARyuuO8PEtmw\ncf0nBwImvTsQF9nGGZgrmPl3lT0nN3wuAWlUvzRoJrLR2sSG0BBzEyxdJwKBgFtv\n3MwZgZ5W1E5QRdLvzAMYCVUr9VGDwfu3pfKFCci/uTvep4VYr7NOMHl/bHE/t28h\nuNuaRwrnBD2h5yfqdsDFyFy6bleXNiyA69eZYAM25qdk5LyU5KJDd2DxAxZqBHxU\n14nIy29kwqMN/eL7vQq3nttg1JZrQNbkhJkVYWbRAoGBAJTOKHDpaxBuzQoqkzes\nxMdoEMdw/f7p2Kn01TY0nqarHDOfviHVILPCaw9aGCxa3XnhQROLj8xnzE2ULGCb\nLW6vjegOb97LqhOqYdVGsVvs1KV9fcEK9eyYI9oWQERBIXe9UswMWeR8Tju7HRFv\nCMDDdXKrwMyatONY56T+v2ar\n-----END PRIVATE KEY-----\n`,
+          scopes: [
+            'https://www.googleapis.com/auth/spreadsheets',
+          ],
+        });
+        
+        const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
+      
+        try {
+          console.log('Attempting to authorize...');
+          try {
+            await serviceAccountAuth.authorize();
+          } catch (error) {
+            console.error('Error during authorization:', error);
+          }
+          console.log('Authorization successful.');
+          console.log('Loading document info...');
+          await doc.loadInfo();
+          console.log('Document info loaded.');
+          const sheetIndexToWriteTo = 2;
+          const sheet = doc.sheetsByIndex[sheetIndexToWriteTo];
+        
+          if (!sheet) {
+            console.error(`Sheet with index ${sheetIndexToWriteTo} not found.`);
+            return;
+          }
+          console.log('Sheet loaded.');
+          const rows = await sheet.getRows();
+          console.log('IERNONIGR', currentAddress)
+          const matchingRow = await rows.find(async (row) => row.get('address') === currentAddress);
+          console.log('matchingRow', matchingRow);
+          console.log('IERNONIGR', currentAddress);
+          const findMatchingRow = async () => {
+            const matchingRow = await Promise.all(rows.map(async (row) => {
+              const wallet = await row.get('address');
+              const referrals = await row.get('maxClaimable');
+              if (wallet === currentAddress) {
+                console.log('Matching Wallet:', wallet);
+                console.log('Amount of Referrals:', referrals);
+                setReffs(referrals);
+                return true;
+              }
+              return false;
+            }));
+            if (!matchingRow.includes(true)) {
+              console.log('No matching row found.');
+              console.log('Loaded sheets:', doc.sheetsByIndex.map(sheet => sheet.title));
+            }
+          };
+          findMatchingRow();
+          if (matchingRow) {
+            const amount = Number(matchingRow.get('maxClaimable'));
+            console.log('AMAAAAAAAAAAAAAAAUNT', amount);
+          } else {
+            console.log('No matching row found');
+          }
+          console.log(matchingRow);
+          console.log('Data written to Google Sheets.');
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+    
+      useEffect(() => {
+        if (currentAddress) {
+          readFromGoogleSheets(currentAddress);
+        }
+      }, [currentAddress]);
+    
+     const [referralData, setReferralData] = useState<{ recipient: string; amount: number }[]>([]);
+    
+     function addOrUpdateReferral(address: string) {
+    
+       const existingReferralIndex = referralData.findIndex((item) => item.recipient === address);
+    
+       if (existingReferralIndex !== -1) {
+         const updatedReferralData = [...referralData];
+         updatedReferralData[existingReferralIndex].amount += 1;
+         setReferralData(updatedReferralData);
+       } else {
+         setReferralData([...referralData, { recipient: address, amount: 1 }]);
+       }
+     }
+
 
     return (
         
@@ -88,16 +250,38 @@ export default function Profile() {
                                         </div>
                               
                                         <div className="p-4 md:p-5 space-y-4">
-                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                                            </p>
-                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                                            </p>
+                                            <input
+                                                type="text"
+                                                placeholder="Your referral"
+                                                value={referralAddress}
+                                                onChange={(e) => {
+                                                    const inputValue = e.target.value;
+                                                    setReferralAddress(inputValue);
+
+                                                    // Validation checks
+                                                    if (inputValue !== "" && !inputValue.startsWith("0x")) {
+                                                    setReferralError("Referral address must start with '0x'");
+                                                    } else if (inputValue !== "" && inputValue.length !== 42) {
+                                                    setReferralError("Referral address must be 42 characters long");
+                                                    } else if (inputValue !== "" && inputValue === currentAddress) {
+                                                    setReferralError("Referral address cannot be the same as the current address");
+                                                    } else {
+                                                    setReferralError(""); // Clear error if input is valid or empty
+                                                    }
+                                                }}
+                                                className={`w-[100%] bg-transparent border border-gray-300 rounded-lg text-white h-12 px-4 text-base mb-0 ${referralError ? "border-red-500" : ""}`}
+                                            />
+                                            {referralError && <div className="text-red-500">{referralError}</div>}
+                                            
                                         </div>
                                     
                                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                            <button data-modal-hide="default-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 " onClick={() => setModalOpen(!ModalOpen)}>I accept</button>
+                                            <button onClick={async () => {
+                                                addOrUpdateReferral(referralAddress); // Update referral data array
+                                                console.log(referralData);
+                                                console.log(successText);
+                                                writeToGoogleSheets(referralAddress);
+                                            }} data-modal-hide="default-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 " >I accept</button>
                                         </div>
                                     </div>
                                 </div>
