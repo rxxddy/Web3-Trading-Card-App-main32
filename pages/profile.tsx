@@ -17,10 +17,14 @@ import { PackRewardCard } from '../components/PackRewardCard';
   import { GoogleSpreadsheet } from 'google-spreadsheet';
   import { JWT } from 'google-auth-library';
   
-  import React from 'react';
-
+  // import dotenv from "dotenv";
+  // import path from "path";
+  
+  // dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 export default function Profile() {
+
+
     const tokenAddress = "0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869";
 
     // console.log('FIRST COLSOLE LOG', address)
@@ -84,7 +88,8 @@ export default function Profile() {
       setModalOpen(false);
     };
 
-    require('dotenv').config();
+
+    // console.log('Private Key:', process.env.GOOGLE_SHEETS_KEY);
 
     const writeToGoogleSheets = async (referralAddress: string) => {
         // Check if referralAddress is empty/
@@ -92,13 +97,13 @@ export default function Profile() {
           // Do nothing if referralAddress is empty
           return;
         }
-      
+
+
+      // console.log("email:", process.env.GOOGLE_SHEETS_EMAIL)
         const serviceAccountAuth = new JWT({
           email: process.env.GOOGLE_SHEETS_EMAIL,
           key: process.env.GOOGLE_SHEETS_KEY,
-          scopes: [
-            'https://www.googleapis.com/auth/spreadsheets',
-          ],
+          scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
       
         const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
@@ -141,8 +146,8 @@ export default function Profile() {
     
       const readFromGoogleSheets = async (currentAddress: string) => {
         const serviceAccountAuth = new JWT({
-          email: `first-120@thesybilmarket.iam.gserviceaccount.com`,
-          key: `-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDP71wGK50bcveA\nuIAU1yfCnfFbQuO6LGUKkUjcJdC2uHrrSOihDBuVaMoOx+EurvrVZJpwC2IozSME\nEwJyMFmUM7QIViaqPn1Ec8aGXOr+rb2GH6aikLO9C/IMh8HgOBJjemhXd2C0g+sa\n6KrXkH7qmabjmLptXLWPAqX7nfYSozCNd35EE1EtfrM91Q7aQVaQL+SjGkOXVH4p\nNOtvFXSWhFbv48ZOIeSisUR2mCaxQZlGFTMDN5hsl1Ga3sD7pWNIvf2MiFt+HWDI\ndFTSgUmlr7WnP3514pv2evug7yDpWtm6YnSfeh6mW2Xrh09OSQf99qz4eM3whnP8\nsDegMfexAgMBAAECggEADPIWZ0Q6SrqO3YLM1OPm5irB5JBNnbgJJPc2fI27BC0/\nIU7GhYRN9edyeij2BG2u4y/QMM8u6NBlS+n/WjPp/GV2z3Shpg2dx6bgwn4MUoWL\n5V0rPe40zxjsXZPGdFrd6ICbr2yrC0s2aJ1nAGSYIRlvtrY54R0HTZJCI6lKDKFR\nIPOxsYzoT2JQZU3oD4cl+ykKMkKZYi70GXFN2KsODidu42Kmr6VMPRY3bCXGsb/A\nq13KC1Y1r2LaYJ98AZmXMek5s6COIPU0cVvN5kV+81TD3910x7GVVacKkP4Zt0HG\nshNUYm4wygolxI91r3fHk/ctnLwK0due908JcOiv2wKBgQD1hp76+2w9kwUVBPFU\n0wXutGcPwKgNHZ0MBXScNhwVOCPBNbRolj3UIcZIDVrBBZlRG0Sc/3hCvpA1zJhb\nnJzP95YyuRO5xZlDlyGkNB5wCy687mQAfk+fZLXgrGXi+Xv8TdRnY700n5nMWVoP\ns+QkRBjWvXgiNxKhIensehMkZwKBgQDYzjXBhZK1Ku0BTVHnv6zkQG4Uf9Z7rOWw\n9IfWT9c6GtdH3yIMAWFmAo3j178/KvtSQbj94VlVRBX5r0e9xguDyKlB5ZOK+wPQ\nMzQFFjmdXmo8t5KmECoBHMOnKcDKjOHm5NfA36spkcPCNc1T5CPsCZKprQNA1QSK\nKeVzm3m0JwKBgQDJh0s9FVweGmwEeb8g8ekfqqIhkvAde94pPN0fT2azoBXxBATm\nB9QOJ/7Zq2R/pPnYUfp6p1Lt7f7uudWg9KbeKQn27mUbie6oRQfPARyuuO8PEtmw\ncf0nBwImvTsQF9nGGZgrmPl3lT0nN3wuAWlUvzRoJrLR2sSG0BBzEyxdJwKBgFtv\n3MwZgZ5W1E5QRdLvzAMYCVUr9VGDwfu3pfKFCci/uTvep4VYr7NOMHl/bHE/t28h\nuNuaRwrnBD2h5yfqdsDFyFy6bleXNiyA69eZYAM25qdk5LyU5KJDd2DxAxZqBHxU\n14nIy29kwqMN/eL7vQq3nttg1JZrQNbkhJkVYWbRAoGBAJTOKHDpaxBuzQoqkzes\nxMdoEMdw/f7p2Kn01TY0nqarHDOfviHVILPCaw9aGCxa3XnhQROLj8xnzE2ULGCb\nLW6vjegOb97LqhOqYdVGsVvs1KV9fcEK9eyYI9oWQERBIXe9UswMWeR8Tju7HRFv\nCMDDdXKrwMyatONY56T+v2ar\n-----END PRIVATE KEY-----\n`,
+          email: process.env.GOOGLE_SHEETS_EMAIL,
+          key: process.env.GOOGLE_SHEETS_KEY,
           scopes: [
             'https://www.googleapis.com/auth/spreadsheets',
           ],
@@ -252,7 +257,7 @@ export default function Profile() {
                                             </h3>
                                             <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal" onClick={() => setModalOpen(!ModalOpen)}>
                                                 <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                                 </svg>
                                                 <span className="sr-only">Close modal</span>
                                             </button>
