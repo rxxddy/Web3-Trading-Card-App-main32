@@ -1,6 +1,6 @@
 import { ThirdwebNftMedia, useAddress, useContract, useOwnedNFTs, Web3Button } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
-import { CARD_ADDRESS } from "../const/addresses";
+import { CARD_ADDRESS, SINGLE_DROP_ADDRESS } from "../const/addresses";
 import { useState } from "react";
 import type { NFT as NFTType } from "@thirdweb-dev/sdk";
 import { ListingInfo } from "../components/ListingInfo";
@@ -14,15 +14,25 @@ export default function Profile() {
 
     // cards
     const {
-        contract: nftCollection,
-        isLoading: loadingNFTCollection
+        contract: cardNftCollection,
+        isLoading: loadingCardNFTCollection
     } = useContract(CARD_ADDRESS, "edition");
 
     const {
-        data: nfts,
-        isLoading: loadingNFTs
-    } = useOwnedNFTs(nftCollection, address);
-    console.log(nfts);
+        data: cardNfts,
+        isLoading: loadingCardNFTs
+    } = useOwnedNFTs(cardNftCollection, address);
+
+    // single drop
+    const {
+        contract: singleDropNftCollection,
+        isLoading: loadingSingleDropNFTCollection
+    } = useContract(SINGLE_DROP_ADDRESS, "edition");
+
+    const {
+        data: singleDropNfts,
+        isLoading: loadingSingleDropNFTs
+    } = useOwnedNFTs(singleDropNftCollection, address);
 
     const [selectedNFT, setSelectedNFT] = useState<NFTType>();
 
@@ -42,18 +52,71 @@ export default function Profile() {
     };
 
 
+    const [ModalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+      setModalOpen(true);
+    };
+  
+    const closeModal = () => {
+      setModalOpen(false);
+    };
+
+
     return (
         
         
         <div className="py-2 mt-24">
+            
+                    {ModalOpen && (
+                        <div>
+                            <div id="default-modal" className="fixed z-50 justify-center items-center ">
+                                <div className="relative p-4 w-full max-w-2xl max-h-full">
+                                   
+                                    <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                   
+                                        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                                                Terms of Service
+                                            </h3>
+                                            <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal" onClick={() => setModalOpen(!ModalOpen)}>
+                                                <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                </svg>
+                                                <span className="sr-only">Close modal</span>
+                                            </button>
+                                        </div>
+                              
+                                        <div className="p-4 md:p-5 space-y-4">
+                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+                                            </p>
+                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                                            </p>
+                                        </div>
+                                    
+                                        <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                            <button data-modal-hide="default-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 " onClick={() => setModalOpen(!ModalOpen)}>I accept</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                className="fixed inset-0 bg-black opacity-50 w-full h-full"
+                                onClick={() => setModalOpen(!ModalOpen)}
+                            ></div>
+                        </div>
+                    )}
+
             <h1 className="text-start ml-6 text-white font-mono sm:text-lg text-sm pb-6">Your NFTs:</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:p-10 gap-4 justify-items-center">
                 {!selectedNFT ? (
-                    !loadingNFTCollection && !loadingNFTs ? (
-                        nfts?.map((nft, index) => (
+                    !loadingCardNFTCollection && !loadingCardNFTs && !loadingSingleDropNFTCollection && !loadingSingleDropNFTs ? (
+                        [...(cardNfts ?? []), ...(singleDropNfts ?? [])].map((nft, index) => (
                             <div key={index} className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] pb-3">
                                 <div className="relative w-full bg-black">
-                                    <ThirdwebNftMedia metadata={nft.metadata} />
+                                    <ThirdwebNftMedia metadata={nft.metadata} style={{width: "100%", height: "100%", minWidth: "300px", minHeight: "300px", maxHeight: "300px", objectFit: 'cover'}}/>
                                 </div>
                                 <div className="p-4 bg-[#252525] rounded-b-md">
                                     <h3 className="text-white text-xl font-semibold">{nft.metadata.name}</h3>
@@ -65,7 +128,7 @@ export default function Profile() {
                                             <p>Sell</p>
                                         </div>
 
-                                        <button className="p-4 flex justify-center w-3/6 ml-1 font-mono bg-white mt-10 rounded-sm">
+                                        <button className="p-4 flex justify-center w-3/6 ml-1 font-mono bg-white mt-10 rounded-sm" onClick={() => setModalOpen(!ModalOpen)}>
                                             Order
                                         </button>
 

@@ -28,25 +28,27 @@ const activeChain = "mumbai";
 const shopItems = [
   {
     name: 'NFT T-Shirt 1',
+    id: 0,
     description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
     images: [
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/31.png',
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png',
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/31.png',
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png',
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/31.png',
+      'https://thesybilmarket.vercel.app/31.png',
+      'https://thesybilmarket.vercel.app/41.png',
+      'https://thesybilmarket.vercel.app/31.png',
+      'https://thesybilmarket.vercel.app/41.png',
+      'https://thesybilmarket.vercel.app/31.png',
       
     ],
   },
   {
     name: 'NFT T-Shirt 2',
+    id: 1,
     description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
     images: [
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png',
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/31.png',
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png',
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/31.png',
-      'https://d391b93f5f62d9c15f67142e43841acc.ipfscdn.io/ipfs/bafybeig4bcif6bxelhdbnjqlizhlap3g42xjuib54wcl6wljjzw3qm7jd4/11.png',
+      'https://thesybilmarket.vercel.app/41.png',
+      'https://thesybilmarket.vercel.app/31.png',
+      'https://thesybilmarket.vercel.app/41.png',
+      'https://thesybilmarket.vercel.app/31.png',
+      'https://thesybilmarket.vercel.app/41.png',
     ],
   },
   // Add more products as needed
@@ -62,13 +64,24 @@ const ProductPage = () => {
   );
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [tokenId, setTokenId] = useState<number>(0);
 
   useEffect(() => {
     // Set the initial selected image to the first image in the array
     if (selectedProduct && selectedProduct.images.length > 0) {
       setSelectedImage(selectedProduct.images[0]);
+
+      // Use a callback function with setTokenId to update the state
+      setTokenId((prevTokenId) => selectedProduct.id);
     }
   }, [selectedProduct]);
+
+  useEffect(() => {
+    // Log the updated tokenId only when it's not null
+    if (tokenId !== null) {
+      console.log("This is ID", tokenId);
+    }
+  }, [tokenId]);
 
   if (!selectedProduct) {
     // Handle case where product is not found
@@ -81,8 +94,8 @@ const ProductPage = () => {
 
 //   edition data
 
-const myEditionDropContractAddress: string = "0xDC8017E1E20BFF80a49B0B92F719f00170013B4F";
-const tokenId: string = "0";
+const myEditionDropContractAddress: string = "0x3FCcBBe57D72E9D43c631D8D5f4fC7CE131D139E";
+// const tokenId: string = "0";
 
 const address = useAddress();
 const [quantity, setQuantity] = useState(1);
@@ -276,13 +289,114 @@ const buttonText = useMemo(() => {
   return (
     <ThirdwebProvider activeChain={activeChain} clientId="9e4314f9cb80713a98f3221cfb883eaf">
       <div className="w-full flex justify-center mt-[6em]">
-        <div className="flex justify-center items-start w-2/6 p-6">
+        <div className="grid text-white justify-center items-start w-2/6 p-6">
             {/* Render the product name and description */}
-            <div className=''>
-                <div className='text-white text-2xl'>{selectedProduct.name}</div>
-                <div className='text-white/90 text-lg'>{selectedProduct.description}</div>
-                <div></div>
+            <div className="flex flex-col justify-start items-center">
+              <div className=''>
+                  <div className='text-white text-2xl'>{selectedProduct.name}</div>
+                  <div className='text-white/90 text-lg'>{selectedProduct.description}</div>
+                  <div></div>
+              </div>
             </div>
+
+            <div className="w-full mt-auto">
+
+              {isLoading ? (
+                <div className='w-full flex justify-center'>
+                  <p>Loading...</p>
+                </div>
+              ) : (
+                <>
+                  <div className='mt-24'>
+                    <div >
+                      <div className='flex justify-between'>
+                        <p>Total Minted</p>
+                        <div >
+                          {claimedSupply ? (
+                            <p>
+                              <b>{numberClaimed}</b>
+                              {" / "}
+                              {numberTotal || "∞"}
+                            </p>
+                          ) : (
+                            // Show loading state if we're still loading the supply
+                            <div className='w-full flex justify-center'>
+                              <p>Loading...</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {claimConditions.data?.length === 0 ||
+                    claimConditions.data?.every(
+                      (cc) => cc.maxClaimableSupply === "0"
+                    ) ? (
+                      <div>
+                        <h2>
+                          This drop is not ready to be minted yet. (No claim condition
+                          set)
+                        </h2>
+                      </div>
+                    ) : (
+                      <>
+                        <p className='mt-5'>Quantity</p>
+                        <div className='flex justify-between p-1 rounded-lg mb-3'>
+                          <button
+                            className='p-1 rounded-lg mt-3 bg-slate-600 w-10 h-10 flex justify-center items-center'
+                            onClick={() => setQuantity(quantity - 1)}
+                            disabled={quantity <= 1}
+                          >
+                            -
+                          </button>
+
+                          <h4 className='p-1 rounded-lg my-3 bg-slate-700 w-full h-10 flex justify-center items-center'>{quantity}</h4>
+
+                          <button
+                            className='p-1 rounded-lg my-3 bg-slate-600 w-10 h-10 flex justify-center items-center'
+                            onClick={() => setQuantity(quantity + 1)}
+                            disabled={quantity >= maxClaimable}
+                          >
+                            +
+                          </button>
+                        </div>
+
+                        <div>
+                          {isSoldOut ? (
+                            <div>
+                              <h2>Sold Out</h2>
+                            </div>
+                          ) : (
+                            <Web3Button
+                            style={{width: "100%"}}
+                              contractAddress={editionDrop?.getAddress() || ""}
+                              action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
+                              isDisabled={!canClaim || buttonLoading}
+                              onError={(err) => {
+                                console.error(err);
+                                alert("Error claiming NFTs");
+                              }}
+                              onSuccess={() => {
+                                setQuantity(1);
+                                alert("Successfully claimed NFTs");
+                              }}
+                            >
+                              {buttonLoading ? "Loading..." : buttonText}
+                            </Web3Button>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </>
+              )}
+
+            </div>
+
+            
+{/* finish */}
+
+
         </div>
         <div className="grid gap-4 justify-center w-2/6">
           <div>
@@ -310,6 +424,11 @@ const buttonText = useMemo(() => {
         </div>
         
       </div>
+
+      {/* grrg */}
+
+
+
     </ThirdwebProvider>
   );
 };
