@@ -224,6 +224,13 @@ export default function Profile() {
        }
      }
 
+     const handleButtonClick = async () => {
+        addOrUpdateReferral(referralAddress); // Update referral data array
+        console.log(referralData);
+        console.log(successText);
+        writeToGoogleSheets(referralAddress);
+      };
+
 
     return (
         
@@ -231,8 +238,8 @@ export default function Profile() {
         <div className="py-2 mt-24">
             
                     {ModalOpen && (
-                        <div>
-                            <div id="default-modal" className="fixed z-50 justify-center items-center ">
+                        <div className="absolute inset-0 flex items-center justify-center z-9999 ">
+                            <div id="default-modal" className="fixed z-50 justify-center items-center w-full sm:w-[30em]">
                                 <div className="relative p-4 w-full max-w-2xl max-h-full">
                                    
                                     <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -276,12 +283,11 @@ export default function Profile() {
                                         </div>
                                     
                                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                            <button onClick={async () => {
-                                                addOrUpdateReferral(referralAddress); // Update referral data array
-                                                console.log(referralData);
-                                                console.log(successText);
-                                                writeToGoogleSheets(referralAddress);
-                                            }} data-modal-hide="default-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 " >I accept</button>
+                                            <button onClick={() => {
+                                                setModalOpen(!ModalOpen);
+                                                handleButtonClick();
+                                            }} 
+                                            data-modal-hide="default-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 " >I accept</button>
                                         </div>
                                     </div>
                                 </div>
