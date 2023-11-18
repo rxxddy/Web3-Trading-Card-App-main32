@@ -23,6 +23,11 @@ import {
 // Updated shopItems array
 
 
+import Image from "next/image";
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { JWT } from 'google-auth-library';
+
+
 const activeChain = "mumbai";
 
 const shopItems = [
@@ -57,6 +62,13 @@ const shopItems = [
 const ProductPage = () => {
   const router = useRouter();
   const { productName } = router.query;
+
+  const tokenAddress = "0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869";
+
+  // console.log('FIRST COLSOLE LOG', address)
+
+  // const { data: contractMetadata } = useContractMetadata(contract);
+
 
   // Find the selected product data based on the product name
   const selectedProduct = shopItems.find(
@@ -101,6 +113,11 @@ const address = useAddress();
 const [quantity, setQuantity] = useState(1);
 const { contract: editionDrop } = useContract(myEditionDropContractAddress);
 const { data: contractMetadata } = useContractMetadata(editionDrop);
+const [referralAddress, setReferralAddress] = useState('');
+const successText = 'text logs only after success';
+const [reffs, setReffs] = useState<number>(0);
+const [referralError, setReferralError] = useState("");
+const currentAddress = address;
 
 const claimConditions = useClaimConditions(editionDrop);
 const activeClaimCondition = useActiveClaimConditionForWallet(
@@ -286,14 +303,164 @@ const buttonText = useMemo(() => {
   quantity,
 ]);
 
+const writeToGoogleSheets = async (referralAddress: string) => {
+  // Check if referralAddress is empty/
+  if (referralAddress.trim() === '') {
+    // Do nothing if referralAddress is empty
+    return;
+  }
+
+
+// console.log("email:", process.env.GOOGLE_SHEETS_EMAIL)
+  const serviceAccountAuth = new JWT({
+    email: process.env.GOOGLE_SHEETS_EMAIL,
+    key: process.env.GOOGLE_SHEETS_KEY,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+
+  const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
+
+  try {
+    console.log('Attempting to authorize...');
+    await serviceAccountAuth.authorize();
+    console.log('Authorization successful.');
+
+    console.log('Loading document info...');
+    await doc.loadInfo();
+    console.log('Document info loaded.');
+
+    const sheet = doc.sheetsByIndex[2];
+    console.log('Sheet loaded.');
+
+    const dataToWrite = {
+      address: referralAddress,
+      maxClaimable: 1,
+    };
+
+    const rows = await sheet.getRows();
+
+    const existingRow = rows.find((row) => row.get('address') === referralAddress);
+    console.log('existingRow', existingRow);
+
+    if (existingRow) {
+      const currentAmount = Number(existingRow.get('maxClaimable'));
+      existingRow.set('maxClaimable', currentAmount + 1);
+      await existingRow.save();
+    } else {
+      await sheet.addRow(dataToWrite);
+    }
+
+    console.log('Data written to Google Sheets.');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+const readFromGoogleSheets = async (currentAddress: string) => {
+  const serviceAccountAuth = new JWT({
+    email: process.env.GOOGLE_SHEETS_EMAIL,
+    key: process.env.GOOGLE_SHEETS_KEY,
+    scopes: [
+      'https://www.googleapis.com/auth/spreadsheets',
+    ],
+  });
+  
+  const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
+
+  try {
+    console.log('Attempting to authorize...');
+    try {
+      await serviceAccountAuth.authorize();
+    } catch (error) {
+      console.error('Error during authorization:', error);
+    }
+    console.log('Authorization successful.');
+    console.log('Loading document info...');
+    await doc.loadInfo();
+    console.log('Document info loaded.');
+    const sheetIndexToWriteTo = 2;
+    const sheet = doc.sheetsByIndex[sheetIndexToWriteTo];
+  
+    if (!sheet) {
+      console.error(`Sheet with index ${sheetIndexToWriteTo} not found.`);
+      return;
+    }
+    console.log('Sheet loaded.');
+    const rows = await sheet.getRows();
+    console.log('IERNONIGR', currentAddress)
+    const matchingRow = await rows.find(async (row) => row.get('address') === currentAddress);
+    console.log('matchingRow', matchingRow);
+    console.log('IERNONIGR', currentAddress);
+    const findMatchingRow = async () => {
+      const matchingRow = await Promise.all(rows.map(async (row) => {
+        const wallet = await row.get('address');
+        const referrals = await row.get('maxClaimable');
+        if (wallet === currentAddress) {
+          console.log('Matching Wallet:', wallet);
+          console.log('Amount of Referrals:', referrals);
+          setReffs(referrals);
+          return true;
+        }
+        return false;
+      }));
+      if (!matchingRow.includes(true)) {
+        console.log('No matching row found.');
+        console.log('Loaded sheets:', doc.sheetsByIndex.map(sheet => sheet.title));
+      }
+    };
+    findMatchingRow();
+    if (matchingRow) {
+      const amount = Number(matchingRow.get('maxClaimable'));
+      console.log('AMAAAAAAAAAAAAAAAUNT', amount);
+    } else {
+      console.log('No matching row found');
+    }
+    console.log(matchingRow);
+    console.log('Data written to Google Sheets.');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+useEffect(() => {
+  if (currentAddress) {
+    readFromGoogleSheets(currentAddress);
+  }
+}, [currentAddress]);
+
+const [referralData, setReferralData] = useState<{ recipient: string; amount: number }[]>([]);
+
+function addOrUpdateReferral(address: string) {
+
+ const existingReferralIndex = referralData.findIndex((item) => item.recipient === address);
+
+ if (existingReferralIndex !== -1) {
+   const updatedReferralData = [...referralData];
+   updatedReferralData[existingReferralIndex].amount += 1;
+   setReferralData(updatedReferralData);
+ } else {
+   setReferralData([...referralData, { recipient: address, amount: 1 }]);
+ }
+}
+
+const handleButtonClick = async () => {
+  addOrUpdateReferral(referralAddress); // Update referral data array
+  console.log(referralData);
+  console.log(successText);
+  writeToGoogleSheets(referralAddress);
+};
+
+
+
+
   return (
     <ThirdwebProvider activeChain={activeChain} clientId="9e4314f9cb80713a98f3221cfb883eaf">
       <div className="w-full flex justify-center mt-[6em]">
-        <div className="grid text-white justify-center items-start w-2/6 p-6">
+        <div className="grid text-white justify-center items-start w-2/6 px-6">
             {/* Render the product name and description */}
             <div className="flex flex-col justify-start items-center">
               <div className=''>
-                  <div className='text-white text-2xl'>{selectedProduct.name}</div>
+                  <div className='text-white text-2xl font-bold'>{selectedProduct.name}</div>
                   <div className='text-white/90 text-lg'>{selectedProduct.description}</div>
                   <div></div>
               </div>
@@ -343,7 +510,7 @@ const buttonText = useMemo(() => {
                         <p className='mt-5'>Quantity</p>
                         <div className='flex justify-between p-1 rounded-lg mb-3'>
                           <button
-                            className='p-1 rounded-lg mt-3 bg-slate-600 w-10 h-10 flex justify-center items-center'
+                            className='p-1 rounded-lg mr-3 mt-3 bg-slate-600 w-10 h-10 flex justify-center items-center'
                             onClick={() => setQuantity(quantity - 1)}
                             disabled={quantity <= 1}
                           >
@@ -353,7 +520,7 @@ const buttonText = useMemo(() => {
                           <h4 className='p-1 rounded-lg my-3 bg-slate-700 w-full h-10 flex justify-center items-center'>{quantity}</h4>
 
                           <button
-                            className='p-1 rounded-lg my-3 bg-slate-600 w-10 h-10 flex justify-center items-center'
+                            className='p-1 rounded-lg ml-3 mt-3 bg-slate-600 w-10 h-10 flex justify-center items-center'
                             onClick={() => setQuantity(quantity + 1)}
                             disabled={quantity >= maxClaimable}
                           >
@@ -367,22 +534,50 @@ const buttonText = useMemo(() => {
                               <h2>Sold Out</h2>
                             </div>
                           ) : (
-                            <Web3Button
-                            style={{width: "100%"}}
-                              contractAddress={editionDrop?.getAddress() || ""}
-                              action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
-                              isDisabled={!canClaim || buttonLoading}
-                              onError={(err) => {
-                                console.error(err);
-                                alert("Error claiming NFTs");
-                              }}
-                              onSuccess={() => {
-                                setQuantity(1);
-                                alert("Successfully claimed NFTs");
-                              }}
-                            >
-                              {buttonLoading ? "Loading..." : buttonText}
-                            </Web3Button>
+                            <div>
+                              <div className='mb-2'>
+                                {referralError && <div className="text-red-500">{referralError}</div>}
+                                  <input
+                                      type="text"
+                                      placeholder="Your referral"
+                                      value={referralAddress}
+                                      onChange={(e) => {
+                                          const inputValue = e.target.value;
+                                          setReferralAddress(inputValue);
+                                  
+                                          // Validation checks
+                                          if (inputValue !== "" && !inputValue.startsWith("0x")) {
+                                          setReferralError("Referral address must start with '0x'");
+                                          } else if (inputValue !== "" && inputValue.length !== 42) {
+                                          setReferralError("Referral address must be 42 characters long");
+                                          } else if (inputValue !== "" && inputValue === currentAddress) {
+                                          setReferralError("Referral address cannot be the same as the current address");
+                                          } else {
+                                          setReferralError(""); // Clear error if input is valid or empty
+                                          }
+                                      }}
+                                      className={`w-[100%] bg-transparent border border-gray-300 rounded-lg text-white h-12 px-4 text-base mb-0 ${referralError ? "border-red-500" : ""}`}
+                                  />
+                                  
+                              </div>
+                              <Web3Button
+                              style={{width: "100%"}}
+                                contractAddress={editionDrop?.getAddress() || ""}
+                                action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
+                                isDisabled={!canClaim || buttonLoading}
+                                onError={(err) => {
+                                  console.error(err);
+                                  alert("Error claiming NFTs");
+                                }}
+                                onSuccess={() => {
+                                  setQuantity(1);
+                                  alert("Successfully claimed NFTs");
+                                  handleButtonClick();
+                                }}
+                              >
+                                {buttonLoading ? "Loading..." : buttonText}
+                              </Web3Button>
+                            </div>
                           )}
                         </div>
                       </>

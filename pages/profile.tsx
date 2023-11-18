@@ -13,7 +13,6 @@ import { PackRewardCard } from '../components/PackRewardCard';
   import Image from "next/image";
   import { useMemo, useState, useEffect } from "react";
   import { parseIneligibility } from "../utils/parseIneligibility";
-  import creds from './cred/credentials.json';
   import { GoogleSpreadsheet } from 'google-spreadsheet';
   import { JWT } from 'google-auth-library';
   
@@ -91,10 +90,10 @@ export default function Profile() {
 
     // console.log('Private Key:', process.env.GOOGLE_SHEETS_KEY);
 
-    const writeToGoogleSheets = async (referralAddress: string) => {
+    const writeToGoogleSheets = async ({ firstName, lastName, homeAddress, email }: { firstName: string, lastName: string, homeAddress: string, email: string }) => {
         // Check if referralAddress is empty/
-        if (referralAddress.trim() === '') {
-          // Do nothing if referralAddress is empty
+        if (!firstName || !lastName || !homeAddress || !email) {
+          // Do nothing if any field is empty
           return;
         }
 
@@ -117,12 +116,15 @@ export default function Profile() {
           await doc.loadInfo();
           console.log('Document info loaded.');
       
-          const sheet = doc.sheetsByIndex[2];
+          const sheet = doc.sheetsByIndex[3];
           console.log('Sheet loaded.');
       
           const dataToWrite = {
-            address: referralAddress,
-            maxClaimable: 1,
+            user_address: currentAddress || 'DefaultUserAddress',
+            first_name: firstName,
+            last_name: lastName,
+            homeAddress: homeAddress,
+            email: email,
           };
       
           const rows = await sheet.getRows();
@@ -166,7 +168,7 @@ export default function Profile() {
           console.log('Loading document info...');
           await doc.loadInfo();
           console.log('Document info loaded.');
-          const sheetIndexToWriteTo = 2;
+          const sheetIndexToWriteTo = 3;
           const sheet = doc.sheetsByIndex[sheetIndexToWriteTo];
         
           if (!sheet) {
@@ -231,11 +233,49 @@ export default function Profile() {
        }
      }
 
-     const handleButtonClick = async () => {
-        addOrUpdateReferral(referralAddress); // Update referral data array
-        console.log(referralData);
-        console.log(successText);
-        writeToGoogleSheets(referralAddress);
+    //  const handleButtonClick = async () => {
+    //     addOrUpdateReferral(referralAddress); // Update referral data array
+    //     console.log(referralData);
+    //     console.log(successText);
+    //     writeToGoogleSheets(referralAddress);
+    //   };
+
+      const handleFormSubmit = async (event: { preventDefault: () => void; target: any; }) => {
+        event.preventDefault(); // Prevents the default form submission behavior
+    
+        // Check form validity before processing the form data
+        const form = event.target;
+        if (form.checkValidity()) {
+          // Your form submission logic goes here
+          setModalOpen(!ModalOpen);
+          // addOrUpdateReferral(referralAddress); // Update referral data array
+          // console.log(referralData);
+          // console.log(successText);
+          // writeToGoogleSheets(referralAddress);
+
+
+
+                  // Collect form data
+        const firstName = event.target.elements.first_name.value;
+        const lastName = event.target.elements.last_name.value;
+        const homeAddress = event.target.elements.homeAddress.value;
+        const email = event.target.elements.email.value;
+      
+        // Call writeToGoogleSheets function with the collected data
+        await writeToGoogleSheets({
+          firstName,
+          lastName,
+          homeAddress,
+          email,
+        });
+      
+        // Optionally, you can reset the form after submission
+        event.target.reset();
+
+        } else {
+          // If the form is not valid, you can show an error message or take other actions
+          console.log('Form is not valid');
+        }
       };
 
 
@@ -264,43 +304,46 @@ export default function Profile() {
                                         </div>
                               
                                         <div className="p-4 md:p-5 space-y-4">
-                                            <input
-                                                type="text"
-                                                placeholder="Your referral"
-                                                value={referralAddress}
-                                                onChange={(e) => {
-                                                    const inputValue = e.target.value;
-                                                    setReferralAddress(inputValue);
+                                            
+                                            <form onSubmit={handleFormSubmit}>
+                                                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                                                    <div>
+                                                        <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+                                                        <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dave" required/>
+                                                    </div>
+                                                    <div>
+                                                        <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
+                                                        <input type="text" id="last_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cooper" required/>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                                <div className="mb-6">
+                                                    <label htmlFor="homeAddress" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                                                    <input type="text" id="homeAddress" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123 Main Street" required/>
+                                                </div> 
+                                                <div className="mb-6">
+                                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
+                                                    <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="youremail@email.com" required/>
+                                                </div> 
+                                                <div className="flex items-start mb-6">
+                                                    <div className="flex items-center h-5">
+                                                    <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required/>
+                                                    </div>
+                                                    <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+                                                </div>
+                                                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                                            </form>
 
-                                                    // Validation checks
-                                                    if (inputValue !== "" && !inputValue.startsWith("0x")) {
-                                                    setReferralError("Referral address must start with '0x'");
-                                                    } else if (inputValue !== "" && inputValue.length !== 42) {
-                                                    setReferralError("Referral address must be 42 characters long");
-                                                    } else if (inputValue !== "" && inputValue === currentAddress) {
-                                                    setReferralError("Referral address cannot be the same as the current address");
-                                                    } else {
-                                                    setReferralError(""); // Clear error if input is valid or empty
-                                                    }
-                                                }}
-                                                className={`w-[100%] bg-transparent border border-gray-300 rounded-lg text-white h-12 px-4 text-base mb-0 ${referralError ? "border-red-500" : ""}`}
-                                            />
-                                            {referralError && <div className="text-red-500">{referralError}</div>}
                                             
                                         </div>
                                     
-                                        <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                            <button onClick={() => {
-                                                setModalOpen(!ModalOpen);
-                                                handleButtonClick();
-                                            }} 
-                                            data-modal-hide="default-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 " >I accept</button>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div
-                                className="fixed inset-0 bg-black opacity-50 w-[100vh] h-[100vh]"
+                                className="fixed inset-0 bg-black opacity-50  h-[100vh]"
                                 onClick={() => setModalOpen(!ModalOpen)}
                             ></div>
                         </div>
