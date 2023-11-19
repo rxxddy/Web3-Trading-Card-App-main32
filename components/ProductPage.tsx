@@ -456,7 +456,8 @@ const handleButtonClick = async () => {
   return (
     <ThirdwebProvider activeChain={activeChain} clientId="9e4314f9cb80713a98f3221cfb883eaf">
       <div className="w-full flex justify-center mt-[6em]">
-        <div className="grid text-white justify-center items-start w-2/6 px-6">
+      <div className="md:w-full w-[90%] md:flex grid justify-center ">
+        <div className="grid text-white justify-center items-start md:w-2/6 w-full px-6 order-2 md:order-1 my-10">
             {/* Render the product name and description */}
             <div className="flex flex-col justify-start items-center">
               <div className=''>
@@ -589,11 +590,11 @@ const handleButtonClick = async () => {
             </div>
 
             
-{/* finish */}
+        {/* finish */}
 
 
         </div>
-        <div className="grid gap-4 justify-center w-2/6">
+        <div className="grid gap-4 justify-center md:w-2/6 w-full order-1 md:order-2">
           <div>
             {/* Render the selected image */}
             {selectedImage && (
@@ -604,7 +605,7 @@ const handleButtonClick = async () => {
               />
             )}
           </div>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-5 gap-4 items-end">
             {/* Render the product images */}
             {selectedProduct.images.map((image, index) => (
               <div key={index} onClick={() => setSelectedImage(image)}>
@@ -623,7 +624,7 @@ const handleButtonClick = async () => {
       {/* grrg */}
 
 
-
+      </div>
     </ThirdwebProvider>
   );
 };
