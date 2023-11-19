@@ -15,6 +15,9 @@ import { PackRewardCard } from '../components/PackRewardCard';
   import { parseIneligibility } from "../utils/parseIneligibility";
   import { GoogleSpreadsheet } from 'google-spreadsheet';
   import { JWT } from 'google-auth-library';
+  import { useContractWrite } from "@thirdweb-dev/react";
+
+
   
   // import dotenv from "dotenv";
   // import path from "path";
@@ -32,7 +35,15 @@ export default function Profile() {
     const [referralAddress, setReferralAddress] = useState('');
     const successText = 'text logs only after success';
     const [reffs, setReffs] = useState<number>(0);
+    const [isNFTid, setisNFTid] = useState('0')
     const [referralError, setReferralError] = useState("");
+    const [isContract, setisContract] = useState([]);
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [homeAddress, setHomeAddress] = useState('');
+    const [email, setEmail] = useState('');
+    const [isFormValid, setIsFormValid] = useState(false);
     
     const address = useAddress();
     const currentAddress = address;
@@ -62,19 +73,21 @@ export default function Profile() {
     const [selectedNFT, setSelectedNFT] = useState<NFTType>();
 
 
-
+    const { contract } = useContract(SINGLE_DROP_ADDRESS, "edition");
+    
+    const { mutateAsync, error } = useContractWrite(contract, "burnBatch");
     // packs
-    const { contract } = useContract(PACK_ADDRESS, "pack");
+    // const { contract } = useContract(PACK_ADDRESS, "pack");
     const { data, isLoading } = useOwnedNFTs(contract, address);
 
     const [openPackRewards, setOpenPackRewards] = useState<PackRewards>();
 
 
-    async function openPack(packId: string) {
-        const cardRewards = await contract?.open(parseInt(packId), 1);
-        console.log(cardRewards);
-        setOpenPackRewards(cardRewards);
-    };
+    // async function openPack(packId: string) {
+    //     const cardRewards = await contract?.open(parseInt(packId), 1);
+    //     console.log(cardRewards);
+    //     setOpenPackRewards(cardRewards);
+    // };
 
 
     const [ModalOpen, setModalOpen] = useState(false);
@@ -125,6 +138,7 @@ export default function Profile() {
             last_name: lastName,
             homeAddress: homeAddress,
             email: email,
+            nft_id: isNFTid,
           };
       
           const rows = await sheet.getRows();
@@ -240,27 +254,55 @@ export default function Profile() {
     //     writeToGoogleSheets(referralAddress);
     //   };
 
+      // const handleFormSubmit = async (event: { preventDefault: () => void; target: any; }) => {
+      //   event.preventDefault(); // Prevents the default form submission behavior
+    
+      //   // Check form validity before processing the form data
+      //   const form = event.target;
+      //   if (form.checkValidity()) {
+      //     // Your form submission logic goes here
+      //     setModalOpen(!ModalOpen);
+
+      //   const firstName = event.target.elements.first_name.value;
+      //   const lastName = event.target.elements.last_name.value;
+      //   const homeAddress = event.target.elements.homeAddress.value;
+      //   const email = event.target.elements.email.value;
+      
+      //   // Call writeToGoogleSheets function with the collected data
+      //   await writeToGoogleSheets({
+      //     firstName,
+      //     lastName,
+      //     homeAddress,
+      //     email,
+      //   });
+      
+      //   // Optionally, you can reset the form after submission
+      //   event.target.reset();
+
+      //   } else {
+      //     // If the form is not valid, you can show an error message or take other actions
+      //     console.log('Form is not valid');
+      //   }
+      // };
+
+      const [web3ButtonSuccess, setWeb3ButtonSuccess] = useState(false);
+      // const [isFormValid, setIsFormValid] = useState(false);
+
       const handleFormSubmit = async (event: { preventDefault: () => void; target: any; }) => {
         event.preventDefault(); // Prevents the default form submission behavior
     
-        // Check form validity before processing the form data
-        const form = event.target;
-        if (form.checkValidity()) {
-          // Your form submission logic goes here
-          setModalOpen(!ModalOpen);
-          // addOrUpdateReferral(referralAddress); // Update referral data array
-          // console.log(referralData);
-          // console.log(successText);
-          // writeToGoogleSheets(referralAddress);
-
-
-
-                  // Collect form data
+      // Check form validity before processing the form data
+      const form = event.target;
+      if (form.checkValidity() && web3ButtonSuccess) {
+        // Your form submission logic goes here
         const firstName = event.target.elements.first_name.value;
         const lastName = event.target.elements.last_name.value;
         const homeAddress = event.target.elements.homeAddress.value;
         const email = event.target.elements.email.value;
-      
+
+        // Optionally, you can reset the form after submission
+        event.target.reset();
+
         // Call writeToGoogleSheets function with the collected data
         await writeToGoogleSheets({
           firstName,
@@ -268,15 +310,32 @@ export default function Profile() {
           homeAddress,
           email,
         });
-      
-        // Optionally, you can reset the form after submission
-        event.target.reset();
 
-        } else {
-          // If the form is not valid, you can show an error message or take other actions
-          console.log('Form is not valid');
-        }
+        // Set modal open or perform other actions on form submission success
+        setModalOpen(!ModalOpen);
+        setIsFormValid(false); // Reset the form validity for the next submission
+      } else {
+        // If the form is not valid or Web3 button is not successful, you can show an error message or take other actions
+        setIsFormValid(true); // Set the form validity state for error indication
+        console.log('Form is not valid or Web3 button is not successful');
+      }
       };
+
+  const handleWeb3ButtonSuccess = () => {
+    // Set the state to indicate that the Web3 button was successful
+    setWeb3ButtonSuccess(true);
+
+    // You can perform additional actions here if needed
+    // ...
+  };
+
+  const handleButtonClick = async () => {
+    // Your handleButtonClick logic here
+    // ...
+
+    writeToGoogleSheets({ firstName, lastName, homeAddress, email });
+    setModalOpen(!ModalOpen);
+  };
 
 
     return (
@@ -304,39 +363,108 @@ export default function Profile() {
                                         </div>
                               
                                         <div className="p-4 md:p-5 space-y-4">
-                                            
-                                            <form onSubmit={handleFormSubmit}>
-                                                <div className="grid gap-6 mb-6 md:grid-cols-2">
-                                                    <div>
-                                                        <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
-                                                        <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dave" required/>
-                                                    </div>
-                                                    <div>
-                                                        <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
-                                                        <input type="text" id="last_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cooper" required/>
-                                                    </div>
-                                                    
-                                                </div>
-                                                
-                                                <div className="mb-6">
-                                                    <label htmlFor="homeAddress" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                                                    <input type="text" id="homeAddress" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123 Main Street" required/>
-                                                </div> 
-                                                <div className="mb-6">
-                                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-                                                    <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="youremail@email.com" required/>
-                                                </div> 
-                                                <div className="flex items-start mb-6">
-                                                    <div className="flex items-center h-5">
-                                                    <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required/>
-                                                    </div>
-                                                    <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
-                                                </div>
-                                                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-                                            </form>
-
-                                            
+                                        <div className="grid gap-6 mb-6 md:grid-cols-2">
+                                          <div>
+                                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                              First name
+                                            </label>
+                                            <input
+                                              type="text"
+                                              id="first_name"
+                                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                              placeholder="Dave"
+                                              value={firstName}
+                                              onChange={(e) => setFirstName(e.target.value)}
+                                              required
+                                            />
+                                          </div>
+                                          <div>
+                                            <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                              Last name
+                                            </label>
+                                            <input
+                                              type="text"
+                                              id="last_name"
+                                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                              placeholder="Cooper"
+                                              value={lastName}
+                                              onChange={(e) => setLastName(e.target.value)}
+                                              required
+                                            />
+                                          </div>
                                         </div>
+
+                                        <div className="mb-6">
+                                          <label htmlFor="homeAddress" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Address
+                                          </label>
+                                          <input
+                                            type="text"
+                                            id="homeAddress"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="123 Main Street"
+                                            value={homeAddress}
+                                            onChange={(e) => setHomeAddress(e.target.value)}
+                                            required
+                                          />
+                                        </div>
+
+                                        <div className="mb-6">
+                                          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Email address
+                                          </label>
+                                          <input
+                                            type="email"
+                                            id="email"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="youremail@email.com"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                          />
+                                        </div>
+
+                                        <div className="flex items-start mb-6">
+                                          <div className="flex items-center h-5">
+                                            <input
+                                              id="remember"
+                                              type="checkbox"
+                                              value=""
+                                              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                                              required
+                                            />
+                                          </div>
+                                          <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                            I agree with the{' '}
+                                            <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">
+                                              terms and conditions
+                                            </a>
+                                            .
+                                          </label>
+                                        </div>
+
+                                        <Web3Button
+                                          contractAddress={SINGLE_DROP_ADDRESS}
+                                          action={async () => {
+                                            try {
+                                              await mutateAsync({
+                                                args: [address, [isNFTid], [1]],
+                                              });
+
+                                              // If mutateAsync succeeds, handle success
+                                              console.error('All OK');
+                                            } catch (error) {
+                                              // Handle error from mutateAsync if needed
+                                              console.error('Web3 button error:', error);
+                                            }
+                                          }}
+                                          onSuccess={handleButtonClick}
+                                        >
+                                          Send Transaction
+                                        </Web3Button>
+
+                                        {isFormValid && <div className="text-red-500">Form is not valid or Web3 button is not successful</div>}
+                                      </div>
                                     
                                         
                                     </div>
@@ -361,6 +489,7 @@ export default function Profile() {
                                 <div className="p-4 bg-[#252525] rounded-b-md">
                                     <h3 className="text-white text-xl font-semibold">{nft.metadata.name}</h3>
                                     <p className="text-white mb-2">Qty: {nft.quantityOwned}</p>
+                                    <p className="text-white mb-2">id: {nft.metadata.id}</p>
                                     <div className="w-[7em] transform translate-x-[69px] translate-y-[54px] bg-red-900 rounded-md p-1 font-mono text-xs text-white/90">Coming Soon</div>
                                     <div className="flex justify-between">
 
@@ -368,10 +497,17 @@ export default function Profile() {
                                             <p>Sell</p>
                                         </div>
 
-                                        <button className="p-4 flex justify-center w-3/6 ml-1 font-mono bg-white mt-10 rounded-sm" onClick={() => setModalOpen(!ModalOpen)}>
-                                            Order
+                                        <button className="p-4 flex justify-center w-3/6 ml-1 font-mono bg-white mt-10 rounded-sm"     onClick={() => {
+                                            // console.log("Order button clicked for NFT ID:", nft.metadata.id);
+                                            setisNFTid(nft.metadata.id)
+                                            // console.log("nft.metadata.id", isNFTid)
+                                            setModalOpen(!ModalOpen);
+                                            
+                                            
+                                        }}>
+                                              Order
                                         </button>
-
+                                        
                                     </div>
 
                                     
@@ -401,7 +537,9 @@ export default function Profile() {
             </div>
 
             <h1 className="text-start ml-6 text-white font-mono sm:text-lg text-sm mt-12 pb-6">My Packs</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:p-10 gap-4 justify-items-center">
+
+            <h1 className="flex justify-center w-full my-24"><p className="mb-10 text-white">Packs are coming soon </p></h1>
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:p-10 gap-4 justify-items-center">
                 {!isLoading ? (
                     data?.map((pack, index) => (
                         <div key={index} className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] pb-7 p-4">
@@ -412,7 +550,7 @@ export default function Profile() {
                                 <h3 className="text-white text-xl font-semibold">{pack.metadata.name}</h3>
                                 <p className="text-white mb-2">Qty: {pack.quantityOwned}</p>
                             </div>
-                            <Web3Button
+                            {/* <Web3Button
                                 contractAddress={PACK_ADDRESS}
                                 action={() => openPack(pack.metadata.id)}
                                 className="p-4 flex justify-center font-mono bg-white mt-10"
@@ -423,26 +561,27 @@ export default function Profile() {
                     ) : (
                     <p>Loading...</p>
                 )}
-            </div>
-            {openPackRewards && openPackRewards.erc1155Rewards?.length && (
+              */}
+            </div> 
+            // {openPackRewards && openPackRewards.erc1155Rewards?.length && (
 
                 
-                <div className="fixed inset-0 flex items-center justify-center">
-                <div
-                    className="fixed inset-0 bg-black opacity-50"
-                    onClick={() => setOpenPackRewards(undefined)}
-                ></div>
-                <div className="relative z-50">
-                    <div className="flex justify-items-center">
-                    {openPackRewards.erc1155Rewards.map((card, index) => (
-                        <PackRewardCard reward={card} key={index} />
-                    ))}
-                    </div>
-                </div>
-                </div>
-            )}
+            //     <div className="fixed inset-0 flex items-center justify-center">
+            //     <div
+            //         className="fixed inset-0 bg-black opacity-50"
+            //         onClick={() => setOpenPackRewards(undefined)}
+            //     ></div>
+            //     <div className="relative z-50">
+            //         <div className="flex justify-items-center">
+            //         {openPackRewards.erc1155Rewards.map((card, index) => (
+            //             <PackRewardCard reward={card} key={index} />
+            //         ))}
+            //         </div>
+            //     </div>
+            //     </div>
+            // )}
 
 
-        </div>
+        // </div>
     )
 };
