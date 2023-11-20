@@ -512,17 +512,17 @@ const sizes = ['S', 'M', 'L', 'XL'];
                         <p className='mt-5'>Quantity</p>
                         <div className='flex justify-between p-1 rounded-lg mb-3'>
                           <button
-                            className='p-1 rounded-lg mr-3 mt-3 bg-slate-600 w-10 h-10 flex justify-center items-center'
+                            className='p-1 rounded-lg mr-3 mt-3 border-gray-500 hover:bg-gray-500 border  w-10 h-10 flex justify-center items-center'
                             onClick={() => setQuantity(quantity - 1)}
                             disabled={quantity <= 1}
                           >
                             -
                           </button>
 
-                          <h4 className='p-1 rounded-lg my-3 bg-slate-700 w-full h-10 flex justify-center items-center'>{quantity}</h4>
+                          <h4 className='p-1 rounded-lg my-3 border-gray-500 border w-full h-10 flex justify-center items-center'>{quantity}</h4>
 
                           <button
-                            className='p-1 rounded-lg ml-3 mt-3 bg-slate-600 w-10 h-10 flex justify-center items-center'
+                            className='p-1 rounded-lg ml-3 mt-3 border-gray-500 hover:bg-gray-500 border  w-10 h-10 flex justify-center items-center'
                             onClick={() => setQuantity(quantity + 1)}
                             disabled={quantity >= maxClaimable}
                           >
