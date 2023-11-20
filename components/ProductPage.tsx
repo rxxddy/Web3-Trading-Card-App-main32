@@ -649,7 +649,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
             <tbody className='sm:text-sm text-[9px]'>
                 <tr className="">
                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      1 - длина рукава от горловины, см 
+                      длина рукава от горловины, см 
                     </th>
                     <td className="px-6 py-4">
                       42
