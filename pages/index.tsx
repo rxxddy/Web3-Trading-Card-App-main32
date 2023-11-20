@@ -15,23 +15,23 @@ const Home: NextPage = () => {
   ];
 
   const data0 = [
-    { Bigtext: 'Collection 1', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/4.png' },
-    { Bigtext: 'Collection 2', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/5.png' },
-    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/6.png' },
-    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/41.png' },
-    { Bigtext: 'Collection 3', desc: 'Description Description', image: 'https://thesybilmarket.vercel.app/2.png' },
+    { Bigtext: 'DROP 001', desc: 'Low Bank', image: 'https://thesybilmarket.vercel.app/4.png' },
+    { Bigtext: 'DROP 001', desc: 'Connect Wallet', image: 'https://thesybilmarket.vercel.app/5.png' },
+    { Bigtext: 'DROP 001', desc: 'Fomo', image: 'https://thesybilmarket.vercel.app/6.png' },
+    { Bigtext: 'DROP 001', desc: 'SYBIL', image: 'https://thesybilmarket.vercel.app/41.png' },
+    { Bigtext: 'DROP 001', desc: 'The Low Bank', image: 'https://thesybilmarket.vercel.app/2.png' },
     // Add more data as needed
   ];
   const data1 = [
-    { rank: 1, collection: 'Collection A', floorPrice: '$100', image: 'https://thesybilmarket.vercel.app/7.png' },
-    { rank: 2, collection: 'Collection B', floorPrice: '$150', image: 'https://thesybilmarket.vercel.app/31.png' },
-    { rank: 3, collection: 'Collection C', floorPrice: '$120', image: 'https://thesybilmarket.vercel.app/41.png' },
+    { rank: 1, collection: 'Цените Бычку', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/7.png' },
+    { rank: 2, collection: 'FOMO', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/31.png' },
+    { rank: 3, collection: 'SYBIL', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/41.png' },
     // Add more data as needed
   ];
   const data2 = [
-    { rank: 4, collection: 'Collection A', floorPrice: '$100', image: 'https://thesybilmarket.vercel.app/1.png' },
-    { rank: 5, collection: 'Collection B', floorPrice: '$150', image: 'https://thesybilmarket.vercel.app/2.png' },
-    { rank: 6, collection: 'Collection C', floorPrice: '$120', image: 'https://thesybilmarket.vercel.app/3.png' },
+    { rank: 4, collection: 'STOP-LOSS', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/1.png' },
+    { rank: 5, collection: 'The Low Bank', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/2.png' },
+    { rank: 6, collection: 'Not Eligible', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/3.png' },
     // Add more data as needed
   ];
 
@@ -39,22 +39,22 @@ const Home: NextPage = () => {
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/4.png',
-      name: 'NFT T-Shirt 1',
+      name: 'Low Bank',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/5.png',
-      name: 'NFT T-Shirt 2',
+      name: 'Connect Wallet',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/6.png',
-      name: 'NFT T-Shirt 3',
+      name: 'Fomo',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/7.png',
-      name: 'NFT T-Shirt 4',
+      name: 'Цените Бычку',
     },
     
     // Add more items as needed

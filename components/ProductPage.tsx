@@ -32,7 +32,7 @@ const activeChain = "mumbai";
 
 const shopItems = [
   {
-    name: 'NFT T-Shirt 1',
+    name: 'FOMO',
     id: 0,
     description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
     images: [
@@ -45,7 +45,7 @@ const shopItems = [
     ],
   },
   {
-    name: 'NFT T-Shirt 2',
+    name: 'SYBIL',
     id: 1,
     description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
     images: [
@@ -450,7 +450,8 @@ const handleButtonClick = async () => {
   writeToGoogleSheets(referralAddress);
 };
 
-
+const sizes = ['S', 'M', 'L', 'XL'];
+  const numericValues = [1, 2, 3, 4, 5];
 
 
   return (
@@ -621,10 +622,126 @@ const handleButtonClick = async () => {
         
       </div>
 
-      {/* grrg */}
 
 
       </div>
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg flex justify-center my-10">
+        <table className="md:w-4/6 w-[80%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase   dark:text-gray-400">
+                <tr className=' border-b  dark:border-gray-700 '>
+                    <th scope="col" className="px-6 py-3">
+                        Размеры
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        XS
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        S
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        M
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        L
+                    </th>
+                </tr>
+            </thead>
+            <tbody className='sm:text-sm text-[9px]'>
+                <tr className="">
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      1 - длина рукава от горловины, см 
+                    </th>
+                    <td className="px-6 py-4">
+                      42
+                    </td>
+                    <td className="px-6 py-4">
+                      44 
+                    </td>
+                    <td className="px-6 py-4">
+                      46
+                    </td>
+                    <td className="px-6 py-4">
+                      47.5 
+                    </td>
+                   
+                    
+                    
+                </tr>
+                <tr className=" ">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      ширина рукова, см 
+                    </th>
+                    <td className="px-6 py-4">
+                        20.5
+                    </td>
+                    <td className="px-6 py-4">
+                      21
+                    </td>
+                    <td className="px-6 py-4">
+                      21.5
+                    </td>
+                    <td className="px-6 py-4">
+                      22
+                    </td>
+                    
+                </tr>
+                <tr className="   ">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      ширина по груди, см 
+                    </th>
+                    <td className="px-6 py-4">
+                        52.5
+                    </td>
+                    <td className="px-6 py-4">
+                        55
+                    </td>
+                    <td className="px-6 py-4">
+                        58
+                    </td>
+                    <td className="px-6 py-4">
+                        61
+                    </td>
+                   
+                </tr>
+                <tr className="">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      ширина по низу, см 
+                    </th>
+                    <td className="px-6 py-4">
+                        52.5
+                    </td>
+                    <td className="px-6 py-4">
+                        55
+                    </td>
+                    <td className="px-6 py-4">
+                        58
+                    </td>
+                    <td className="px-6 py-4">
+                        61
+                    </td>
+                  
+                </tr>
+                <tr className="">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      длина по спине, см 
+                    </th>
+                    <td className="px-6 py-4">
+                        72
+                    </td>
+                    <td className="px-6 py-4">
+                        74.5
+                    </td>
+                    <td className="px-6 py-4">
+                        77
+                    </td>
+                    <td className="px-6 py-4">
+                        79.5
+                    </td>
+                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
     </ThirdwebProvider>
   );
 };

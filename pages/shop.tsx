@@ -25,12 +25,12 @@ export default function Shop() {
         {
           tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
           imageUrl: 'https://thesybilmarket.vercel.app/31.png',
-          name: 'NFT T-Shirt 1',
+          name: 'FOMO',
         },
         {
           tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
           imageUrl: 'https://thesybilmarket.vercel.app/41.png',
-          name: 'NFT T-Shirt 2',
+          name: 'SYBIL',
         },
         
         // Add more items as needed

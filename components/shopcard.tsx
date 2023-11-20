@@ -45,7 +45,7 @@ export default function ShopCard( { tokenAddress, nftimage, name }: ShopCardProp
                             <h3 className="text-white text-xl font-semibold mb-2">{name}</h3>
                             
                             <p className="text-white mb-2">Cost: 55$</p>
-                            <p className="text-white mb-2">{12}/{150}</p>
+                            <p className="text-white mb-2">Supply: 150</p>
                             
                         </div>
                     </div>
