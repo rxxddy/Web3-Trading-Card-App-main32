@@ -44,6 +44,7 @@ export default function Profile() {
     const [homeAddress, setHomeAddress] = useState('');
     const [email, setEmail] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
+    const [size, setSize] = useState('');
     
     const address = useAddress();
     const currentAddress = address;
@@ -103,9 +104,9 @@ export default function Profile() {
 
     // console.log('Private Key:', process.env.GOOGLE_SHEETS_KEY);
 
-    const writeToGoogleSheets = async ({ firstName, lastName, homeAddress, email }: { firstName: string, lastName: string, homeAddress: string, email: string }) => {
+    const writeToGoogleSheets = async ({ firstName, lastName, homeAddress, email, size }: { firstName: string, lastName: string, homeAddress: string, email: string, size: string }) => {
         // Check if referralAddress is empty/
-        if (!firstName || !lastName || !homeAddress || !email) {
+        if (!firstName || !lastName || !homeAddress || !email || !size) {
           // Do nothing if any field is empty
           return;
         }
@@ -139,6 +140,7 @@ export default function Profile() {
             homeAddress: homeAddress,
             email: email,
             nft_id: isNFTid,
+            user_size: size,
           };
       
           const rows = await sheet.getRows();
@@ -299,6 +301,7 @@ export default function Profile() {
         const lastName = event.target.elements.last_name.value;
         const homeAddress = event.target.elements.homeAddress.value;
         const email = event.target.elements.email.value;
+        const size = event.target.elements.user_size.value;
 
         // Optionally, you can reset the form after submission
         event.target.reset();
@@ -309,6 +312,7 @@ export default function Profile() {
           lastName,
           homeAddress,
           email,
+          size,
         });
 
         // Set modal open or perform other actions on form submission success
@@ -333,7 +337,7 @@ export default function Profile() {
     // Your handleButtonClick logic here
     // ...
 
-    writeToGoogleSheets({ firstName, lastName, homeAddress, email });
+    writeToGoogleSheets({ firstName, lastName, homeAddress, email, size });
     setModalOpen(!ModalOpen);
   };
 
@@ -348,25 +352,32 @@ export default function Profile() {
                             <div id="default-modal" className="fixed z-50 justify-center items-center w-full sm:w-[30em]">
                                 <div className="relative p-4 w-full max-w-2xl max-h-full">
                                    
-                                    <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <div className="relative bg-gray-700 rounded-lg shadow">
                                    
                                         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                            <div>
                                             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                                                Terms of Service
-                                            </h3>
-                                            <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal" onClick={() => setModalOpen(!ModalOpen)}>
-                                                <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                                </svg>
-                                                <span className="sr-only">Close modal</span>
-                                            </button>
+                                                Оформление Доставки
+                                            </h3> 
+                                            <p className=" font-semibold text-gray-900 dark:text-white text-xs mt-4 text-justify">
+                                                После того как вы заполните поля информации и подпишите транзакцию - ваша нфт будет сожжена и мы направим вам письмо на почту с подтверждением заказа и номером отслеживания доставки
+                                            </p>
+                                            </div>
+                                            <div className="h-full self-start">
+                                              <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal" onClick={() => setModalOpen(!ModalOpen)}>
+                                                  <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                  </svg>
+                                                  <span className="sr-only">Close modal</span>
+                                              </button>
+                                            </div>
                                         </div>
                               
                                         <div className="p-4 md:p-5 space-y-4">
                                         <div className="grid gap-6 mb-6 md:grid-cols-2">
                                           <div>
                                             <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                              First name
+                                              Имя
                                             </label>
                                             <input
                                               type="text"
@@ -380,7 +391,7 @@ export default function Profile() {
                                           </div>
                                           <div>
                                             <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                              Last name
+                                              Фамилия
                                             </label>
                                             <input
                                               type="text"
@@ -396,13 +407,13 @@ export default function Profile() {
 
                                         <div className="mb-6">
                                           <label htmlFor="homeAddress" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                            Address
+                                            Адрес
                                           </label>
                                           <input
                                             type="text"
                                             id="homeAddress"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="123 Main Street"
+                                            placeholder="ул. Большая Дмитровка, 13, Москва"
                                             value={homeAddress}
                                             onChange={(e) => setHomeAddress(e.target.value)}
                                             required
@@ -411,7 +422,7 @@ export default function Profile() {
 
                                         <div className="mb-6">
                                           <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                            Email address
+                                            Почта
                                           </label>
                                           <input
                                             type="email"
@@ -423,6 +434,20 @@ export default function Profile() {
                                             required
                                           />
                                         </div>
+                                        <div>
+                                            <label htmlFor="user_size" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                              Размер
+                                            </label>
+                                            <input
+                                              type="text"
+                                              id="size"
+                                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                              placeholder="XS/S/M/L"
+                                              value={size}
+                                              onChange={(e) => setSize(e.target.value)}
+                                              required
+                                            />
+                                          </div>
 
                                         <div className="flex items-start mb-6">
                                           <div className="flex items-center h-5">
@@ -435,30 +460,21 @@ export default function Profile() {
                                             />
                                           </div>
                                           <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                            I agree with the{' '}
+                                            Я согласен с {' '}
                                             <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">
-                                              terms and conditions
+                                              правилами и политикой
                                             </a>
-                                            .
                                           </label>
                                         </div>
 
                                         <Web3Button
                                           contractAddress={SINGLE_DROP_ADDRESS}
-                                          action={async () => {
-                                            try {
-                                              await mutateAsync({
-                                                args: [address, [isNFTid], [1]],
-                                              });
+                                          action={async () => mutateAsync({
+                                            args: [address, [isNFTid], [1]],
+                                          })}
 
-                                              // If mutateAsync succeeds, handle success
-                                              console.error('All OK');
-                                            } catch (error) {
-                                              // Handle error from mutateAsync if needed
-                                              console.error('Web3 button error:', error);
-                                            }
-                                          }}
-                                          onSuccess={handleButtonClick}
+                                          onSuccess={() => writeToGoogleSheets({ firstName, lastName, homeAddress, email, size })}
+                                          
                                         >
                                           Send Transaction
                                         </Web3Button>

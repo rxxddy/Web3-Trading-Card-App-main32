@@ -52,7 +52,7 @@ export default function Navbar() {
                     {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">The Sybil Market</span> */}
                 </Link>
                 <div className="flex md:order-2">
-                    {/* <button type="button" className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Get started</button> */}
+                    {/* <button type="button" className="text-white bg-gray-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-yellow-600 dark:hover:bg-gray-500 dark:focus:ring-yellow-800">Get started</button> */}
                     
 
 
@@ -70,13 +70,13 @@ export default function Navbar() {
                                   switchToActiveChain={true}
                                   modalSize={"wide"}
                                   style={{width: "7em", minWidth: "7em", fontSize: "10px"}}
-                                className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg sm:text-sm text-xs px-4 py-2 text-center mr-3 md:mr-0 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
+                                className="text-white bg-gray-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg sm:text-sm text-xs px-4 py-2 text-center mr-3 md:mr-0 dark:bg-gray-500 dark:hover:bggray-700 dark:focus:ring-gray-500"
                             />
                         ) : (
 
                             <div>
 
-                            <button data-collapse-toggle="navbar-sticky" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                            <button data-collapse-toggle="navbar-sticky" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
                                 <span className="sr-only">Open main menu</span>
                                 <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -103,19 +103,19 @@ export default function Navbar() {
                                 </div>
                                 <ul className="py-2 z-50 flex"  aria-labelledby="user-menu-button">
                                     <Link href="/profile" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
-                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</p>
+                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</p>
                                     </Link>
                                     <Link href="/shop" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
-                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Shop</p>
+                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Shop</p>
                                     </Link>
                                     <Link href="/packsshop" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
-                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Packs</p>
+                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Packs</p>
                                     </Link>
                                     <Link href="/marketplace" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
-                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Marketplace</p>
+                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Marketplace</p>
                                     </Link>
                                     <button onClick={handleLogout} className="flex justify-startstart w-full">
-                                        <p className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</p>
+                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</p>
                                     </button>
                                 </ul>
                             
@@ -133,19 +133,27 @@ export default function Navbar() {
                                 <img src="https://thesybilmarket.vercel.app/TSM02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
                                 {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">The Sybil Market</span> */}
                     </Link>
-                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#202020] md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700">
+                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#202020] md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-500">
                     {/* <li>
-                        <p className="block py-2 pl-3 pr-4 text-white bg-yellow-700 rounded md:bg-transparent md:text-yellow-700 md:p-0 md:dark:text-yellow-500" aria-current="page">Home</p>
+                        <p className="block py-2 pl-3 pr-4 text-white bg-gray-500 rounded md:bg-transparent md:text-gray-500 md:p-0 md:dark:text-gray-500" aria-current="page">Home</p>
                     </li> */}
                     <Link href="/marketplace">
-                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-700 md:p-0 md:dark:hover:text-yellow-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Marketplace</p>
+                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-500">Marketplace</p>
                     </Link>
                     <Link href="/shop">
-                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-700 md:p-0 md:dark:hover:text-yellow-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Shop</p>
+                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-500">Shop</p>
                         </Link>
                     <Link href="/packsshop">
-                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-yellow-700 md:p-0 md:dark:hover:text-yellow-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Packs</p>
+                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-500">Packs</p>
                     </Link>
+
+                    {address ? (
+                    <button onClick={handleLogout} >
+                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-500">Logout</p>
+                    </button>
+                    ) : (<div></div>)}
+
+
                     </ul>
                 </div>
             </div>
