@@ -4,6 +4,33 @@ import { useState, useEffect } from 'react';
 import { MediaRenderer } from "@thirdweb-dev/react";
 import Link from "next/link";
 
+/* eslint-disable react-hooks/rules-of-hooks */
+// pages/products/[productName]/index.tsx
+import { useRouter } from 'next/router';
+import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
+import { BigNumber } from 'ethers';
+
+import {
+    useActiveClaimConditionForWallet,
+    useAddress,
+    useClaimConditions,
+    useClaimerProofs,
+    useClaimIneligibilityReasons,
+    useContract,
+    useContractMetadata,
+    useTotalCirculatingSupply,
+    Web3Button,
+  } from "@thirdweb-dev/react";
+  import { utils } from "ethers";
+
+  import { parseIneligibility } from "../utils/parseIneligibility";
+// Updated shopItems array
+
+
+import Image from "next/image";
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { JWT } from 'google-auth-library';
+
 const Home: NextPage = () => {
 
   const images = [
@@ -13,6 +40,17 @@ const Home: NextPage = () => {
     'https://thesybilmarket.vercel.app/41.png',
     'https://thesybilmarket.vercel.app/2.png',
   ];
+  const myEditionDropContractAddress: string = "0x3FCcBBe57D72E9D43c631D8D5f4fC7CE131D139E";
+
+  const address = useAddress();
+  const [quantity, setQuantity] = useState(1);
+  const { contract: editionDrop } = useContract(myEditionDropContractAddress);
+  const { data: contractMetadata } = useContractMetadata(editionDrop);
+  const [referralAddress, setReferralAddress] = useState('');
+  const successText = 'text logs only after success';
+  const [reffs, setReffs] = useState<number>(0);
+  const [referralError, setReferralError] = useState("");
+  const currentAddress = address;
 
   const data0 = [
     { Bigtext: 'DROP 001', desc: 'Low Bank', image: 'https://thesybilmarket.vercel.app/4.png' },
@@ -79,6 +117,147 @@ const Home: NextPage = () => {
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
+
+
+  const writeToGoogleSheets = async (referralAddress: string) => {
+    // Check if referralAddress is empty/
+    if (referralAddress.trim() === '') {
+      // Do nothing if referralAddress is empty
+      return;
+    }
+  
+  
+  // console.log("email:", process.env.GOOGLE_SHEETS_EMAIL)
+    const serviceAccountAuth = new JWT({
+      email: process.env.GOOGLE_SHEETS_EMAIL,
+      key: process.env.GOOGLE_SHEETS_KEY,
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+  
+    const doc = new GoogleSpreadsheet('1daqsM7V0qS3MKmzq40vmQ58izNWfzbA8qh0e7IUy4cM', serviceAccountAuth);
+  
+    try {
+      console.log('Attempting to authorize...');
+      await serviceAccountAuth.authorize();
+      console.log('Authorization successful.');
+  
+      console.log('Loading document info...');
+      await doc.loadInfo();
+      console.log('Document info loaded.');
+  
+      const sheet = doc.sheetsByIndex[1];
+      console.log('Sheet loaded.');
+  
+      const dataToWrite = {
+        address: referralAddress,
+        maxClaimable: 1,
+      };
+  
+      const rows = await sheet.getRows();
+  
+      const existingRow = rows.find((row) => row.get('address') === referralAddress);
+      console.log('existingRow', existingRow);
+  
+      if (existingRow) {
+        const currentAmount = Number(existingRow.get('maxClaimable'));
+        existingRow.set('maxClaimable', currentAmount + 1);
+        await existingRow.save();
+      } else {
+        await sheet.addRow(dataToWrite);
+      }
+  
+      console.log('Data written to Google Sheets.');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+  const readFromGoogleSheets = async (currentAddress: string) => {
+    const serviceAccountAuth = new JWT({
+      email: process.env.GOOGLE_SHEETS_EMAIL,
+      key: process.env.GOOGLE_SHEETS_KEY,
+      scopes: [
+        'https://www.googleapis.com/auth/spreadsheets',
+      ],
+    });
+    
+    const doc = new GoogleSpreadsheet('1daqsM7V0qS3MKmzq40vmQ58izNWfzbA8qh0e7IUy4cM', serviceAccountAuth);
+  
+    try {
+      console.log('Attempting to authorize...');
+      try {
+        await serviceAccountAuth.authorize();
+      } catch (error) {
+        console.error('Error during authorization:', error);
+      }
+      console.log('Authorization successful.');
+      console.log('Loading document info...');
+      await doc.loadInfo();
+      console.log('Document info loaded.');
+      const sheetIndexToWriteTo = 1;
+      const sheet = doc.sheetsByIndex[sheetIndexToWriteTo];
+    
+      if (!sheet) {
+        console.error(`Sheet with index ${sheetIndexToWriteTo} not found.`);
+        return;
+      }
+      console.log('Sheet loaded.');
+      const rows = await sheet.getRows();
+      console.log('IERNONIGR', currentAddress)
+      const matchingRow = await rows.find(async (row) => row.get('address') === currentAddress);
+      console.log('matchingRow', matchingRow);
+      console.log('IERNONIGR', currentAddress);
+      const findMatchingRow = async () => {
+        const matchingRow = await Promise.all(rows.map(async (row) => {
+          const wallet = await row.get('address');
+          const referrals = await row.get('maxClaimable');
+          if (wallet === currentAddress) {
+            console.log('Matching Wallet:', wallet);
+            console.log('Amount of Referrals:', referrals);
+            setReffs(referrals);
+            return true;
+          }
+          return false;
+        }));
+        if (!matchingRow.includes(true)) {
+          console.log('No matching row found.');
+          console.log('Loaded sheets:', doc.sheetsByIndex.map(sheet => sheet.title));
+        }
+      };
+      findMatchingRow();
+      if (matchingRow) {
+        const amount = Number(matchingRow.get('maxClaimable'));
+        console.log('AMAAAAAAAAAAAAAAAUNT', amount);
+      } else {
+        console.log('No matching row found');
+      }
+      console.log(matchingRow);
+      console.log('Data written to Google Sheets.');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+  useEffect(() => {
+    if (currentAddress) {
+      readFromGoogleSheets(currentAddress);
+    }
+  }, [currentAddress]);
+  
+  const [referralData, setReferralData] = useState<{ recipient: string; amount: number }[]>([]);
+  
+  function addOrUpdateReferral(address: string) {
+  
+   const existingReferralIndex = referralData.findIndex((item) => item.recipient === address);
+  
+   if (existingReferralIndex !== -1) {
+     const updatedReferralData = [...referralData];
+     updatedReferralData[existingReferralIndex].amount += 1;
+     setReferralData(updatedReferralData);
+   } else {
+     setReferralData([...referralData, { recipient: address, amount: 1 }]);
+   }
+  }
   
   return (
       <div className="sm:p-10 p-0 mt-16 block justify-center">
@@ -294,8 +473,21 @@ const Home: NextPage = () => {
                                 <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign up</button>
                             </div>
                         </form> */}
+                    <h1 className="text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white flex justify-center">
+                      <p>Reffs:&nbsp;</p>
+                      <div></div>
+                      {reffs !== null ? <p>{reffs}</p> : <p>Loading...</p>}
+                    </h1>
                     </div>
                     {/* <div className="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div> */}
+                    {/* <div className="w-[100%] bg-transparent border border-gray-300 rounded-lg text-white h-12 px-4 text-base mb-0"> 
+                      <p>Your address</p>
+                      <p>{currentAddress}</p>
+                    </div>     
+                    <div className="w-[100%] bg-transparent border border-gray-300 rounded-lg text-white h-12 px-4 text-base mb-0">
+                      <p>Your referrals</p>
+                      {reffs !== null ? <p>{reffs}</p> : <p>Loading...</p>}
+                    </div> */}
                 </section>
 
                 {/* footer */}

@@ -119,7 +119,7 @@ export default function Profile() {
           scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
       
-        const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
+        const doc = new GoogleSpreadsheet('1daqsM7V0qS3MKmzq40vmQ58izNWfzbA8qh0e7IUy4cM', serviceAccountAuth);
       
         try {
           console.log('Attempting to authorize...');
@@ -130,7 +130,7 @@ export default function Profile() {
           await doc.loadInfo();
           console.log('Document info loaded.');
       
-          const sheet = doc.sheetsByIndex[3];
+          const sheet = doc.sheetsByIndex[0];
           console.log('Sheet loaded.');
       
           const dataToWrite = {
@@ -171,7 +171,7 @@ export default function Profile() {
           ],
         });
         
-        const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
+        const doc = new GoogleSpreadsheet('1daqsM7V0qS3MKmzq40vmQ58izNWfzbA8qh0e7IUy4cM', serviceAccountAuth);
       
         try {
           console.log('Attempting to authorize...');
@@ -184,7 +184,7 @@ export default function Profile() {
           console.log('Loading document info...');
           await doc.loadInfo();
           console.log('Document info loaded.');
-          const sheetIndexToWriteTo = 3;
+          const sheetIndexToWriteTo = 0;
           const sheet = doc.sheetsByIndex[sheetIndexToWriteTo];
         
           if (!sheet) {

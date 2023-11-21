@@ -318,7 +318,7 @@ const writeToGoogleSheets = async (referralAddress: string) => {
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
 
-  const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
+  const doc = new GoogleSpreadsheet('1daqsM7V0qS3MKmzq40vmQ58izNWfzbA8qh0e7IUy4cM', serviceAccountAuth);
 
   try {
     console.log('Attempting to authorize...');
@@ -329,7 +329,7 @@ const writeToGoogleSheets = async (referralAddress: string) => {
     await doc.loadInfo();
     console.log('Document info loaded.');
 
-    const sheet = doc.sheetsByIndex[2];
+    const sheet = doc.sheetsByIndex[1];
     console.log('Sheet loaded.');
 
     const dataToWrite = {
@@ -365,7 +365,7 @@ const readFromGoogleSheets = async (currentAddress: string) => {
     ],
   });
   
-  const doc = new GoogleSpreadsheet('15Q3_nYP6h1PKJFAiw79enMeFEcRNtKb1tUY9pg7X5VY', serviceAccountAuth);
+  const doc = new GoogleSpreadsheet('1daqsM7V0qS3MKmzq40vmQ58izNWfzbA8qh0e7IUy4cM', serviceAccountAuth);
 
   try {
     console.log('Attempting to authorize...');
@@ -378,7 +378,7 @@ const readFromGoogleSheets = async (currentAddress: string) => {
     console.log('Loading document info...');
     await doc.loadInfo();
     console.log('Document info loaded.');
-    const sheetIndexToWriteTo = 2;
+    const sheetIndexToWriteTo = 1;
     const sheet = doc.sheetsByIndex[sheetIndexToWriteTo];
   
     if (!sheet) {
@@ -541,19 +541,15 @@ const sizes = ['S', 'M', 'L', 'XL'];
                                 {referralError && <div className="text-red-500">{referralError}</div>}
                                   <input
                                       type="text"
-                                      placeholder="Your referral"
+                                      placeholder="Wallet address or Code of person who invited you"
                                       value={referralAddress}
                                       onChange={(e) => {
                                           const inputValue = e.target.value;
                                           setReferralAddress(inputValue);
                                   
                                           // Validation checks
-                                          if (inputValue !== "" && !inputValue.startsWith("0x")) {
-                                          setReferralError("Referral address must start with '0x'");
-                                          } else if (inputValue !== "" && inputValue.length !== 42) {
-                                          setReferralError("Referral address must be 42 characters long");
-                                          } else if (inputValue !== "" && inputValue === currentAddress) {
-                                          setReferralError("Referral address cannot be the same as the current address");
+                                          if (inputValue !== "" && inputValue === currentAddress) {
+                                            setReferralError("Referral address cannot be the same as the current address");
                                           } else {
                                           setReferralError(""); // Clear error if input is valid or empty
                                           }
@@ -573,8 +569,8 @@ const sizes = ['S', 'M', 'L', 'XL'];
                                 }}
                                 onSuccess={() => {
                                   setQuantity(1);
-                                  alert("Successfully claimed NFTs");
                                   handleButtonClick();
+                                  router.push('/profile');
                                 }}
                               >
                                 {buttonLoading ? "Loading..." : buttonText}
