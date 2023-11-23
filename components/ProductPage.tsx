@@ -622,9 +622,9 @@ const sizes = ['S', 'M', 'L', 'XL'];
 
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg flex justify-center my-10">
-        <table className="md:w-4/6 w-[80%] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase   dark:text-gray-400">
-                <tr className=' border-b  dark:border-gray-700 '>
+        <table className="md:w-4/6 w-[80%] text-sm text-left rtl:text-right text-gray-500 ">
+            <thead className="text-xs text-gray-700 uppercase   ">
+                <tr className=' border-b   '>
                     <th scope="col" className="px-6 py-3">
                         Размеры
                     </th>
@@ -644,7 +644,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
             </thead>
             <tbody className='sm:text-sm text-[9px]'>
                 <tr className="">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                       длина рукава от горловины, см 
                     </th>
                     <td className="px-6 py-4">
@@ -664,7 +664,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
                     
                 </tr>
                 <tr className=" ">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                       ширина рукова, см 
                     </th>
                     <td className="px-6 py-4">
@@ -682,7 +682,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
                     
                 </tr>
                 <tr className="   ">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                       ширина по груди, см 
                     </th>
                     <td className="px-6 py-4">
@@ -700,7 +700,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
                    
                 </tr>
                 <tr className="">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                       ширина по низу, см 
                     </th>
                     <td className="px-6 py-4">
@@ -718,7 +718,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
                   
                 </tr>
                 <tr className="">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                       длина по спине, см 
                     </th>
                     <td className="px-6 py-4">

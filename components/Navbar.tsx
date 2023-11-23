@@ -44,15 +44,15 @@ export default function Navbar() {
 
     return (
 
-        <nav className="bg-[#202020] fixed w-full z-40 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+        <nav className="bg-[#202020] fixed w-full z-40 top-0 left-0 border-b border-gray-200 ">
             <div className="flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link href="/" className="flex items-center md:hidden ">
                     <img src="https://thesybilmarket.vercel.app/logo02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
                     <img src="https://thesybilmarket.vercel.app/TSM02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
-                    {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">The Sybil Market</span> */}
+                    {/* <span className="self-center text-2xl font-semibold whitespace-nowrap ">The Sybil Market</span> */}
                 </Link>
                 <div className="flex md:order-2">
-                    {/* <button type="button" className="text-white bg-gray-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-yellow-600 dark:hover:bg-gray-500 dark:focus:ring-yellow-800">Get started</button> */}
+                    {/* <button type="button" className="text-white bg-gray-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 ">Get started</button> */}
                     
 
 
@@ -70,13 +70,13 @@ export default function Navbar() {
                                   switchToActiveChain={true}
                                   modalSize={"wide"}
                                   style={{width: "7em", minWidth: "7em", fontSize: "10px"}}
-                                className="text-white bg-gray-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg sm:text-sm text-xs px-4 py-2 text-center mr-3 md:mr-0 dark:bg-gray-500 dark:hover:bggray-700 dark:focus:ring-gray-500"
+                                className="text-white bg-gray-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg sm:text-sm text-xs px-4 py-2 text-center mr-3 md:mr-"
                             />
                         ) : (
 
                             <div>
 
-                            <button data-collapse-toggle="navbar-sticky" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                            <button data-collapse-toggle="navbar-sticky" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200   " aria-controls="navbar-sticky" aria-expanded="false">
                                 <span className="sr-only">Open main menu</span>
                                 <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -95,27 +95,27 @@ export default function Navbar() {
           
                     {isProfileDropdownOpen && (
                         <div>
-                            <div className="transform translate-x-[-24.5em] translate-y-[2.3em] z-50 fixed my-4 text-base list-none bg-[#282828] divide-y divide-gray-100 rounded-lg shadow  dark:divide-gray-600" id="user-dropdown">
+                            <div className="transform translate-x-[-24.5em] translate-y-[2.3em] z-50 fixed my-4 text-base list-none bg-[#282828] divide-y divide-gray-100 rounded-lg shadow  " id="user-dropdown">
                                 
                                 <div className="px-4 py-3 w-[15em] flex justify-end z-50">
-                                    <span className="block text-sm text-gray-900 dark:text-white">{formattedAddress}</span>
-                                    {/* <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span> */}
+                                    <span className="block text-sm text-white ">{formattedAddress}</span>
+                                    {/* <span className="block text-sm  text-gray-500 truncate ">name@flowbite.com</span> */}
                                 </div>
                                 <ul className="py-2 z-50 flex"  aria-labelledby="user-menu-button">
                                     <Link href="/profile" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
-                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</p>
+                                        <p className="block px-4 py-2 text-sm text-white hover:bg-gray-100   ">Profile</p>
                                     </Link>
                                     <Link href="/shop" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
-                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Shop</p>
+                                        <p className="block px-4 py-2 text-sm text-white hover:bg-gray-100   ">Shop</p>
                                     </Link>
                                     <Link href="/packsshop" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
-                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Packs</p>
+                                        <p className="block px-4 py-2 text-sm text-white hover:bg-gray-100   ">Packs</p>
                                     </Link>
                                     <Link href="/marketplace" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} className="flex justify-startstart">
-                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Marketplace</p>
+                                        <p className="block px-4 py-2 text-sm text-white hover:bg-gray-100   ">Marketplace</p>
                                     </Link>
                                     <button onClick={handleLogout} className="flex justify-startstart w-full">
-                                        <p className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</p>
+                                        <p className="block px-4 py-2 text-sm text-white hover:bg-gray-100   ">Logout</p>
                                     </button>
                                 </ul>
                             
@@ -131,25 +131,25 @@ export default function Navbar() {
                     <Link href="/" className="sm:flex hidden items-center mr-20">
                                 <img src="https://thesybilmarket.vercel.app/logo02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
                                 <img src="https://thesybilmarket.vercel.app/TSM02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
-                                {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">The Sybil Market</span> */}
+                                {/* <span className="self-center text-2xl font-semibold whitespace-nowrap ">The Sybil Market</span> */}
                     </Link>
-                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#202020] md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-500">
+                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#202020] md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
                     {/* <li>
-                        <p className="block py-2 pl-3 pr-4 text-white bg-gray-500 rounded md:bg-transparent md:text-gray-500 md:p-0 md:dark:text-gray-500" aria-current="page">Home</p>
+                        <p className="block py-2 pl-3 pr-4 text-white bg-gray-500 rounded md:bg-transparent md:text-gray-500 md:p-0 " aria-current="page">Home</p>
                     </li> */}
                     <Link href="/marketplace">
-                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-500">Marketplace</p>
+                        <p className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0      ">Marketplace</p>
                     </Link>
                     <Link href="/shop">
-                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-500">Shop</p>
+                        <p className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0      ">Shop</p>
                         </Link>
                     <Link href="/packsshop">
-                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-500">Packs</p>
+                        <p className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0      ">Packs</p>
                     </Link>
 
                     {address ? (
                     <button onClick={handleLogout} >
-                        <p className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-500 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-500">Logout</p>
+                        <p className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0      ">Logout</p>
                     </button>
                     ) : (<div></div>)}
 

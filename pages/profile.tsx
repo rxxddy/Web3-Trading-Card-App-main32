@@ -49,6 +49,9 @@ export default function Profile() {
     const address = useAddress();
     const currentAddress = address;
 
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString(); 
+
     // cards
     const {
         contract: cardNftCollection,
@@ -141,6 +144,7 @@ export default function Profile() {
             email: email,
             nft_id: isNFTid,
             user_size: size,
+            user_data: formattedDate,
           };
       
           const rows = await sheet.getRows();
@@ -157,6 +161,7 @@ export default function Profile() {
           }
       
           console.log('Data written to Google Sheets.');
+          setModalOpen(!ModalOpen);
         } catch (error) {
           console.error('Error:', error);
         }
@@ -354,17 +359,17 @@ export default function Profile() {
                                    
                                     <div className="relative bg-gray-700 rounded-lg shadow">
                                    
-                                        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
                                             <div>
-                                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                                            <h3 className="text-xl font-semibold text-white/90 ">
                                                 Оформление Доставки
                                             </h3> 
-                                            <p className=" font-semibold text-gray-900 dark:text-white text-xs mt-4 text-justify">
+                                            <p className=" font-semibold text-white/90 text-xs mt-4 text-justify">
                                                 После того как вы заполните поля информации и подпишите транзакцию - ваша нфт будет сожжена и мы направим вам письмо на почту с подтверждением заказа и номером отслеживания доставки
                                             </p>
                                             </div>
                                             <div className="h-full self-start">
-                                              <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal" onClick={() => setModalOpen(!ModalOpen)}>
+                                              <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-white/90 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center  " data-modal-hide="default-modal" onClick={() => setModalOpen(!ModalOpen)}>
                                                   <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                                   </svg>
@@ -376,13 +381,13 @@ export default function Profile() {
                                         <div className="p-4 md:p-5 space-y-4">
                                         <div className="grid gap-6 mb-6 md:grid-cols-2">
                                           <div>
-                                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-white/90 ">
                                               Имя
                                             </label>
                                             <input
                                               type="text"
                                               id="first_name"
-                                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                              className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                               placeholder="Dave"
                                               value={firstName}
                                               onChange={(e) => setFirstName(e.target.value)}
@@ -390,13 +395,13 @@ export default function Profile() {
                                             />
                                           </div>
                                           <div>
-                                            <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-white/90 ">
                                               Фамилия
                                             </label>
                                             <input
                                               type="text"
                                               id="last_name"
-                                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                              className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                               placeholder="Cooper"
                                               value={lastName}
                                               onChange={(e) => setLastName(e.target.value)}
@@ -406,13 +411,13 @@ export default function Profile() {
                                         </div>
 
                                         <div className="mb-6">
-                                          <label htmlFor="homeAddress" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                          <label htmlFor="homeAddress" className="block mb-2 text-sm font-medium text-white/90 ">
                                             Адрес
                                           </label>
                                           <input
                                             type="text"
                                             id="homeAddress"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                             placeholder="ул. Большая Дмитровка, 13, Москва"
                                             value={homeAddress}
                                             onChange={(e) => setHomeAddress(e.target.value)}
@@ -421,13 +426,13 @@ export default function Profile() {
                                         </div>
 
                                         <div className="mb-6">
-                                          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                          <label htmlFor="email" className="block mb-2 text-sm font-medium text-white/90 ">
                                             Почта
                                           </label>
                                           <input
                                             type="email"
                                             id="email"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                             placeholder="youremail@email.com"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
@@ -435,13 +440,13 @@ export default function Profile() {
                                           />
                                         </div>
                                         <div>
-                                            <label htmlFor="user_size" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            <label htmlFor="user_size" className="block mb-2 text-sm font-medium text-white/90 ">
                                               Размер
                                             </label>
                                             <input
                                               type="text"
                                               id="size"
-                                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                              className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                               placeholder="XS/S/M/L"
                                               value={size}
                                               onChange={(e) => setSize(e.target.value)}
@@ -455,13 +460,13 @@ export default function Profile() {
                                               id="remember"
                                               type="checkbox"
                                               value=""
-                                              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                                              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300   "
                                               required
                                             />
                                           </div>
-                                          <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                          <label htmlFor="remember" className="ms-2 text-sm font-medium text-white/90 ">
                                             Я согласен с {' '}
-                                            <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">
+                                            <a href="#" className="text-blue-600 hover:underline ">
                                               правилами и политикой
                                             </a>
                                           </label>
