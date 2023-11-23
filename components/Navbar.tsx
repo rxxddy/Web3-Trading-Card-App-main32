@@ -70,7 +70,7 @@ export default function Navbar() {
                                   switchToActiveChain={true}
                                   modalSize={"wide"}
                                   style={{width: "7em", minWidth: "7em", fontSize: "10px"}}
-                                className="text-white bg-gray-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg sm:text-sm text-xs px-4 py-2 text-center mr-3 md:mr-"
+                                className="text-white bg-gray-500 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg sm:text-sm text-xs px-4 py-2 text-center mr-3 md:mr-"
                             />
                         ) : (
 
