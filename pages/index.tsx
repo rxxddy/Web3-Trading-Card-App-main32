@@ -33,13 +33,13 @@ import { JWT } from 'google-auth-library';
 
 const Home: NextPage = () => {
 
-  const images = [
-    'https://thesybilmarket.vercel.app/4.png',
-    'https://thesybilmarket.vercel.app/5.png',
-    'https://thesybilmarket.vercel.app/6.png',
-    'https://thesybilmarket.vercel.app/41.png',
-    'https://thesybilmarket.vercel.app/2.png',
-  ];
+  // const images = [
+  //   'https://thesybilmarket.vercel.app/4.png',
+  //   'https://thesybilmarket.vercel.app/5.png',
+  //   'https://thesybilmarket.vercel.app/6.png',
+  //   'https://thesybilmarket.vercel.app/41.png',
+  //   'https://thesybilmarket.vercel.app/2.png',
+  // ];
   const myEditionDropContractAddress: string = "0x3FCcBBe57D72E9D43c631D8D5f4fC7CE131D139E";
 
   const address = useAddress();
@@ -52,14 +52,14 @@ const Home: NextPage = () => {
   const [referralError, setReferralError] = useState("");
   const currentAddress = address;
 
-  const data0 = [
-    { Bigtext: 'DROP 001', desc: 'Low Bank', image: 'https://thesybilmarket.vercel.app/4.png' },
-    { Bigtext: 'DROP 001', desc: 'Connect Wallet', image: 'https://thesybilmarket.vercel.app/5.png' },
-    { Bigtext: 'DROP 001', desc: 'Fomo', image: 'https://thesybilmarket.vercel.app/6.png' },
-    { Bigtext: 'DROP 001', desc: 'SYBIL', image: 'https://thesybilmarket.vercel.app/41.png' },
-    { Bigtext: 'DROP 001', desc: 'The Low Bank', image: 'https://thesybilmarket.vercel.app/2.png' },
-    // Add more data as needed
-  ];
+  // const data0 = [
+  //   { Bigtext: 'DROP 001', desc: 'Low Bank', image: 'https://thesybilmarket.vercel.app/4.png' },
+  //   { Bigtext: 'DROP 001', desc: 'Connect Wallet', image: 'https://thesybilmarket.vercel.app/5.png' },
+  //   { Bigtext: 'DROP 001', desc: 'Fomo', image: 'https://thesybilmarket.vercel.app/6.png' },
+  //   { Bigtext: 'DROP 001', desc: 'SYBIL', image: 'https://thesybilmarket.vercel.app/41.png' },
+  //   { Bigtext: 'DROP 001', desc: 'The Low Bank', image: 'https://thesybilmarket.vercel.app/2.png' },
+  //   // Add more data as needed
+  // ];
   const data1 = [
     { rank: 1, collection: 'Цените Бычку', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/1.png' },
     { rank: 2, collection: 'FOMO', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/2.png' },
@@ -100,23 +100,23 @@ const Home: NextPage = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  // const handleNext = () => {
+  //   setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  // };
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
+  // const handlePrev = () => {
+  //   setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  // };
 
-  useEffect(() => {
-    // Automatic image change every 3 seconds
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+  // useEffect(() => {
+  //   // Automatic image change every 3 seconds
+  //   const intervalId = setInterval(() => {
+  //     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  //   }, 3000);
 
-    // Cleanup function to clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
+  //   // Cleanup function to clear the interval when the component unmounts
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
 
   const writeToGoogleSheets = async (referralAddress: string) => {
@@ -264,18 +264,25 @@ const Home: NextPage = () => {
             
             <div id="default-carousel" className="relative w-full " data-carousel="slide">
               <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-                {data0.map((item, index) => (
+                {/* {data0.map((item, index) => ( */}
                   <div
-                    key={index}
-                    className={`duration-700 ease-in-out absolute top-0 left-0 right-0 bottom-0 transition-opacity ${
-                      index === currentIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    data-carousel-item
+                    // key={index}
+                    // className={`duration-700 ease-in-out absolute top-0 left-0 right-0 bottom-0 transition-opacity ${
+                    //   index === currentIndex ? 'opacity-100' : 'opacity-0'
+                    // }`}
+                    // data-carousel-item
+
+                    className="absolute top-0 left-0 right-0 bottom-0"
                   >
-                    <img src={item.image} className="w-full h-full object-cover font-mono " alt={`Slide ${index + 1}`} />
+                    <video className="w-full h-full object-cover font-mono" controls>
+                      <source src="https://thesybilmarket.vercel.app/redder002.png" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                      {/* <img src="{item.image}" className="w-full h-full object-cover font-mono" alt={`Slide ${index + 1}`} /> */}
+                   
                     <div className="absolute left-4 bottom-4 text-white font-bold">
-                      <p className="sm:text-2xl text-base text-white">{item.Bigtext}</p>
-                      <p className="sm:text-lg text-sm text-white/60">{item.desc}</p>
+                      <p className="sm:text-2xl text-base text-white">rop 001</p>
+                      <p className="sm:text-lg text-sm text-white/60">Our first single nft drop ready to be minted</p>
                     </div>
                     <div className="absolute right-4 bottom-4">
                       <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
@@ -288,10 +295,10 @@ const Home: NextPage = () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                {/* ))} */}
               </div>
 
-              <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+              {/* <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
                 {data0.map((_, index) => (
                   <button
                     key={index}
@@ -301,9 +308,9 @@ const Home: NextPage = () => {
                     onClick={() => setCurrentIndex(index)}
                   ></button>
                 ))}
-              </div>
+              </div> */}
 
-                  <button type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" onClick={handlePrev}>
+                  {/* <button type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" onClick={handlePrev}>
                     <div className="inline-flex items-center justify-center sm:w-10 sm:h-10 w-6 h-10 rounded-full sm:bg-white bg-white/60  group-hover:bg-white/80  group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                       <svg className="sm:w-4 sm:h-4 w-3 h-3 text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4"/>
@@ -316,7 +323,7 @@ const Home: NextPage = () => {
                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
                       </svg>
                     </div>
-                  </button>
+                  </button> */}
                 </div>
 
                 <div className="w-full sm:p-10 py-6">
