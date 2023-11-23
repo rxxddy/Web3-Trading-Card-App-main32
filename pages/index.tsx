@@ -258,6 +258,11 @@ const Home: NextPage = () => {
      setReferralData([...referralData, { recipient: address, amount: 1 }]);
    }
   }
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
   
   return (
       <div className="sm:p-10 p-0 mt-16 block justify-center">
@@ -274,7 +279,7 @@ const Home: NextPage = () => {
 
                     className="absolute top-0 left-0 right-0 bottom-0"
                   >
-                    <video className="w-full h-full object-cover font-mono" autoPlay muted loop>
+                    <video className="w-full h-full object-cover font-mono" autoPlay muted={isMuted} loop controlsList="nofullscreen,nodownload,noremoteplayback" playsInline>
                       <source src="https://thesybilmarket.vercel.app/redder002.mp4" type="video/mp4" />
                     </video>
                       {/* <img src="{item.image}" className="w-full h-full object-cover font-mono" alt={`Slide ${index + 1}`} /> */}
@@ -282,6 +287,9 @@ const Home: NextPage = () => {
                     <div className="absolute left-4 bottom-4 text-white font-bold">
                       <p className="sm:text-2xl text-base text-white">Drop 001</p>
                       <p className="sm:text-lg text-sm text-white/60">Our first single nft drop ready to be minted</p>
+                      {/* <button onClick={toggleMute} className="absolute left-4 bottom-4 text-white font-bold">
+                        {isMuted ? 'Unmute' : 'Mute'}
+                      </button> */}
                     </div>
                     <div className="absolute right-4 bottom-4">
                       <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
