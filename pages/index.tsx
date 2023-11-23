@@ -279,7 +279,7 @@ const Home: NextPage = () => {
 
                     className="absolute top-0 left-0 right-0 bottom-0"
                   >
-                    <video className="w-full h-full object-cover font-mono" autoPlay muted loop controlsList="nofullscreen,nodownload,noremoteplayback" playsInline>
+                    <video className="w-full h-full object-cover font-mono" autoPlay muted loop>
                       <source src="https://thesybilmarket.vercel.app/redder002.mp4" type="video/mp4" />
                     </video>
                       {/* <img src="{item.image}" className="w-full h-full object-cover font-mono" alt={`Slide ${index + 1}`} /> */}
