@@ -511,9 +511,7 @@ const Home: NextPage = () => {
                                       <li className="mb-4">
                                           <a href="https://discord.gg/WRtthbQR" className="hover:underline">Discord</a>
                                       </li>
-                                      <li className="mb-4">
-                                          <a href="https://t.me/thesybilmarketR" className="hover:underline">Telegram</a>
-                                      </li>
+                                    
                                   </ul>
                               </div>
                               <div>
@@ -532,6 +530,8 @@ const Home: NextPage = () => {
                       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                       <div className="sm:flex sm:items-center sm:justify-between">
                           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <Link href="/" className="hover:underline">The Sybil Market™</Link>. All Rights Reserved.
+                          </span>
+                          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400"> Вся информация о нас и о доставке - в дискорде
                           </span>
                           
                       </div>
