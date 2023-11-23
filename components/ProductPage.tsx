@@ -607,7 +607,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
             {selectedProduct.images.map((image, index) => (
               <div key={index} onClick={() => setSelectedImage(image)}>
                 <img
-                  className="h-auto max-w-full rounded-lg"
+                  className="h-auto max-w-full rounded-lg cursor-pointer"
                   src={image}
                   alt={`Product ${index + 1}`}
                 />
@@ -622,116 +622,134 @@ const sizes = ['S', 'M', 'L', 'XL'];
 
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg flex justify-center my-10">
-        <table className="md:w-4/6 w-[80%] text-sm text-left rtl:text-right text-gray-500 ">
-            <thead className="text-xs text-gray-700 uppercase   ">
+        <table className="md:w-4/6 w-[80%] text-sm text-left rtl:text-right text-gray-300 ">
+            <thead className="text-xs text-gray-200 uppercase   ">
                 <tr className=' border-b   '>
                     <th scope="col" className="px-6 py-3">
                         Размеры
                     </th>
                     <th scope="col" className="px-6 py-3">
-                        XS
+                        Длина
                     </th>
                     <th scope="col" className="px-6 py-3">
-                        S
+                        Ширина
                     </th>
                     <th scope="col" className="px-6 py-3">
-                        M
+                        Рукова
                     </th>
                     <th scope="col" className="px-6 py-3">
-                        L
+                        Плечи
                     </th>
                 </tr>
             </thead>
             <tbody className='sm:text-sm text-[9px]'>
                 <tr className="">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                      длина рукава от горловины, см 
+                    <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap ">
+                      XS
                     </th>
                     <td className="px-6 py-4">
-                      42
+                      68
                     </td>
                     <td className="px-6 py-4">
-                      44 
+                      54 
                     </td>
                     <td className="px-6 py-4">
-                      46
+                      24
                     </td>
                     <td className="px-6 py-4">
-                      47.5 
+                      17 
                     </td>
                    
                     
                     
                 </tr>
                 <tr className=" ">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                      ширина рукова, см 
+                <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap ">
+                      S
                     </th>
                     <td className="px-6 py-4">
-                        20.5
+                      72
                     </td>
                     <td className="px-6 py-4">
-                      21
+                      56
                     </td>
                     <td className="px-6 py-4">
-                      21.5
+                      25
                     </td>
                     <td className="px-6 py-4">
-                      22
+                      17.5
                     </td>
                     
                 </tr>
                 <tr className="   ">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                      ширина по груди, см 
+                <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap ">
+                      M 
                     </th>
                     <td className="px-6 py-4">
-                        52.5
-                    </td>
-                    <td className="px-6 py-4">
-                        55
+                        74
                     </td>
                     <td className="px-6 py-4">
                         58
                     </td>
                     <td className="px-6 py-4">
-                        61
+                        26
+                    </td>
+                    <td className="px-6 py-4">
+                        18
                     </td>
                    
                 </tr>
                 <tr className="">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                      ширина по низу, см 
+                <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap ">
+                      L 
                     </th>
                     <td className="px-6 py-4">
-                        52.5
+                        76
                     </td>
                     <td className="px-6 py-4">
-                        55
+                        60
                     </td>
                     <td className="px-6 py-4">
-                        58
+                        26
                     </td>
                     <td className="px-6 py-4">
-                        61
+                        18.5
                     </td>
                   
                 </tr>
                 <tr className="">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                      длина по спине, см 
+                <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap ">
+                      XL 
                     </th>
                     <td className="px-6 py-4">
-                        72
+                        78
                     </td>
                     <td className="px-6 py-4">
-                        74.5
+                        62
                     </td>
                     <td className="px-6 py-4">
-                        77
+                        27
                     </td>
                     <td className="px-6 py-4">
-                        79.5
+                        19
+                    </td>
+                  
+                </tr>
+                <tr className="">
+                <th scope="row" className="px-6 py-4 font-medium text-white whitespace-nowrap ">
+                      XXL 
+                    </th>
+                    <td className="px-6 py-4">
+                        80
+                    </td>
+                    <td className="px-6 py-4">
+                        64
+                    </td>
+                    <td className="px-6 py-4">
+                        27
+                    </td>
+                    <td className="px-6 py-4">
+                        19.5
                     </td>
                   
                 </tr>
