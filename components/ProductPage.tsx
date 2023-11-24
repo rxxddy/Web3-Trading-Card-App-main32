@@ -131,7 +131,7 @@ const shopItems = [
   {
     name: 'Connect Wallet Purple',
     id: 1,
-    description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
+    description: 'Стоит подключить кошелек, и начинается магия. Иксы или рект, скам, рагпул, ханипот. +1000% к депозиту в два клика или -99% депа. Выбор за тобой. Just connect wallet.',
     images: [
       'https://thesybilmarket.vercel.app/main/9.png',
       'https://thesybilmarket.vercel.app/mainalt/91.png',
@@ -544,10 +544,10 @@ const sizes = ['S', 'M', 'L', 'XL'];
       <div className="md:w-full w-[90%] md:flex grid justify-center ">
         <div className="grid text-white justify-center items-start md:w-2/6 w-full px-6 order-2 md:order-1 ">
             {/* Render the product name and description */}
-            <div className="flex flex-col justify-start items-center">
+            <div className="flex flex-col justify-start items-center mt-5">
               <div className=''>
                   <div className='text-white text-2xl font-bold'>{selectedProduct.name}</div>
-                  <div className='text-white/90 text-lg'>{selectedProduct.description}</div>
+                  <div className='text-white/90 text-lg mt-5'>{selectedProduct.description}</div>
                   <div></div>
               </div>
             </div>
@@ -560,7 +560,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
                 </div>
               ) : (
                 <>
-                  <div className='mt-24'>
+                  <div className='sm:mt-5 mt-24'>
                     <div >
                       <div className='flex justify-between'>
                         <p>Total Minted</p>
