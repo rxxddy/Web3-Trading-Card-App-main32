@@ -61,15 +61,15 @@ const Home: NextPage = () => {
   //   // Add more data as needed
   // ];
   const data1 = [
-    { rank: 1, collection: 'Цените Бычку', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/1.png' },
-    { rank: 2, collection: 'FOMO', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/2.png' },
-    { rank: 3, collection: 'SYBIL', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/3.png' },
+    { rank: 1, collection: 'STOP-LOSS', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/1.png' },
+    { rank: 2, collection: 'The Low Bank', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/2.png' },
+    { rank: 3, collection: 'Not Eligible', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/3.png' },
     // Add more data as needed
   ];
   const data2 = [
-    { rank: 4, collection: 'STOP-LOSS', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/5.png' },
-    { rank: 5, collection: 'The Low Bank', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/6.png' },
-    { rank: 6, collection: 'Not Eligible', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/7.png' },
+    { rank: 4, collection: 'Connect Wallet', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/5.png' },
+    { rank: 5, collection: 'FOMO', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/6.png' },
+    { rank: 6, collection: 'Цените Бычку', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/7.png' },
     // Add more data as needed
   ];
 
@@ -77,22 +77,22 @@ const Home: NextPage = () => {
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/med/1.png',
-      name: 'Low Bank',
+      name: 'STOP-LOSS',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/med/6.png',
-      name: 'Connect Wallet',
+      name: 'FOMO',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/med/11.png',
-      name: 'Fomo',
+      name: 'Mint Or Skip',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/med/12.png',
-      name: 'Цените Бычку',
+      name: 'Connect Wallet',
     },
     
     // Add more items as needed
@@ -265,7 +265,7 @@ const Home: NextPage = () => {
   };
   
   return (
-      <div className="sm:p-10 p-0 mt-16 block justify-center">
+      <div className="p-10 mt-16 block justify-center">
             
             <div id="default-carousel" className="relative w-full " data-carousel="slide">
               <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
