@@ -40,7 +40,7 @@ const Home: NextPage = () => {
   //   'https://thesybilmarket.vercel.app/41.png',
   //   'https://thesybilmarket.vercel.app/2.png',
   // ];
-  const myEditionDropContractAddress: string = "0x3FCcBBe57D72E9D43c631D8D5f4fC7CE131D139E";
+  const myEditionDropContractAddress: string = "0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf";
 
   const address = useAddress();
   const [quantity, setQuantity] = useState(1);

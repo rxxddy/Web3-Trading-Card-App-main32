@@ -63,7 +63,7 @@ const ProductPage = () => {
   const router = useRouter();
   const { productName } = router.query;
 
-  const tokenAddress = "0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869";
+  const tokenAddress = "0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf";
 
   // console.log('FIRST COLSOLE LOG', address)
 
