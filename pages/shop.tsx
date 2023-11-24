@@ -73,8 +73,8 @@ export default function Shop() {
 
     return (
       <div className="py-2 mt-12 md:flex grid justify-center">
-      <h1 className="text-start ml-6 text-white font-mono sm:text-lg text-sm pb-6 mt-5">Shop</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:p-10 gap-4 justify-items-center">
+      {/* <h1 className="text-start ml-6 text-white font-mono sm:text-lg text-sm pb-6 mt-5">Shop</h1> */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:p-10 gap-4 justify-items-center">
         {shopItems.map((item, index) => (
           <Link key={index} href={`/${encodeURIComponent(item.name.replace(/\s+/g, '-'))}`}>
             
