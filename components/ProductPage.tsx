@@ -28,32 +28,32 @@ import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { JWT } from 'google-auth-library';
 
 
-const activeChain = "mumbai";
+const activeChain = "polygon";
 
 const shopItems = [
   {
-    name: 'FOMO',
+    name: 'Stop Loss',
     id: 0,
     description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
     images: [
-      'https://thesybilmarket.vercel.app/31.png',
-      'https://thesybilmarket.vercel.app/41.png',
-      'https://thesybilmarket.vercel.app/31.png',
-      'https://thesybilmarket.vercel.app/41.png',
-      'https://thesybilmarket.vercel.app/31.png',
+      'https://thesybilmarket.vercel.app/main/1.png',
+      'https://thesybilmarket.vercel.app/main/2.png',
+      'https://thesybilmarket.vercel.app/main/3.png',
+      'https://thesybilmarket.vercel.app/main/5.png',
+      'https://thesybilmarket.vercel.app/main/6.png',
       
     ],
   },
   {
-    name: 'SYBIL',
+    name: 'The Low Bank',
     id: 1,
     description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
     images: [
-      'https://thesybilmarket.vercel.app/41.png',
-      'https://thesybilmarket.vercel.app/31.png',
-      'https://thesybilmarket.vercel.app/41.png',
-      'https://thesybilmarket.vercel.app/31.png',
-      'https://thesybilmarket.vercel.app/41.png',
+      'https://thesybilmarket.vercel.app/main/7.png',
+      'https://thesybilmarket.vercel.app/main/11.png',
+      'https://thesybilmarket.vercel.app/main/12.png',
+      'https://thesybilmarket.vercel.app/main/1.png',
+      'https://thesybilmarket.vercel.app/main/5.png',
     ],
   },
   // Add more products as needed
@@ -106,7 +106,7 @@ const ProductPage = () => {
 
 //   edition data
 
-const myEditionDropContractAddress: string = "0x3FCcBBe57D72E9D43c631D8D5f4fC7CE131D139E";
+const myEditionDropContractAddress: string = "0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf";
 // const tokenId: string = "0";
 
 const address = useAddress();
@@ -458,7 +458,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
     <ThirdwebProvider activeChain={activeChain} clientId="9e4314f9cb80713a98f3221cfb883eaf">
       <div className="w-full flex justify-center mt-[6em]">
       <div className="md:w-full w-[90%] md:flex grid justify-center ">
-        <div className="grid text-white justify-center items-start md:w-2/6 w-full px-6 order-2 md:order-1 my-10">
+        <div className="grid text-white justify-center items-start md:w-2/6 w-full px-6 order-2 md:order-1 ">
             {/* Render the product name and description */}
             <div className="flex flex-col justify-start items-center">
               <div className=''>

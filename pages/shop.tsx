@@ -24,13 +24,13 @@ export default function Shop() {
     const shopItems = [
         {
           tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
-          imageUrl: 'https://thesybilmarket.vercel.app/31.png',
-          name: 'FOMO',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/1.png',
+          name: 'Stop Loss',
         },
         {
           tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
-          imageUrl: 'https://thesybilmarket.vercel.app/41.png',
-          name: 'SYBIL',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/2.png',
+          name: 'The Low Bank',
         },
         
         // Add more items as needed

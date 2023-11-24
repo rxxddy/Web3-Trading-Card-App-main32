@@ -27,7 +27,7 @@ import { PackRewardCard } from '../components/PackRewardCard';
 export default function Profile() {
 
 
-    const tokenAddress = "0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869";
+    const tokenAddress = "0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf";
 
     // console.log('FIRST COLSOLE LOG', address)
     const [quantity, setQuantity] = useState(1);
@@ -387,7 +387,7 @@ export default function Profile() {
                                             <input
                                               type="text"
                                               id="first_name"
-                                              className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
+                                              className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                               placeholder="Dave"
                                               value={firstName}
                                               onChange={(e) => setFirstName(e.target.value)}
@@ -401,7 +401,7 @@ export default function Profile() {
                                             <input
                                               type="text"
                                               id="last_name"
-                                              className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
+                                              className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                               placeholder="Cooper"
                                               value={lastName}
                                               onChange={(e) => setLastName(e.target.value)}
@@ -417,7 +417,7 @@ export default function Profile() {
                                           <input
                                             type="text"
                                             id="homeAddress"
-                                            className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
+                                            className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                             placeholder="ул. Большая Дмитровка, 13, Москва"
                                             value={homeAddress}
                                             onChange={(e) => setHomeAddress(e.target.value)}
@@ -432,7 +432,7 @@ export default function Profile() {
                                           <input
                                             type="email"
                                             id="email"
-                                            className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
+                                            className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
                                             placeholder="youremail@email.com"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
@@ -446,8 +446,8 @@ export default function Profile() {
                                             <input
                                               type="text"
                                               id="size"
-                                              className="bg-gray-50 border border-gray-300 text-white/90 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
-                                              placeholder="XS/S/M/L"
+                                              className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
+                                              placeholder="XS/S/M/L/XL/XXL"
                                               value={size}
                                               onChange={(e) => setSize(e.target.value)}
                                               required
