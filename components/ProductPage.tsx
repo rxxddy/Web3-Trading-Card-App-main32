@@ -91,7 +91,7 @@ const ProductPage = () => {
   useEffect(() => {
     // Log the updated tokenId only when it's not null
     if (tokenId !== null) {
-      console.log("This is ID", tokenId);
+      // console.log("This is ID", tokenId);
     }
   }, [tokenId]);
 
@@ -321,16 +321,16 @@ const writeToGoogleSheets = async (referralAddress: string) => {
   const doc = new GoogleSpreadsheet('1daqsM7V0qS3MKmzq40vmQ58izNWfzbA8qh0e7IUy4cM', serviceAccountAuth);
 
   try {
-    console.log('Attempting to authorize...');
+    // console.log('Attempting to authorize...');
     await serviceAccountAuth.authorize();
-    console.log('Authorization successful.');
+    // console.log('Authorization successful.');
 
-    console.log('Loading document info...');
+    // console.log('Loading document info...');
     await doc.loadInfo();
-    console.log('Document info loaded.');
+    // console.log('Document info loaded.');
 
     const sheet = doc.sheetsByIndex[1];
-    console.log('Sheet loaded.');
+    // console.log('Sheet loaded.');
 
     const dataToWrite = {
       address: referralAddress,
@@ -340,7 +340,7 @@ const writeToGoogleSheets = async (referralAddress: string) => {
     const rows = await sheet.getRows();
 
     const existingRow = rows.find((row) => row.get('address') === referralAddress);
-    console.log('existingRow', existingRow);
+    // console.log('existingRow', existingRow);
 
     if (existingRow) {
       const currentAmount = Number(existingRow.get('maxClaimable'));
@@ -350,7 +350,7 @@ const writeToGoogleSheets = async (referralAddress: string) => {
       await sheet.addRow(dataToWrite);
     }
 
-    console.log('Data written to Google Sheets.');
+    // console.log('Data written to Google Sheets.');
   } catch (error) {
     console.error('Error:', error);
   }
@@ -368,16 +368,16 @@ const readFromGoogleSheets = async (currentAddress: string) => {
   const doc = new GoogleSpreadsheet('1daqsM7V0qS3MKmzq40vmQ58izNWfzbA8qh0e7IUy4cM', serviceAccountAuth);
 
   try {
-    console.log('Attempting to authorize...');
+    // console.log('Attempting to authorize...');
     try {
       await serviceAccountAuth.authorize();
     } catch (error) {
       console.error('Error during authorization:', error);
     }
-    console.log('Authorization successful.');
-    console.log('Loading document info...');
+    // console.log('Authorization successful.');
+    // console.log('Loading document info...');
     await doc.loadInfo();
-    console.log('Document info loaded.');
+    // console.log('Document info loaded.');
     const sheetIndexToWriteTo = 1;
     const sheet = doc.sheetsByIndex[sheetIndexToWriteTo];
   
@@ -385,38 +385,38 @@ const readFromGoogleSheets = async (currentAddress: string) => {
       console.error(`Sheet with index ${sheetIndexToWriteTo} not found.`);
       return;
     }
-    console.log('Sheet loaded.');
+    // console.log('Sheet loaded.');
     const rows = await sheet.getRows();
-    console.log('IERNONIGR', currentAddress)
+    // console.log('IERNONIGR', currentAddress)
     const matchingRow = await rows.find(async (row) => row.get('address') === currentAddress);
-    console.log('matchingRow', matchingRow);
-    console.log('IERNONIGR', currentAddress);
+    // console.log('matchingRow', matchingRow);
+    // console.log('IERNONIGR', currentAddress);
     const findMatchingRow = async () => {
       const matchingRow = await Promise.all(rows.map(async (row) => {
         const wallet = await row.get('address');
         const referrals = await row.get('maxClaimable');
         if (wallet === currentAddress) {
-          console.log('Matching Wallet:', wallet);
-          console.log('Amount of Referrals:', referrals);
+          // console.log('Matching Wallet:', wallet);
+          // console.log('Amount of Referrals:', referrals);
           setReffs(referrals);
           return true;
         }
         return false;
       }));
       if (!matchingRow.includes(true)) {
-        console.log('No matching row found.');
-        console.log('Loaded sheets:', doc.sheetsByIndex.map(sheet => sheet.title));
+        // console.log('No matching row found.');
+        // console.log('Loaded sheets:', doc.sheetsByIndex.map(sheet => sheet.title));
       }
     };
     findMatchingRow();
     if (matchingRow) {
       const amount = Number(matchingRow.get('maxClaimable'));
-      console.log('AMAAAAAAAAAAAAAAAUNT', amount);
+      // console.log('AMAAAAAAAAAAAAAAAUNT', amount);
     } else {
-      console.log('No matching row found');
+      // console.log('No matching row found');
     }
-    console.log(matchingRow);
-    console.log('Data written to Google Sheets.');
+    // console.log(matchingRow);
+    // console.log('Data written to Google Sheets.');
   } catch (error) {
     console.error('Error:', error);
   }
@@ -445,8 +445,8 @@ function addOrUpdateReferral(address: string) {
 
 const handleButtonClick = async () => {
   addOrUpdateReferral(referralAddress); // Update referral data array
-  console.log(referralData);
-  console.log(successText);
+  // console.log(referralData);
+  // console.log(successText);
   writeToGoogleSheets(referralAddress);
 };
 

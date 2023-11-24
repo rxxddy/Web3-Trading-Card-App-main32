@@ -17,7 +17,7 @@ export default function MyCards() {
         data: nfts,
         isLoading: loadingNFTs
     } = useOwnedNFTs(nftCollection, address);
-    console.log(nfts);
+    // console.log(nfts);
 
     const [selectedNFT, setSelectedNFT] = useState<NFTType>();
 

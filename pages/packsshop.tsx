@@ -19,14 +19,14 @@ export default function PacksShop() {
             tokenContract: PACK_ADDRESS,
         }
     );
-    console.log("DirectPack", directListings);
+    // console.log("DirectPack", directListings);
 
 
 
     return (
         <div className="py-2 mt-12">
             <h1>Shop Packs</h1>
-            <div className="sm:flex block justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:p-10 gap-4 justify-items-center">
                 {/* {!loadingDirectListings ? (
                     directListings?.map((listing, index) => (
                         <div className="justify-start flex-wrap md:flex-col sm:flex-col" key={index}>

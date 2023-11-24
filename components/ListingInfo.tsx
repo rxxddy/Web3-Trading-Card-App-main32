@@ -45,7 +45,7 @@ export const ListingInfo = ({ nft }: Props) => {
             );
 
             if (txResult) {
-                console.log(txResult);
+                // console.log(txResult);
             }
         }
 
@@ -100,7 +100,7 @@ export const ListingInfo = ({ nft }: Props) => {
                     await handleSubmit(onSubmit)();
                 }}
                 onSuccess={() => {
-                    console.log("success");
+                    // console.log("success");
                     router.push("/marketplace");
                 }}
             >List for sale</Web3Button>

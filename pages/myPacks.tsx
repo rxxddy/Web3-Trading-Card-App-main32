@@ -15,7 +15,7 @@ export default function MyPacks() {
 
     async function openPack(packId: string) {
         const cardRewards = await contract?.open(parseInt(packId), 1);
-        console.log(cardRewards);
+        // console.log(cardRewards);
         setOpenPackRewards(cardRewards);
     };
     
