@@ -40,7 +40,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/11.png',
       'https://thesybilmarket.vercel.app/mainalt/12.png',
       'https://thesybilmarket.vercel.app/mainalt/13.png',
-      'https://thesybilmarket.vercel.app/mainalt/6.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
       
     ],
   },
@@ -53,7 +53,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/21.png',
       'https://thesybilmarket.vercel.app/mainalt/22.png',
       'https://thesybilmarket.vercel.app/mainalt/23.png',
-      'https://thesybilmarket.vercel.app/mainalt/5.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
     ],
   },
   {
@@ -65,7 +65,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/31.png',
       'https://thesybilmarket.vercel.app/mainalt/32.png',
       'https://thesybilmarket.vercel.app/mainalt/33.png',
-      'https://thesybilmarket.vercel.app/mainalt/5.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
     ],
   },
   {
@@ -77,7 +77,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/41.png',
       'https://thesybilmarket.vercel.app/mainalt/42.png',
       'https://thesybilmarket.vercel.app/mainalt/43.png',
-      'https://thesybilmarket.vercel.app/mainalt/5.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
     ],
   },
   {
@@ -89,7 +89,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/51.png',
       'https://thesybilmarket.vercel.app/mainalt/52.png',
       'https://thesybilmarket.vercel.app/mainalt/53.png',
-      'https://thesybilmarket.vercel.app/mainalt/5.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
     ],
   },
   {
@@ -101,7 +101,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/61.png',
       'https://thesybilmarket.vercel.app/mainalt/62.png',
       'https://thesybilmarket.vercel.app/mainalt/63.png',
-      'https://thesybilmarket.vercel.app/mainalt/5.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
     ],
   },
   {
@@ -113,7 +113,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/71.png',
       'https://thesybilmarket.vercel.app/mainalt/72.png',
       'https://thesybilmarket.vercel.app/mainalt/73.png',
-      'https://thesybilmarket.vercel.app/mainalt/5.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
     ],
   },
   {
@@ -125,7 +125,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/81.png',
       'https://thesybilmarket.vercel.app/mainalt/82.png',
       'https://thesybilmarket.vercel.app/mainalt/83.png',
-      'https://thesybilmarket.vercel.app/mainalt/5.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
     ],
   },
   {
@@ -137,7 +137,7 @@ const shopItems = [
       'https://thesybilmarket.vercel.app/mainalt/91.png',
       'https://thesybilmarket.vercel.app/mainalt/92.png',
       'https://thesybilmarket.vercel.app/mainalt/93.png',
-      'https://thesybilmarket.vercel.app/mainalt/5.png',
+      'https://thesybilmarket.vercel.app/mainalt/00.png',
     ],
   },
   // Add more products as needed
