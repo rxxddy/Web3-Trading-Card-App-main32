@@ -32,6 +32,41 @@ export default function Shop() {
           imageUrl: 'https://thesybilmarket.vercel.app/main/2.png',
           name: 'The Low Bank',
         },
+        {
+          tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/3.png',
+          name: 'Not Eligible',
+        },
+        {
+          tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/4.png',
+          name: 'Fomo',
+        },
+        {
+          tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/5.png',
+          name: 'Connect Wallet',
+        },
+        {
+          tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/6.png',
+          name: 'Fomo blank',
+        },
+        {
+          tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/7.png',
+          name: 'Tsenite Buchky',
+        },
+        {
+          tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/8.png',
+          name: 'Mint Or Skip',
+        },
+        {
+          tokenAddress: '0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf',
+          imageUrl: 'https://thesybilmarket.vercel.app/main/9.png',
+          name: 'Connect Wallet Purple',
+        },
         
         // Add more items as needed
       ];
