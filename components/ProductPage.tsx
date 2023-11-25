@@ -58,7 +58,7 @@ const shopItems = [
   },
   {
     name: 'Not Eligible',
-    id: 1,
+    id: 2,
     description: 'Посвящается всем тем, кто не выбил ВЛ в гем давший иксы или был беспощадно сбрит в очередном ретро-дропе давшем каждому школьнику лайфченч. Держитесь...мы с вами. Но если все же ты словил свой лайфченч, подари эту футболку бритому братишке. Поддержи его. ',
     images: [
       'https://thesybilmarket.vercel.app/main/3.png',
@@ -70,8 +70,8 @@ const shopItems = [
   },
   {
     name: 'Fomo',
-    id: 1,
-    description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
+    id: 3,
+    description: '',
     images: [
       'https://thesybilmarket.vercel.app/main/4.png',
       'https://thesybilmarket.vercel.app/mainalt/41.png',
@@ -82,7 +82,7 @@ const shopItems = [
   },
   {
     name: 'Connect Wallet',
-    id: 1,
+    id: 4,
     description: 'Стоит подключить кошелек, и начинается магия. Иксы или рект, скам, рагпул, ханипот. +1000% к депозиту в два клика или -99% депа. Выбор за тобой. Just connect wallet.',
     images: [
       'https://thesybilmarket.vercel.app/main/5.png',
@@ -94,8 +94,8 @@ const shopItems = [
   },
   {
     name: 'Fomo blank',
-    id: 1,
-    description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
+    id: 5,
+    description: '',
     images: [
       'https://thesybilmarket.vercel.app/main/6.png',
       'https://thesybilmarket.vercel.app/mainalt/61.png',
@@ -106,7 +106,7 @@ const shopItems = [
   },
   {
     name: 'Tsenite Buchky',
-    id: 1,
+    id: 6,
     description: 'Не ценим что имеет, потеряв начинаем ценить. Те, кто в крипте с прошлого бычьего цикла или даже раньше, не по наслышке поймут эти слова. А тем, для кого будущий цикл роста первый в карьере, это станет постоянным напоминанием, что рост не бывает вечным. Также у всех нас есть "знакомые", кто был на коне в предыдущий цикл, но по его окончанию не смог удержаться и потерял большую часть депозита - для них эта футболка станет важным подарком. Позаботься о своем ближнем, и это вертнется тебе в кратном размере.',
     images: [
       'https://thesybilmarket.vercel.app/main/7.png',
@@ -118,8 +118,8 @@ const shopItems = [
   },
   {
     name: 'Mint Or Skip',
-    id: 1,
-    description: 'Всем трейдерам. Тем кто с нами и тем кто уже покинул нас... Желаем никому не словить ликвид. Все просто - никогда не забывай стоп-лосс!',
+    id: 7,
+    description: '',
     images: [
       'https://thesybilmarket.vercel.app/main/8.png',
       'https://thesybilmarket.vercel.app/mainalt/81.png',
@@ -130,7 +130,7 @@ const shopItems = [
   },
   {
     name: 'Connect Wallet Purple',
-    id: 1,
+    id: 8,
     description: 'Стоит подключить кошелек, и начинается магия. Иксы или рект, скам, рагпул, ханипот. +1000% к депозиту в два клика или -99% депа. Выбор за тобой. Just connect wallet.',
     images: [
       'https://thesybilmarket.vercel.app/main/9.png',
@@ -571,7 +571,8 @@ const sizes = ['S', 'M', 'L', 'XL'];
             <div className="flex flex-col justify-start items-center mt-5">
               <div className=''>
                   <div className='text-white text-2xl font-bold'>{selectedProduct.name}</div>
-                  <div className='text-white/90 text-lg mt-5'>{selectedProduct.description}</div>
+                  <div className='text-white/90 text-md mt-5'>{selectedProduct.description}</div>
+                  <div className='text-white/90 text-md mt-5'>Состав: 100% хлопок, плотность: 230 г. Футболка универсальная, для мужчин и женщин. В боковой внутренний шов футболки вшит составник с указаниями по уходу.</div>
                   <div></div>
               </div>
             </div>

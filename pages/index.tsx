@@ -293,7 +293,7 @@ const Home: NextPage = () => {
                     </div>
                     <div className="absolute right-4 bottom-4">
                       <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
-                          <Link href="/shop" className="font-mono inline-flex justify-center items-center sm:py-3 sm:px-5 py-1 px-3 text-xs sm:font-medium font-xs text-center text-white rounded-lg bg-[#b55e59] hover:bg-[#a05450] focus:ring-4 focus:ring-[#b55e59] dark:focus:ring-[#a05450]">
+                          <Link href="/shop" className="font-mono inline-flex justify-center items-center sm:py-3 sm:px-5 py-1 px-3 text-xs sm:font-medium font-xs text-center text-white rounded-lg bg-[#b55e59] hover:bg-[#a05450] focus:ring-4 focus:ring-[#b55e59]">
                               Get started
                               <svg className="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -318,14 +318,14 @@ const Home: NextPage = () => {
               </div> */}
 
                   {/* <button type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" onClick={handlePrev}>
-                    <div className="inline-flex items-center justify-center sm:w-10 sm:h-10 w-6 h-10 rounded-full sm:bg-white bg-white/60  group-hover:bg-white/80  group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <div className="inline-flex items-center justify-center sm:w-10 sm:h-10 w-6 h-10 rounded-full sm:bg-white bg-white/60  group-hover:bg-white/80  group-focus:ring-4 group-focus:ring-white group-focus:ring-gray-800/70 group-focus:outline-none">
                       <svg className="sm:w-4 sm:h-4 w-3 h-3 text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4"/>
                       </svg>
                     </div>
                   </button>
                   <button type="button" className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" onClick={handleNext}>
-                    <div className="inline-flex items-center justify-center sm:w-10 sm:h-10 w-6 h-10 rounded-full sm:bg-white bg-white/60  group-hover:bg-white/20  group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <div className="inline-flex items-center justify-center sm:w-10 sm:h-10 w-6 h-10 rounded-full sm:bg-white bg-white/60  group-hover:bg-white/20  group-focus:ring-4 group-focus:ring-white group-focus:ring-gray-800/70 group-focus:outline-none">
                       <svg className="sm:w-4 sm:h-4 w-3 h-3 text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
                       </svg>
@@ -354,7 +354,7 @@ const Home: NextPage = () => {
                               <img src={item.image} alt={`Image for ${item.collection}`} className="w-20 rounded-xl h-20 rounded-xl mr-2 sm:justify-start justify-center" /> {/* Adjust the width and height as needed */}
                               {item.collection}
                             </td>
-                            <td className="p-3 pt-12 text-left font-bold sm:text-left text-center">{item.floorPrice}</td>
+                            <td className="p-3 pt-12 font-bold sm:text-left text-center">{item.floorPrice}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -408,57 +408,57 @@ const Home: NextPage = () => {
                 <ol className="flex items-center mt-28 sm:text-xl text-[8px] font-light">
                     <li className="relative w-full mb-6">
                         <div className="flex items-center">
-                            <div className="z-10 flex items-center justify-center w-6 h-6 bg-blue-200 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                                <span className="flex w-3 h-3 bg-blue-600 rounded-full"></span>
+                            <div className="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-[#a9706d] sm:ring-8 ring-[#664341] shrink-0">
+                                <span className="flex w-3 h-3 bg-[#dbacaa] rounded-full"></span>
                             </div>
-                            <div className="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                            <div className="flex w-full  h-0.5 bg-[#b55e59]"></div>
                         </div>
                         <div className="mt-3">
-                            <h3 className="font-medium text-gray-900 dark:text-white">Collabs</h3>
+                            <h3 className="font-medium text-white">Collabs</h3>
                         </div>
                     </li>
                     <li className="relative w-full mb-6">
                         <div className="flex items-center">
-                            <div className="z-10 flex items-center justify-center w-6 h-6 bg-blue-200 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                                <span className="flex w-3 h-3 bg-blue-600 rounded-full"></span>
+                        <div className="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-gray-700 sm:ring-8 ring-gray-900 shrink-0">
+                                <span className="flex w-3 h-3  rounded-full bg-gray-300"></span>
                             </div>
-                            <div className="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                            <div className="flex w-full  h-0.5 bg-gray-700"></div>
                         </div>
                         <div className="mt-3">
-                            <h3 className="font-medium text-gray-900 dark:text-white">First Single Drop</h3>
+                            <h3 className="font-medium text-white">First Single Drop</h3>
                         </div>
                     </li>
                     <li className="relative w-full mb-6">
                         <div className="flex items-center">
-                            <div className="z-10 flex items-center justify-center w-6 h-6 bg-blue-200 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                                <span className="flex w-3 h-3 bg-blue-600 rounded-full"></span>
+                        <div className="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-gray-700 sm:ring-8 ring-gray-900 shrink-0">
+                                <span className="flex w-3 h-3  rounded-full bg-gray-300"></span>
                             </div>
-                            <div className="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                            <div className="flex w-full  h-0.5 bg-gray-700"></div>
                         </div>
                         <div className="mt-3">
-                            <h3 className="font-medium text-gray-900 dark:text-white">First Pack Drop</h3>
+                            <h3 className="font-medium  text-white">First Pack Drop</h3>
                         </div>
                     </li>
                     <li className="relative w-full mb-6">
                         <div className="flex items-center">
-                            <div className="z-10 flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full ring-0 ring-white dark:bg-gray-700 sm:ring-8 dark:ring-gray-900 shrink-0">
-                                <span className="flex w-3 h-3 bg-gray-900 rounded-full dark:bg-gray-300"></span>
+                            <div className="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-gray-700 sm:ring-8 ring-gray-900 shrink-0">
+                                <span className="flex w-3 h-3  rounded-full bg-gray-300"></span>
                             </div>
-                            <div className="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                            <div className="flex w-full  h-0.5 bg-gray-700"></div>
                         </div>
                         <div className="mt-3">
-                            <h3 className="font-medium text-gray-900 dark:text-white">Marketplace</h3>
+                            <h3 className="font-medium  text-white">Marketplace</h3>
                         </div>
                     </li>
                     <li className="relative w-full mb-6">
                         <div className="flex items-center">
-                            <div className="z-10 flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full ring-0 ring-white dark:bg-gray-700 sm:ring-8 dark:ring-gray-900 shrink-0">
-                                <span className="flex w-3 h-3 bg-gray-900 rounded-full dark:bg-gray-300"></span>
+                            <div className="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-gray-700 sm:ring-8 ring-gray-900 shrink-0">
+                                <span className="flex w-3 h-3 rounded-full bg-gray-300"></span>
                             </div>
-                            <div className="flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+                            <div className="flex w-full  h-0.5 bg-gray-700"></div>
                         </div>
                         <div className="mt-3">
-                            <h3 className="font-medium text-gray-900 dark:text-white">To The Moon</h3>
+                            <h3 className="font-medium  text-white">To The Moon</h3>
                         </div>
                     </li>
                 </ol>
@@ -466,34 +466,34 @@ const Home: NextPage = () => {
                 {/* email */}
                 <section className=" mt-28">
                     <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 z-10 relative">
-                        <a href="#" className="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm text-blue-700 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800">
-                            <span className="text-xs bg-blue-600 rounded-full text-white px-4 py-1.5 me-3">New</span> <span className="text-sm font-medium">{`See what's new`}</span> 
+                        <a href="#" className="inline-flex justify-between items-center py-1 px-1 pe-4 mb-7 text-sm  rounded-full bg-[#b55e59] text-blue-300 hover:bg-[#b55e59]">
+                            <span className="text-xs bg-[#b55e59] rounded-full text-white px-4 py-1.5 me-3">New</span> <span className="text-sm font-medium text-white">{`See what's new`}</span> 
                             <svg className="w-2.5 h-2.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
+                                <path stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
                             </svg>
                         </a>
-                        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Sybil market - это сообщество криптанов создающих стиль жизни</h1>
-                        <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">Все образы разработаны специально для крипто-комьюнити, их поймут только те кто в теме.</p>
+                        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl text-white">Sybil market - это сообщество криптанов создающих стиль жизни</h1>
+                        <p className="mb-8 text-lg font-normal  lg:text-xl sm:px-16 lg:px-48 text-gray-200">Все образы разработаны специально для крипто-комьюнити, их поймут только те кто в теме.</p>
                         {/* <form className="w-full max-w-md mx-auto">   
-                            <label htmlFor="default-email" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Email sign-up</label>
+                            <label htmlFor="default-email" className="mb-2 text-sm font-medium text-gray-900 sr-only text-white">Email sign-up</label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 rtl:inset-x-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                                    <svg className="w-4 h-4 text-gray-500 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
                                         <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
                                         <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
                                     </svg>
                                 </div>
-                                <input type="email" id="default-email" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email here..." required />
-                                <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign up</button>
+                                <input type="email" id="default-email" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 bg-gray-800 border-gray-700 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your email here..." required />
+                                <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">Sign up</button>
                             </div>
                         </form> */}
-                    <h1 className="text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white flex justify-center">
+                    <h1 className="text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl text-white flex justify-center">
                       <p>Reffs:&nbsp;</p>
                       <div></div>
                       {reffs !== null ? <p>{reffs}</p> : <p>Loading...</p>}
                     </h1>
                     </div>
-                    {/* <div className="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div> */}
+                    {/* <div className="bg-gradient-to-b from-blue-50 to-transparent from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div> */}
                     {/* <div className="w-[100%] bg-transparent border border-gray-300 rounded-lg text-white h-12 px-4 text-base mb-0"> 
                       <p>Your address</p>
                       <p>{currentAddress}</p>
@@ -511,14 +511,14 @@ const Home: NextPage = () => {
                           <div className="mb-6 md:mb-0">
                               <Link href="/" className="flex items-center">
                                   <img src="https://thesybilmarket.vercel.app/logo02.png" className="h-8 me-3" alt="FlowBite Logo" />
-                                  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">The Sybil Market</span>
+                                  <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">The Sybil Market</span>
                               </Link>
                           </div>
                           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
                               
                               <div>
-                                  <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
-                                  <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                  <h2 className="mb-6 text-sm font-semibold  uppercase text-white">Follow us</h2>
+                                  <ul className=" text-gray-400 font-medium">
                                       <li className="mb-4">
                                           <a href="https://instagram.com/thesybil.market" className="hover:underline ">Instagram</a>
                                       </li>
@@ -529,8 +529,8 @@ const Home: NextPage = () => {
                                   </ul>
                               </div>
                               <div>
-                                  <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                                  <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                  <h2 className="mb-6 text-sm font-semibold  uppercase text-white">Legal</h2>
+                                  <ul className=" text-gray-400 font-medium">
                                       <li className="mb-4">
                                           <a href="#" className="hover:underline">Privacy Policy</a>
                                       </li>
@@ -541,11 +541,11 @@ const Home: NextPage = () => {
                               </div>
                           </div>
                       </div>
-                      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                      <hr className="my-6 border-gray-200 sm:mx-auto  lg:my-8" />
                       <div className="sm:flex sm:items-center sm:justify-between">
-                          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <Link href="/" className="hover:underline">The Sybil Market™</Link>. All Rights Reserved.
+                          <span className="text-sm  sm:text-center text-gray-400">© 2024 <Link href="/" className="hover:underline">The Sybil Market™</Link>. All Rights Reserved.
                           </span>
-                          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400"> Вся информация о нас и о доставке - в дискорде
+                          <span className="text-sm  sm:text-center text-gray-400"> Вся информация о нас и о доставке - в дискорде
                           </span>
                           
                       </div>
