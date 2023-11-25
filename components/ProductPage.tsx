@@ -537,6 +537,27 @@ const handleButtonClick = async () => {
 const sizes = ['S', 'M', 'L', 'XL'];
   const numericValues = [1, 2, 3, 4, 5];
 
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Your data fetching logic here
+        // Example: const response = await fetch('/api/data');
+        // const data = await response.json();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError("You can't reload the page");
+      }
+    };
+
+    fetchData();
+  }, []); // Run only on mount
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
 
   return (
     <ThirdwebProvider activeChain={activeChain} clientId="9e4314f9cb80713a98f3221cfb883eaf">
