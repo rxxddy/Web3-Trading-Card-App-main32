@@ -144,9 +144,19 @@ const shopItems = [
 ];
 
 const ProductPage = () => {
-  const router = useRouter();
+  const myEditionDropContractAddress: string = "0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf";
+  const router = useRouter();const address = useAddress();
+  const [quantity, setQuantity] = useState(1);
+  const { contract: editionDrop } = useContract(myEditionDropContractAddress);
+  const { data: contractMetadata } = useContractMetadata(editionDrop);
+  const [referralAddress, setReferralAddress] = useState('');
+  const successText = 'text logs only after success';
+  const [reffs, setReffs] = useState<number>(0);
+  const [referralError, setReferralError] = useState("");
+  const currentAddress = address;
   const { productName } = router.query;
-
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [tokenId, setTokenId] = useState<number>(0);
   const tokenAddress = "0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf";
 
   // console.log('FIRST COLSOLE LOG', address)
@@ -159,49 +169,16 @@ const ProductPage = () => {
     (item) => encodeURIComponent(item.name.replace(/\s+/g, '-')) === productName
   );
 
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [tokenId, setTokenId] = useState<number>(0);
 
-  useEffect(() => {
-    // Set the initial selected image to the first image in the array
-    if (selectedProduct && selectedProduct.images.length > 0) {
-      setSelectedImage(selectedProduct.images[0]);
 
-      // Use a callback function with setTokenId to update the state
-      setTokenId((prevTokenId) => selectedProduct.id);
-    }
-  }, [selectedProduct]);
 
-  useEffect(() => {
-    // Log the updated tokenId only when it's not null
-    if (tokenId !== null) {
-      // console.log("This is ID", tokenId);
-    }
-  }, [tokenId]);
-
-  if (!selectedProduct) {
-    // Handle case where product is not found
-    return (
-      <div>
-        <div>Product not found</div>
-      </div>
-    );
-  }
 
 //   edition data
 
-const myEditionDropContractAddress: string = "0xAE844Bc15fc76F647E4D285d5e6e67dB2b0D1fcf";
+
 // const tokenId: string = "0";
 
-const address = useAddress();
-const [quantity, setQuantity] = useState(1);
-const { contract: editionDrop } = useContract(myEditionDropContractAddress);
-const { data: contractMetadata } = useContractMetadata(editionDrop);
-const [referralAddress, setReferralAddress] = useState('');
-const successText = 'text logs only after success';
-const [reffs, setReffs] = useState<number>(0);
-const [referralError, setReferralError] = useState("");
-const currentAddress = address;
+
 
 const claimConditions = useClaimConditions(editionDrop);
 const activeClaimCondition = useActiveClaimConditionForWallet(
@@ -556,6 +533,32 @@ const sizes = ['S', 'M', 'L', 'XL'];
 
   if (error) {
     return <div>{error}</div>;
+  }
+
+  useEffect(() => {
+    // Set the initial selected image to the first image in the array
+    if (selectedProduct && selectedProduct.images.length > 0) {
+      setSelectedImage(selectedProduct.images[0]);
+
+      // Use a callback function with setTokenId to update the state
+      setTokenId((prevTokenId) => selectedProduct.id);
+    }
+  }, [selectedProduct]);
+
+  useEffect(() => {
+    // Log the updated tokenId only when it's not null
+    if (tokenId !== null) {
+      // console.log("This is ID", tokenId);
+    }
+  }, [tokenId]);
+
+  if (!selectedProduct) {
+    // Handle case where product is not found
+    return (
+      <div>
+        <div>Product not found</div>
+      </div>
+    );
   }
 
 
