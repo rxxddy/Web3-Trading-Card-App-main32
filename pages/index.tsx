@@ -523,7 +523,7 @@ const Home: NextPage = () => {
                                           <a href="https://instagram.com/thesybil.market" className="hover:underline ">Instagram</a>
                                       </li>
                                       <li className="mb-4">
-                                          <a href="https://discord.gg/kFfWPYuCqf" className="hover:underline">Discord</a>
+                                          <a href="https://discord.gg/mTZGgkCQ83" className="hover:underline">Discord</a>
                                       </li>
                                     
                                   </ul>
