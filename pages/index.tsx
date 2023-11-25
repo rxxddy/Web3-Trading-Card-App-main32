@@ -520,10 +520,10 @@ const Home: NextPage = () => {
                                   <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                                   <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                       <li className="mb-4">
-                                          <a href="https://instagram.com/thesybilmarketplace" className="hover:underline ">Instagram</a>
+                                          <a href="https://instagram.com/thesybil.market" className="hover:underline ">Instagram</a>
                                       </li>
                                       <li className="mb-4">
-                                          <a href="https://discord.gg/WRtthbQR" className="hover:underline">Discord</a>
+                                          <a href="https://discord.gg/kFfWPYuCqf" className="hover:underline">Discord</a>
                                       </li>
                                     
                                   </ul>
