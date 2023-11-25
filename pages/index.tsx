@@ -265,7 +265,7 @@ const Home: NextPage = () => {
   };
   
   return (
-      <div className="p-10 mt-16 block justify-center">
+      <div className="sm:p-10 p-0 mt-16 block justify-center">
             
             <div id="default-carousel" className="relative w-full " data-carousel="slide">
               <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -293,7 +293,7 @@ const Home: NextPage = () => {
                     </div>
                     <div className="absolute right-4 bottom-4">
                       <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0">
-                          <Link href="/shop" className="font-mono inline-flex justify-center items-center sm:py-3 sm:px-5 py-1 px-3 text-xs sm:font-medium font-xs text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                          <Link href="/shop" className="font-mono inline-flex justify-center items-center sm:py-3 sm:px-5 py-1 px-3 text-xs sm:font-medium font-xs text-center text-white rounded-lg bg-[#b55e59] hover:bg-[#a05450] focus:ring-4 focus:ring-[#b55e59] dark:focus:ring-[#a05450]">
                               Get started
                               <svg className="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -349,12 +349,12 @@ const Home: NextPage = () => {
                       <tbody className="">
                         {data1.map((item, index) => (
                           <tr key={index}>
-                            <td className="p-3 pt-12 text-left font-bold">{item.rank}</td>
+                            <td className="p-3 pt-12 font-bold sm:text-left text-center">{item.rank}</td>
                             <td className="p-3 pt-12 flex items-center text-left font-bold">
-                              <img src={item.image} alt={`Image for ${item.collection}`} className="w-20 rounded-xl h-20 rounded-xl mr-2" /> {/* Adjust the width and height as needed */}
+                              <img src={item.image} alt={`Image for ${item.collection}`} className="w-20 rounded-xl h-20 rounded-xl mr-2 sm:justify-start justify-center" /> {/* Adjust the width and height as needed */}
                               {item.collection}
                             </td>
-                            <td className="p-3 pt-12 text-left font-bold">{item.floorPrice}</td>
+                            <td className="p-3 pt-12 text-left font-bold sm:text-left text-center">{item.floorPrice}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -473,7 +473,7 @@ const Home: NextPage = () => {
                             </svg>
                         </a>
                         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Sybil market - это сообщество криптанов создающих стиль жизни</h1>
-                        <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">Мы для тех, кто хочет не просто плыть по течению, а сам определяем куда плывет</p>
+                        <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">Все образы разработаны специально для крипто-комьюнити, их поймут только те кто в теме.</p>
                         {/* <form className="w-full max-w-md mx-auto">   
                             <label htmlFor="default-email" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Email sign-up</label>
                             <div className="relative">
