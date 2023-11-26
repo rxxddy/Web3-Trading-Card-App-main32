@@ -61,7 +61,7 @@ const Home: NextPage = () => {
   //   // Add more data as needed
   // ];
   const data1 = [
-    { rank: 1, collection: 'STOP-LOSS', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/1.png' },
+    { rank: 1, collection: 'Stop Loss', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/1.png' },
     { rank: 2, collection: 'The Low Bank', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/2.png' },
     { rank: 3, collection: 'Not Eligible', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/3.png' },
     // Add more data as needed
@@ -77,12 +77,12 @@ const Home: NextPage = () => {
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/med/1.png',
-      name: 'STOP-LOSS',
+      name: 'Stop Loss',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/med/6.png',
-      name: 'FOMO',
+      name: 'Fomo blank',
     },
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
@@ -92,7 +92,7 @@ const Home: NextPage = () => {
     {
       tokenAddress: '0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869',
       imageUrl: 'https://thesybilmarket.vercel.app/med/12.png',
-      name: 'Connect Wallet',
+      name: 'Connect Wallet Purple',
     },
     
     // Add more items as needed
@@ -334,9 +334,9 @@ const Home: NextPage = () => {
                 </div>
 
                 <div className="w-full sm:p-10 py-6">
-                  <div className="text-xl text-white flex justify-start mb-6 sm:px-0 px-3">
+                  {/* <div className="text-xl text-white flex justify-start mb-6 sm:px-0 px-3">
                     Trending:
-                  </div>
+                  </div> */}
                   <div className="flex font-mono">
                     <table className="w-full text-white mr-6" cellSpacing="0">
                       <thead className="border-b-2 border-white/30 font-light">
@@ -348,6 +348,7 @@ const Home: NextPage = () => {
                       </thead>
                       <tbody className="">
                         {data1.map((item, index) => (
+                          
                           <tr key={index}>
                             <td className="p-3 pt-12 font-bold sm:text-left text-center">{item.rank}</td>
                             <td className="p-3 pt-12 flex items-center text-left font-bold">
@@ -383,24 +384,28 @@ const Home: NextPage = () => {
                   </div>
                 </div>
                 <div className="w-full p-10">
-                  <div className="text-xl text-white flex justify-start mb-6">
+                  {/* <div className="text-xl text-white flex justify-start mb-6">
                     Trending:
-                  </div>
+                  </div> */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
+                    
                     {items.map((item, index) => (
-                      <div key={index} className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] mx-6">
-                        <div className="relative w-full bg-black">
-                          <MediaRenderer
-                            src={item.imageUrl}
-                            className="object-cover rounded-t-md"
-                            style={{ width: "100%", height: "100%" }}
-                          />
+                      <Link key={index} href={`/${encodeURIComponent(item.name.replace(/\s+/g, '-'))}`}>
+                        <div key={index} className="w-[20em] overflow-hidden rounded-md shadow-lg bg-[#252525] mx-6">
+                          <div className="relative w-full bg-black">
+                            <MediaRenderer
+                              src={item.imageUrl}
+                              className="object-cover rounded-t-md"
+                              style={{ width: "100%", height: "100%" }}
+                            />
+                          </div>
+                          <div className="p-4 bg-[#252525] rounded-b-md">
+                            <h3 className="text-white text-xl font-semibold mb-2">{item.name}</h3>
+                            {/* Additional content here */}
+                          </div>
                         </div>
-                        <div className="p-4 bg-[#252525] rounded-b-md">
-                          <h3 className="text-white text-xl font-semibold mb-2">{item.name}</h3>
-                          {/* Additional content here */}
-                        </div>
-                      </div>
+
+                      </Link>
                     ))}
                   </div>
                 </div>
