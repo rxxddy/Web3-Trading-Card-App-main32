@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
+import { Analytics } from '@vercel/analytics/react';
 
 import {
 
@@ -33,6 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <Navbar />
       <Component {...pageProps} />
+      <Analytics />
     </ThirdwebProvider>
   );
 }
