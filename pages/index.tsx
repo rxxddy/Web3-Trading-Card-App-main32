@@ -68,8 +68,8 @@ const Home: NextPage = () => {
   ];
   const data2 = [
     { rank: 4, collection: 'Connect Wallet', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/5.png' },
-    { rank: 5, collection: 'FOMO', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/6.png' },
-    { rank: 6, collection: 'Цените Бычку', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/7.png' },
+    { rank: 5, collection: 'Fomo blank', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/6.png' },
+    { rank: 6, collection: 'Tsenite Buchky', floorPrice: '$55', image: 'https://thesybilmarket.vercel.app/ltl/7.png' },
     // Add more data as needed
   ];
 
@@ -349,14 +349,22 @@ const Home: NextPage = () => {
                       <tbody className="">
                         {data1.map((item, index) => (
                           
+                          
+
                           <tr key={index}>
+
                             <td className="p-3 pt-12 font-bold sm:text-left text-center">{item.rank}</td>
                             <td className="p-3 pt-12 flex items-center text-left font-bold">
-                              <img src={item.image} alt={`Image for ${item.collection}`} className="w-20 rounded-xl h-20 rounded-xl mr-2 sm:justify-start justify-center" /> {/* Adjust the width and height as needed */}
-                              {item.collection}
+                              <Link key={index} href={`/${encodeURIComponent(item.collection.replace(/\s+/g, '-'))}`} className="contents text-white">
+                                <img src={item.image} alt={`Image for ${item.collection}`} className="w-20 rounded-xl h-20 rounded-xl mr-2 sm:justify-start justify-center" /> {/* Adjust the width and height as needed */}
+                                {item.collection}
+                              </Link>
                             </td>
                             <td className="p-3 pt-12 font-bold sm:text-left text-center">{item.floorPrice}</td>
+                            
                           </tr>
+
+
                         ))}
                       </tbody>
                     </table>
@@ -373,8 +381,10 @@ const Home: NextPage = () => {
                           <tr key={index}>
                             <td className="p-3 pt-12 text-left font-bold">{item.rank}</td>
                             <td className="p-3 pt-12 flex items-center text-left font-bold">
-                              <img src={item.image} alt={`Image for ${item.collection}`} className="w-20 rounded-xl h-20 rounded-xl mr-2" /> {/* Adjust the width and height as needed */}
-                              {item.collection}
+                            <Link key={index} href={`/${encodeURIComponent(item.collection.replace(/\s+/g, '-'))}`} className="contents text-white">
+                                <img src={item.image} alt={`Image for ${item.collection}`} className="w-20 rounded-xl h-20 rounded-xl mr-2 sm:justify-start justify-center" /> {/* Adjust the width and height as needed */}
+                                {item.collection}
+                              </Link>
                             </td>
                             <td className="p-3 pt-12 text-left font-bold">{item.floorPrice}</td>
                           </tr>
