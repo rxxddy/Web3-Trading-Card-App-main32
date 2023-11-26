@@ -286,7 +286,7 @@ const Home: NextPage = () => {
                    
                     <div className="absolute left-4 bottom-4 text-white font-bold">
                       <p className="sm:text-2xl text-base text-white">Drop 001</p>
-                      <p className="sm:text-lg text-sm text-white/60">Our first single nft drop ready to be minted</p>
+                      <p className="sm:text-lg text-xs text-white/60">Our first single nft drop ready to be minted</p>
                       {/* <button onClick={toggleMute} className="absolute left-4 bottom-4 text-white font-bold">
                         {isMuted ? 'Unmute' : 'Mute'}
                       </button> */}
