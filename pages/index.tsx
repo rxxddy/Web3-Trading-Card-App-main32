@@ -343,7 +343,7 @@ const Home: NextPage = () => {
                         <tr>
                           <th className="p-3 text-left">Rank</th>
                           <th className="p-3 text-left">Collection</th>
-                          <th className="p-3 text-left">Floor Price</th>
+                          <th className="p-3 text-left">Price</th>
                         </tr>
                       </thead>
                       <tbody className="">
