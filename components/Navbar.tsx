@@ -39,7 +39,7 @@ export default function Navbar() {
         disconnectWallet();
       
         // After disconnecting, toggle the profile dropdown
-        setIsProfileDropdownOpen(!isProfileDropdownOpen);
+        // setIsProfileDropdownOpen(!isProfileDropdownOpen);
       };
 
     return (
