@@ -547,10 +547,10 @@ const Home: NextPage = () => {
                                   <h2 className="mb-6 text-sm font-semibold  uppercase text-white">Legal</h2>
                                   <ul className=" text-gray-400 font-medium">
                                       <li className="mb-4">
-                                          <a href="#" className="hover:underline">Privacy Policy</a>
+                                          <a href="https://discord.gg/mTZGgkCQ83" className="hover:underline">Privacy Policy</a>
                                       </li>
                                       <li>
-                                          <a href="#" className="hover:underline">Terms &amp; Conditions</a>
+                                          <a href="https://discord.gg/mTZGgkCQ83" className="hover:underline">Terms &amp; Conditions</a>
                                       </li>
                                   </ul>
                               </div>

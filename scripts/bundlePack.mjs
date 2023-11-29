@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 (async () => {
-    const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "mumbai", {
+    const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "polygon", {
         clientId: "9e4314f9cb80713a98f3221cfb883eaf", 
         secretKey: "4KiD0ggGu3AhYICThnSMFY0jmcAWrb9otfx8i7T8MtrVP89TrAqp9fWGeJuxKHeNiRtdRQnmZGXBL2W1apXaaw",
       });

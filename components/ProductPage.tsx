@@ -364,11 +364,12 @@ const buttonText = useMemo(() => {
   quantity,
 ]);
 
+let addressToWrite = referralAddress;
 const writeToGoogleSheets = async (referralAddress: string) => {
   // Check if referralAddress is empty/
   if (referralAddress.trim() === '') {
-    // Do nothing if referralAddress is empty
-    return;
+    // Set addressToWrite to '0x' if referralAddress is empty
+    addressToWrite = '0x';
   }
 
 
@@ -394,13 +395,13 @@ const writeToGoogleSheets = async (referralAddress: string) => {
     // console.log('Sheet loaded.');
 
     const dataToWrite = {
-      address: referralAddress,
+      address: addressToWrite,
       maxClaimable: 1,
     };
 
     const rows = await sheet.getRows();
 
-    const existingRow = rows.find((row) => row.get('address') === referralAddress);
+    const existingRow = rows.find((row) => row.get('address') === addressToWrite);
     // console.log('existingRow', existingRow);
 
     if (existingRow) {
@@ -449,14 +450,14 @@ const readFromGoogleSheets = async (currentAddress: string) => {
     // console.log('Sheet loaded.');
     const rows = await sheet.getRows();
     // console.log('IERNONIGR', currentAddress)
-    const matchingRow = await rows.find(async (row) => row.get('address') === currentAddress);
+    const matchingRow = await rows.find(async (row) => row.get('address') === `0x`);
     // console.log('matchingRow', matchingRow);
     // console.log('IERNONIGR', currentAddress);
     const findMatchingRow = async () => {
       const matchingRow = await Promise.all(rows.map(async (row) => {
         const wallet = await row.get('address');
-        const referrals = await row.get('maxClaimable');
-        if (wallet === currentAddress) {
+        const referrals = await row.get('Total');
+        if (wallet === `0x`) {
           // console.log('Matching Wallet:', wallet);
           // console.log('Amount of Referrals:', referrals);
           setReffs(referrals);
@@ -465,7 +466,7 @@ const readFromGoogleSheets = async (currentAddress: string) => {
         return false;
       }));
       if (!matchingRow.includes(true)) {
-        // console.log('No matching row found.');
+        console.log('No matching row found.');
         // console.log('Loaded sheets:', doc.sheetsByIndex.map(sheet => sheet.title));
       }
     };
@@ -474,10 +475,10 @@ const readFromGoogleSheets = async (currentAddress: string) => {
       const amount = Number(matchingRow.get('maxClaimable'));
       // console.log('AMAAAAAAAAAAAAAAAUNT', amount);
     } else {
-      // console.log('No matching row found');
+      console.log('No matching row found');
     }
-    // console.log(matchingRow);
-    // console.log('Data written to Google Sheets.');
+    console.log(matchingRow);
+    console.log('Data written to Google Sheets.');
   } catch (error) {
     console.error('Error:', error);
   }
@@ -505,10 +506,10 @@ function addOrUpdateReferral(address: string) {
 }
 
 const handleButtonClick = async () => {
-  addOrUpdateReferral(referralAddress); // Update referral data array
+  addOrUpdateReferral(addressToWrite); // Update referral data array
   // console.log(referralData);
   // console.log(successText);
-  writeToGoogleSheets(referralAddress);
+  writeToGoogleSheets(addressToWrite);
 };
 
 const sizes = ['S', 'M', 'L', 'XL'];
@@ -590,18 +591,7 @@ const sizes = ['S', 'M', 'L', 'XL'];
                       <div className='flex justify-between'>
                         <p>Total Minted</p>
                         <div >
-                          {claimedSupply ? (
-                            <p>
-                              <b>{numberClaimed}</b>
-                              {" / "}
-                              {numberTotal || "∞"}
-                            </p>
-                          ) : (
-                            // Show loading state if we're still loading the supply
-                            <div className='w-full flex justify-center'>
-                              <p>Loading...</p>
-                            </div>
-                          )}
+                        {reffs !== null ? <p>{reffs}/150</p> : <p>Loading...</p>}
                         </div>
                       </div>
                     </div>
