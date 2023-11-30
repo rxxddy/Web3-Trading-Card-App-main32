@@ -6,6 +6,16 @@ import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import { BigNumber } from 'ethers';
 
 import {
+
+  ConnectWallet,
+  metamaskWallet,
+  coinbaseWallet,
+  walletConnect,
+  trustWallet,
+  darkTheme,
+} from "@thirdweb-dev/react";
+
+import {
     useActiveClaimConditionForWallet,
     useAddress,
     useClaimConditions,
@@ -564,7 +574,12 @@ const sizes = ['S', 'M', 'L', 'XL'];
 
 
   return (
-    <ThirdwebProvider activeChain={activeChain} clientId="9e4314f9cb80713a98f3221cfb883eaf">
+    <ThirdwebProvider activeChain={activeChain} clientId="9e4314f9cb80713a98f3221cfb883eaf" supportedWallets={[
+      metamaskWallet({ recommended: true }),
+      coinbaseWallet(),
+      walletConnect(),
+      trustWallet(),
+    ]}>
       <div className="w-full flex justify-center mt-[6em]">
       <div className="md:w-full w-[90%] md:flex grid justify-center ">
         <div className="grid text-white justify-center items-start md:w-2/6 w-full px-6 order-2 md:order-1 ">
@@ -590,9 +605,13 @@ const sizes = ['S', 'M', 'L', 'XL'];
                     <div >
                       <div className='flex justify-between'>
                         <p>Total Minted</p>
-                        <div >
-                        {reffs !== null ? <p>{reffs}/150</p> : <p>Loading...</p>}
-                        </div>
+                        {currentAddress ? (
+                          <div>
+                            {reffs !== null ? <p>{reffs}/150</p> : <p>Loading...</p>}
+                          </div>
+                        ) : (
+                          <p>???/150</p>
+                        )}
                       </div>
                     </div>
 
