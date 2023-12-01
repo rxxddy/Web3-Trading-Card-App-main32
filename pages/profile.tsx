@@ -405,8 +405,8 @@ export default function Profile() {
                                               id="user_phone"
                                               className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                               placeholder="88005553555"
-                                              value={fio}
-                                              onChange={(e) => setfio(e.target.value)}
+                                              value={phone}
+                                              onChange={(e) => setphone(e.target.value)}
                                               required
                                             />
                                           </div>
@@ -531,7 +531,7 @@ export default function Profile() {
                                             
                                             
                                         }}>
-                                              Order
+                                              Delivery
                                         </button>
                                         
                                     </div>
