@@ -39,8 +39,8 @@ export default function Profile() {
     const [referralError, setReferralError] = useState("");
     const [isContract, setisContract] = useState([]);
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [fio, setfio] = useState('');
+    const [phone, setphone] = useState('');
     const [homeAddress, setHomeAddress] = useState('');
     const [email, setEmail] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
@@ -107,9 +107,9 @@ export default function Profile() {
 
     // console.log('Private Key:', process.env.GOOGLE_SHEETS_KEY);
 
-    const writeToGoogleSheets = async ({ firstName, lastName, homeAddress, email, size }: { firstName: string, lastName: string, homeAddress: string, email: string, size: string }) => {
+    const writeToGoogleSheets = async ({ fio, phone, homeAddress, email, size }: { fio: string, phone: string, homeAddress: string, email: string, size: string }) => {
         // Check if referralAddress is empty/
-        if (!firstName || !lastName || !homeAddress || !email || !size) {
+        if (!fio || !phone || !homeAddress || !email || !size) {
           // Do nothing if any field is empty
           return;
         }
@@ -138,8 +138,8 @@ export default function Profile() {
       
           const dataToWrite = {
             user_address: currentAddress || 'DefaultUserAddress',
-            first_name: firstName,
-            last_name: lastName,
+            user_fio: fio,
+            user_phone: phone,
             homeAddress: homeAddress,
             email: email,
             nft_id: isNFTid,
@@ -270,15 +270,15 @@ export default function Profile() {
       //     // Your form submission logic goes here
       //     setModalOpen(!ModalOpen);
 
-      //   const firstName = event.target.elements.first_name.value;
-      //   const lastName = event.target.elements.last_name.value;
+      //   const fio = event.target.elements.user_fio.value;
+      //   const phone = event.target.elements.user_phone.value;
       //   const homeAddress = event.target.elements.homeAddress.value;
       //   const email = event.target.elements.email.value;
       
       //   // Call writeToGoogleSheets function with the collected data
       //   await writeToGoogleSheets({
-      //     firstName,
-      //     lastName,
+      //     fio,
+      //     phone,
       //     homeAddress,
       //     email,
       //   });
@@ -302,8 +302,8 @@ export default function Profile() {
       const form = event.target;
       if (form.checkValidity() && web3ButtonSuccess) {
         // Your form submission logic goes here
-        const firstName = event.target.elements.first_name.value;
-        const lastName = event.target.elements.last_name.value;
+        const fio = event.target.elements.user_fio.value;
+        const phone = event.target.elements.user_phone.value;
         const homeAddress = event.target.elements.homeAddress.value;
         const email = event.target.elements.email.value;
         const size = event.target.elements.user_size.value;
@@ -313,8 +313,8 @@ export default function Profile() {
 
         // Call writeToGoogleSheets function with the collected data
         await writeToGoogleSheets({
-          firstName,
-          lastName,
+          fio,
+          phone,
           homeAddress,
           email,
           size,
@@ -342,7 +342,7 @@ export default function Profile() {
     // Your handleButtonClick logic here
     // ...
 
-    writeToGoogleSheets({ firstName, lastName, homeAddress, email, size });
+    writeToGoogleSheets({ fio, phone, homeAddress, email, size });
     setModalOpen(!ModalOpen);
   };
 
@@ -378,54 +378,39 @@ export default function Profile() {
                                             </div>
                                         </div>
                               
-                                        <div className="p-4 md:p-5 space-y-4">
+                                      <div className="p-4 md:p-5 space-y-4">
+                                        
+                                          <div className="mb-6">
+                                            <label htmlFor="user_fio" className="block mb-2 text-sm font-medium text-white/90 ">
+                                              ФИО
+                                            </label>
+                                            <input
+                                              type="text"
+                                              id="user_fio"
+                                              className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                              placeholder="Королькова Наталья Борисовна"
+                                              value={fio}
+                                              onChange={(e) => setfio(e.target.value)}
+                                              required
+                                            />
+                                          </div>
+                                        
                                         <div className="grid gap-6 mb-6 md:grid-cols-2">
                                           <div>
-                                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-white/90 ">
-                                              Имя
+                                            <label htmlFor="user_phone" className="block mb-2 text-sm font-medium text-white/90 ">
+                                              Телефон
                                             </label>
                                             <input
                                               type="text"
-                                              id="first_name"
-                                              className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
-                                              placeholder="Dave"
-                                              value={firstName}
-                                              onChange={(e) => setFirstName(e.target.value)}
+                                              id="user_phone"
+                                              className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                              placeholder="88005553555"
+                                              value={fio}
+                                              onChange={(e) => setfio(e.target.value)}
                                               required
                                             />
                                           </div>
                                           <div>
-                                            <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-white/90 ">
-                                              Фамилия
-                                            </label>
-                                            <input
-                                              type="text"
-                                              id="last_name"
-                                              className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
-                                              placeholder="Cooper"
-                                              value={lastName}
-                                              onChange={(e) => setLastName(e.target.value)}
-                                              required
-                                            />
-                                          </div>
-                                        </div>
-
-                                        <div className="mb-6">
-                                          <label htmlFor="homeAddress" className="block mb-2 text-sm font-medium text-white/90 ">
-                                            Адрес
-                                          </label>
-                                          <input
-                                            type="text"
-                                            id="homeAddress"
-                                            className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
-                                            placeholder="ул. Большая Дмитровка, 13, Москва"
-                                            value={homeAddress}
-                                            onChange={(e) => setHomeAddress(e.target.value)}
-                                            required
-                                          />
-                                        </div>
-
-                                        <div className="mb-6">
                                           <label htmlFor="email" className="block mb-2 text-sm font-medium text-white/90 ">
                                             Почта
                                           </label>
@@ -438,6 +423,26 @@ export default function Profile() {
                                             onChange={(e) => setEmail(e.target.value)}
                                             required
                                           />
+                                          </div>
+                                        </div>
+
+                                        <div className="mb-6">
+                                          <label htmlFor="homeAddress" className="block mb-2 text-sm font-medium text-white/90 ">
+                                            Адрес
+                                          </label>
+                                          <input
+                                            type="text"
+                                            id="homeAddress"
+                                            className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5      "
+                                            placeholder="ул. Большая Дмитровка, 13, Москва, 111000"
+                                            value={homeAddress}
+                                            onChange={(e) => setHomeAddress(e.target.value)}
+                                            required
+                                          />
+                                        </div>
+
+                                        <div className="mb-6">
+                                          
                                         </div>
                                         <div>
                                             <label htmlFor="user_size" className="block mb-2 text-sm font-medium text-white/90 ">
@@ -466,7 +471,7 @@ export default function Profile() {
                                           </div>
                                           <label htmlFor="remember" className="ms-2 text-sm font-medium text-white/90 ">
                                             Я согласен с {' '}
-                                            <a href="#" className="text-blue-600 hover:underline ">
+                                            <a href="https://discord.gg/mTZGgkCQ83" className="text-blue-600 hover:underline ">
                                               правилами и политикой
                                             </a>
                                           </label>
@@ -478,10 +483,10 @@ export default function Profile() {
                                             args: [address, [isNFTid], [1]],
                                           })}
 
-                                          onSuccess={() => writeToGoogleSheets({ firstName, lastName, homeAddress, email, size })}
+                                          onSuccess={() => writeToGoogleSheets({ fio, phone, homeAddress, email, size })}
                                           
                                         >
-                                          Send Transaction
+                                          Delivery
                                         </Web3Button>
 
                                         {isFormValid && <div className="text-red-500">Form is not valid or Web3 button is not successful</div>}
