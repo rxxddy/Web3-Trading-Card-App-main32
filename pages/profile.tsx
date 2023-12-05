@@ -541,7 +541,7 @@ export default function Profile() {
                             </div>
                         ))
                     ) : (
-                        <p>Loading...</p>
+                      <h1 className="flex justify-center w-full my-24"><p className="mb-10 text-white">Loading... </p></h1>
                     )
                 ) : (
                     <div className="text-xl text-red-500 font-mono flow justify-center">
