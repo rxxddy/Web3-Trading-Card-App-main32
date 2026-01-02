@@ -1,5 +1,3 @@
-
-```markdown
 # 🛒 The Sybil Market | Web3 Trading Card dApp
 
 ![Status](https://img.shields.io/badge/Status-Deployed-success)
