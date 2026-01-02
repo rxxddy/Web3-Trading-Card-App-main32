@@ -44,7 +44,7 @@ This project implements a **Backend-for-Frontend (BFF)** pattern using Next.js A
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/your-username/web3-trading-card-app.git](https://github.com/your-username/web3-trading-card-app.git)
+git clone [https://github.com/rxxddy/web3-trading-card-app.git](https://github.com/rxxddy/web3-trading-card-app.git)
 cd web3-trading-card-app
 
 ```
