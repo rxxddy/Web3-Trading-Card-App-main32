@@ -35,11 +35,7 @@ export default function Navbar() {
     }
 
     const handleLogout = () => {
-        // Perform the disconnectWallet action here
         disconnectWallet();
-      
-        // After disconnecting, toggle the profile dropdown
-        // setIsProfileDropdownOpen(!isProfileDropdownOpen);
       };
 
     return (
@@ -49,13 +45,8 @@ export default function Navbar() {
                 <Link href="/" className="flex items-center md:hidden ">
                     <img src="https://thesybilmarket.vercel.app/logo02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
                     <img src="https://thesybilmarket.vercel.app/TSM02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
-                    {/* <span className="self-center text-2xl font-semibold whitespace-nowrap ">The Sybil Market</span> */}
                 </Link>
                 <div className="flex md:order-2">
-                    {/* <button type="button" className="text-white bg-gray-500 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 ">Get started</button> */}
-                    
-
-
                     <div className="">
                         {!address ? (
                             <ConnectWallet 
@@ -75,20 +66,18 @@ export default function Navbar() {
                         ) : (
 
                             <div>
-
-                            <button data-collapse-toggle="navbar-sticky" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200   " aria-controls="navbar-sticky" aria-expanded="false">
-                                <span className="sr-only">Open main menu</span>
-                                <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-                                </svg>
-                            </button>
+                                <button data-collapse-toggle="navbar-sticky" onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200   " aria-controls="navbar-sticky" aria-expanded="false">
+                                    <span className="sr-only">Open main menu</span>
+                                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
+                                    </svg>
+                                </button>
                             
-                            <Link href="/profile"
-                                className="md:block hidden"
-                            >
-                                <img src={`https://avatars.dicebear.com/api/avataaars/1.svg`} alt="avatar" className={styles.avatar}/>
-                            </Link>
-
+                                <Link href="/profile"
+                                    className="md:block hidden"
+                                >
+                                    <img src={`https://avatars.dicebear.com/api/avataaars/1.svg`} alt="avatar" className={styles.avatar}/>
+                                </Link>
                             </div>
                         )}
                     </div>
@@ -131,12 +120,8 @@ export default function Navbar() {
                     <Link href="/" className="sm:flex hidden items-center mr-20">
                                 <img src="https://thesybilmarket.vercel.app/logo02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
                                 <img src="https://thesybilmarket.vercel.app/TSM02.png" className="h-8 mr-3" alt="Flowbite Logo"/>
-                                {/* <span className="self-center text-2xl font-semibold whitespace-nowrap ">The Sybil Market</span> */}
                     </Link>
                     <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#202020] md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
-                    {/* <li>
-                        <p className="block py-2 pl-3 pr-4 text-white bg-gray-500 rounded md:bg-transparent md:text-gray-500 md:p-0 " aria-current="page">Home</p>
-                    </li> */}
                     <Link href="/marketplace">
                         <p className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-500 md:p-0      ">Marketplace</p>
                     </Link>
@@ -158,6 +143,5 @@ export default function Navbar() {
                 </div>
             </div>
         </nav>
-
     )
 }

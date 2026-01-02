@@ -25,7 +25,6 @@ export const PackRewardCard = ({ reward }: Props) => {
                         height="100%"
                         width="100%"
                     />
-                    {/* <h3>{data.metadata.name}</h3> */}
                 </>
             )}
         </div>

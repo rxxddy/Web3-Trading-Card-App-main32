@@ -26,8 +26,6 @@ type ShopCardProps = {
   };
 
 export default function ShopCard( { tokenAddress, nftimage, name }: ShopCardProps, ) {
-    // const tokenAddress = "0xf8Bb1882230064CC364b65F4cC61A9F4B4F12869";
-
 
     return (
 

@@ -45,7 +45,6 @@ export const ListingInfo = ({ nft }: Props) => {
             );
 
             if (txResult) {
-                // console.log(txResult);
             }
         }
 

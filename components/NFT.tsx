@@ -24,7 +24,6 @@ export default function NFTCard({ tokenID, listingID }: Props) {
         data: listing,
         isLoading: loadingListing
     } = useDirectListing(marketplace, listingID);
-    // console.log(listing);
 
     async function buyNFT() {
         let txResult;
